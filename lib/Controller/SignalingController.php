@@ -145,10 +145,6 @@ class SignalingController extends OCSController {
 				return new DataResponse(['error' => 'JSON_INVALID'], Http::STATUS_INTERNAL_SERVER_ERROR);
 			}
 
-			if (!isset($data['version'])) {
-				return new DataResponse(['error' => 'VERSION_TOO_OLD'], Http::STATUS_INTERNAL_SERVER_ERROR);
-			}
-
 			return new DataResponse($data);
 		} catch (\GuzzleHttp\Exception\ConnectException $e) {
 			return new DataResponse(['error' => 'CAN_NOT_CONNECT'], Http::STATUS_INTERNAL_SERVER_ERROR);
