@@ -41,7 +41,7 @@ We also removed the changelog that appears for new users (I understand the ratio
 
 Of course, remove the original spreed
 
-`clone git@github.com:ramezrafla/spreed-bigbluebutton.git spreed --branch stable18-bbb`
+`git clone git@github.com:ramezrafla/spreed-bigbluebutton.git spreed --branch stable18-bbb`
 
 Notes: 
 - We included the build dir in this repo. In the future we will add releases (help wanted) or push in the Apps store
@@ -76,6 +76,8 @@ Needless to say, help wanted
 4. Change name of this app 
 5. Publish to apps store
 6. Change the name of a guest (if possible) in BBB if a user changes it in this App -- haven't checked the API yet so not sure if feasible
+
+If you need a BBB server for testing, please PM me.
 
 ## Please don't
 
