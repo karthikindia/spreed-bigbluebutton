@@ -10,7 +10,7 @@ Using PHP as a backend for video / audio conferencing is a bad idea for many rea
 - Latency -- PHP does not maintain persistent connections with users and is an interpreted language
 - Cannot maintain many connections at the same time (max is about 4-5 based on our own experience)
 - Uses its own signaling protocol, so you have to either reinvent the wheel for a compiled native server or pay for the service
-- There is no going to maintain it besides the original developers. Something as complex as a video / audio conferencing requires a team
+- There is no one going to maintain it besides the original developers. Something as complex as a video / audio conferencing requires a team -- future-proofing for enterprise deployments is paramount!
 
 Paying for the third-party service by NC was not an option for us (maybe it is for you) -- it is too expensive for a solutions provider like us
 
