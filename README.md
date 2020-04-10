@@ -41,12 +41,14 @@ We also removed the changelog that appears for new users (I understand the ratio
 
 Of course, remove the original spreed
 
-`clone git@github.com:ramezrafla/spreed-bigbluebutton.git spreed`
+`clone git@github.com:ramezrafla/spreed-bigbluebutton.git spreed --branch stable18-bbb`
 
 Notes: 
-- We included the build dir in this repo. In the future we will add releases (help wanted)
+- We included the build dir in this repo. In the future we will add releases (help wanted) or push in the Apps store
+- Supports NC 18 only -- sorry, too much work porting back
 
 ### Add your BBB server info in config/config.php
+
 ```
   'spreed' =>
   array (
