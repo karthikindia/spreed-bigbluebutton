@@ -1,6 +1,6 @@
 # Nextcloud Talk using Big Blue Button 
 
-This is a fork to use [Big Blue Button](https://bigbluebutton.org/) as the video / audio conferencing server instead of Nextcloud's PHP-based signalling engine (or their paid cloud signaling servers)
+This is a fork to use [Big Blue Button](https://bigbluebutton.org/) as the video / audio conferencing server instead of Nextcloud's PHP-based signalling engine (or the NextCloud paid cloud signaling servers)
 
 ## Rationale for the fork
 
@@ -8,7 +8,7 @@ Using PHP as a backend for conferencing is a bad idea for many reasons. It remai
 - Latency -- PHP does not maintain persistent connections with users and is an interpreted language
 - Cannot maintain many connections at the same time (max is about 4-5 based on our own experience)
 
-Paying for a third-party service was not an option for us (maybe it is for you)
+Paying for the third-party service by NC was not an option for us (maybe it is for you) -- it is too expensive for a solutions provider like us
 
 ## Why Big Blue Button
 
@@ -28,6 +28,12 @@ Super easy, they have an [automated install script](http://docs.bigbluebutton.or
 
 We load up an iframe with your BBB server where the old Talk client was. That's it in a nutshell.
 Right now it is still internally called **spreed** which is the original name of the Talk App. The reasons are many, but prevent us from pushing into the NC Apps store. If you can help with this, please open an issue.
+
+We still kept the chat as-is (using the internal signaling server)
+
+We also removed the changelog that appears for new users (I understand the rationale, but annoying for system administrators)
+
+> The original code is very well-written. Kudos to the original developers. Made it easier to make changes. We had to add a few helper functions here and there as some needs were not served well by existing ones (e.g. get the name of a guest to send to BBB)
 
 ## How to use this plugin
 
@@ -69,7 +75,7 @@ To this:
 ```
 protected $allowedFrameDomains = [
     'https://YOURSERVER'
-  ];
+];
 ```
 
 ### Test it
@@ -81,10 +87,11 @@ Reload your browser, clear your cache, etc. and you can now start calls with BBB
 Needless to say, help wanted
 
 1. Allow iframe within the App
-2. (Maybe) Use original internal signaling server in file-side video chat
+2. (Maybe) Use original internal signaling server in file-side video chat -- if not, we need to remove TURN / STUN from settings (maybe even external signaling server)
 3. Add the 2 parameters in the admin settings (and change code to load app parameters)
 4. Change name of this app 
 5. Publish to apps store
+6. Change the name of a guest (if possible) in BBB if a user changes it in this App -- haven't checked the API yet so not sure if feasible
 
 ## Please don't
 
