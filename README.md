@@ -1,18 +1,22 @@
 # Nextcloud Talk using Big Blue Button 
 
+![](https://raw.githubusercontent.com/ramezrafla/spreed-bigbluebutton/stable18-bbb/docs/call-in-action.png)
+
 This is a fork to use [Big Blue Button](https://bigbluebutton.org/) as the video / audio conferencing server instead of Nextcloud's PHP-based signalling engine (or the NextCloud paid cloud signaling servers)
 
 ## Rationale for the fork
 
-Using PHP as a backend for conferencing is a bad idea for many reasons. It remains a good technical feat, but suffers from:
+Using PHP as a backend for video / audio conferencing is a bad idea for many reasons. It remains a good technical feat, but suffers from:
 - Latency -- PHP does not maintain persistent connections with users and is an interpreted language
 - Cannot maintain many connections at the same time (max is about 4-5 based on our own experience)
+- Uses its own signaling protocol, so you have to either reinvent the wheel for a compiled native server or pay for the service
+- There is no going to maintain it besides the original developers. Something as complex as a video / audio conferencing requires a team
 
 Paying for the third-party service by NC was not an option for us (maybe it is for you) -- it is too expensive for a solutions provider like us
 
 ## Why Big Blue Button
 
-This is a tried-tested-and-true solutions used by many educational institutions worldwide. It has been under active development for a very long time and is well-maintained. Uses Red5 and Kurento under the hood, and has a very nice and solid client (using our beloved [MeteorJS](https://www.meteor.com))
+This is a tried-tested-and-true solution used by many educational institutions worldwide. It has been under active development for a very long time and is well-maintained. Uses Red5 and Kurento under the hood, and has a very nice and solid client (using our beloved [MeteorJS](https://www.meteor.com))
 
 - A recommended BBB server can support over 100 simultaneous users
 - BBB client can handle a lot more participants in the UI
@@ -26,12 +30,15 @@ Super easy, they have an [automated install script](http://docs.bigbluebutton.or
 
 ## What we did
 
-We load up an iframe with your BBB server where the old Talk client was. That's it in a nutshell.
-Right now it is still internally called **spreed** which is the original name of the Talk App. The reasons are many, but prevent us from pushing into the NC Apps store. If you can help with this, please open an issue.
+1. We load up an iframe with your BBB server where the old Talk client was, **only when in the Talk app**. The files details chat still uses the original signaling.
 
-We still kept the chat as-is (using the internal signaling server)
+That's it in a nutshell.
 
-We also removed the changelog that appears for new users (I understand the rationale, but annoying for system administrators)
+> Right now it is still internally called **spreed** which is the original name of the Talk App. The reasons are many, but prevent us from pushing into the NC Apps store. If you can help with this, please open an issue.
+
+2. We kept the chat as-is (using the internal signaling server)
+
+3. We also removed the Talk changelog that appears for new users (I understand the rationale, but annoying for system administrators)
 
 > The original code is very well-written. Kudos to the original developers. Made it easier to make changes. We had to add a few helper functions here and there as some needs were not served well by existing ones (e.g. get the name of a guest to send to BBB)
 
@@ -44,7 +51,7 @@ Of course, remove the original spreed
 `git clone git@github.com:ramezrafla/spreed-bigbluebutton.git spreed --branch stable18-bbb --depth 1`
 
 Notes: 
-- We included the build dir in this repo. In the future we will add releases (help wanted) or push in the Apps store
+- We included the build dir (/js) in this repo. In the future we will add releases (help wanted) or push in the Apps store (help wanted)
 - Supports NC 18 only -- sorry, too much work porting back
 - If you intend to develop omit the --depth argument
 
@@ -67,23 +74,27 @@ Notes:
 
 Reload your browser, clear your cache, etc. and you can now start calls with BBB
 
+## Debugging
+
+1. Is the iframe loading when you start a call in the Talk app --> If not you are still using the old App
+2. You are getting a blank iframe --> are you sure you properly setup `bbb_secret` and `bbb_server` parameters?
+
 ## TODO
 
 Needless to say, help wanted
 
-1. (Maybe) Use original internal signaling server in file-side video chat -- if not, we need to remove TURN / STUN from settings (maybe even external signaling server)
-2. Add the 2 parameters in the admin settings (and change code to load app parameters)
-3. Change name of this app 
-4. Publish to apps store
-5. Change the name of a guest (if possible) in BBB if a user changes it in this App -- haven't checked the API yet so not sure if feasible
+1. Add the 2 BBB parameters (server and key) in the admin settings of this App instead of config.php
+2. Change name of this app -- recommended: 'Talk with BigBlueButton'
+3. Publish to apps store under new name
 
 If you need a BBB server for testing, please PM me.
 
 ## Please don't
 
 1. Ask for help to setup your BBB server -- out of scope. If you are having issues read the docs or look for a third-party provider
-2. Criticize this work needlessly -- it was done to serve a purpose (for example, we did not add the doc above the new functions, later ...)
-3. Ask us to add your must-have features for you -- we are sharing this in the hopes that it is useful and welcome good PRs; so there is no reason you can't do it yourself or pay someone else
+2. Ask for help before you go through the debuggin steps above
+3. Criticize this work needlessly -- it was done to serve a purpose (for example, we did not add the doc above the new functions, later ...)
+4. Ask us to add your must-have features for you -- we are sharing this in the hopes that it is useful and welcome good PRs; so there is no reason you can't do it yourself or pay someone else
 
 > Original README below this line
 

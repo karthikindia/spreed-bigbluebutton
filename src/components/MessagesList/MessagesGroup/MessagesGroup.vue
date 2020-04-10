@@ -41,7 +41,8 @@
 					:actor-id="actorId"
 					:actor-display-name="actorDisplayName"
 					:show-author="!isSystemMessage"
-					:is-temporary="message.timestamp === 0" />
+					:is-temporary="message.timestamp === 0"
+					:sidebar="sidebar" />
 			</div>
 		</div>
 	</div>
@@ -58,6 +59,7 @@ export default {
 		AuthorAvatar,
 		Message,
 	},
+
 	inheritAttrs: false,
 
 	props: {
@@ -81,6 +83,10 @@ export default {
 		messages: {
 			type: Array,
 			required: true,
+		},
+		sidebar: {
+			type: Boolean,
+			required: false,
 		},
 	},
 

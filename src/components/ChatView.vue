@@ -20,7 +20,7 @@
 
 <template>
 	<div class="chatView">
-		<MessagesList :token="token" />
+		<MessagesList :token="token" :sidebar="sidebar" />
 		<NewMessageForm />
 	</div>
 </template>
@@ -43,6 +43,10 @@ export default {
 			type: String,
 			required: true,
 		},
+		sidebar: {
+			type: Boolean,
+			required: false
+		}
 	},
 
 }

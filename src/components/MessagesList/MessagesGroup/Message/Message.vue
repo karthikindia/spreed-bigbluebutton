@@ -43,7 +43,7 @@ the main body of the message as well as a quote.
 			</div>
 			<div v-else-if="showJoinCallButton" class="message__main__text call-started">
 				<RichText :text="message" :arguments="richParameters" :autolink="true" />
-				<CallButton />
+				<CallButton :sidebar="sidebar" />
 			</div>
 			<div v-else class="message__main__text" :class="{'system-message': isSystemMessage}">
 				<Quote v-if="parent" v-bind="quote" />
@@ -195,6 +195,11 @@ export default {
 			type: Number,
 			default: 0,
 		},
+
+		sidebar: {
+			type: Boolean,
+			required: false
+		}
 	},
 
 	data() {

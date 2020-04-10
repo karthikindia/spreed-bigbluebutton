@@ -44,6 +44,7 @@ get the messagesList array and loop through the list to generate the messages.
 			:style="{ height: item.height + 'px' }"
 			v-bind="item"
 			:messages="item"
+			:sidebar="sidebar"
 			@deleteMessage="handleDeleteMessage" />
 		<template v-if="!messagesGroupedByAuthor.length">
 			<LoadingMessage
@@ -82,6 +83,10 @@ export default {
 		token: {
 			type: String,
 			required: true,
+		},
+		sidebar: {
+			type: Boolean,
+			required: false,
 		},
 	},
 
