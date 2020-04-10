@@ -74,10 +74,18 @@ Notes:
 
 Reload your browser, clear your cache, etc. and you can now start calls with BBB
 
-## Debugging
+## Troubleshooting
 
 1. Is the iframe loading when you start a call in the Talk app --> If not you are still using the old App
-2. You are getting a blank iframe --> are you sure you properly setup `bbb_secret` and `bbb_server` parameters?
+2. Make sure BBB server is working. Open your browser to `https://DOMAIN/bigbluebutton/` then to . You should get a response like this
+```
+<response>
+   <script/>
+   <returncode>SUCCESS</returncode>
+   <version>2.0</version>
+</response>
+```
+3. You are getting a blank iframe --> are you sure you properly setup `bbb_secret` and `bbb_server` parameters?
 
 ## TODO
 
@@ -92,7 +100,7 @@ If you need a BBB server for testing, please PM me.
 ## Please don't
 
 1. Ask for help to setup your BBB server -- out of scope. If you are having issues read the docs or look for a third-party provider
-2. Ask for help before you go through the debuggin steps above
+2. Ask for help before you go through the troubleshooting steps above
 3. Criticize this work needlessly -- it was done to serve a purpose (for example, we did not add the doc above the new functions, later ...)
 4. Ask us to add your must-have features for you -- we are sharing this in the hopes that it is useful and welcome good PRs; so there is no reason you can't do it yourself or pay someone else
 
