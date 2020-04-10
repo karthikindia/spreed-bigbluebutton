@@ -102,11 +102,7 @@ class CallController extends AEnvironmentAwareController {
 
 	$config = \OC::$server->getConfig();
 	$appConfig = $config->getSystemValue('spreed');
-	if (array_key_exists('bbb_server', $appConfig) && array_key_exists('bbb_secret', $appConfig)) {
-		putenv("BBB_SERVER_BASE_URL=" . $appConfig['bbb_server']);
-		putenv("BBB_SECRET=" . $appConfig['bbb_secret']);
-	}
-	else {
+	if (!array_key_exists('bbb_server', $appConfig) || !array_key_exists('bbb_secret', $appConfig)) {
 		return new DataResponse($url);
 	}
 

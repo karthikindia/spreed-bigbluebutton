@@ -62,24 +62,6 @@ Notes:
 - You can get both info from your BBB server: `sudo bbb-conf --secret`
 - We need to add to the admin settings of the app the ability to edit these manually (help wanted)
 
-### Edit allowed iframes
-
-Unfortunately you have to make a change in the core of Nextcloud to allow the iframe to load (help wanted with that)
-
-In `/nextcloud/lib/public/AppFramework/Http/ContentSecurityPolicy.php`
-
-Change this:
-```
-protected $allowedFrameDomains = [];
-```
-
-To this:
-```
-protected $allowedFrameDomains = [
-    'https://YOURSERVER'
-];
-```
-
 ### Test it
 
 Reload your browser, clear your cache, etc. and you can now start calls with BBB
