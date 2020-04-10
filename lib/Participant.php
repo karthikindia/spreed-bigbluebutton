@@ -113,6 +113,32 @@ class Participant {
 		return \in_array($this->participantType, [self::GUEST, self::GUEST_MODERATOR], true);
 	}
 
+	public function getDisplayName(): string {
+		if ($this->isGuest()) {
+			$sessionHash = sha1($this->getSessionId());
+			$query = $this->db->getQueryBuilder();
+			$query->select('display_name')
+				->from('talk_guests')
+				->where($query->expr()->eq('session_hash', $query->createNamedParameter($sessionHash)));
+
+			$result = $query->execute();
+			$row = $result->fetch();
+			$result->closeCursor();
+
+			if (isset($row['display_name']) && $row['display_name'] !== '') {
+				$displayname = $row['display_name'];
+			}
+			else {
+				$displayname = 'Guest';
+			}
+		}
+		else {
+			$user = $this->room->getManager()->getUserManager()->get($this->getUser());
+			$displayname = $user->getDisplayName();
+		}
+		return $displayname;
+	}
+
 	public function hasModeratorPermissions(bool $guestModeratorAllowed = true): bool {
 		if (!$guestModeratorAllowed) {
 			return \in_array($this->participantType, [self::OWNER, self::MODERATOR], true);

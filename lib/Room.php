@@ -218,6 +218,10 @@ class Room {
 		return $this->lobbyTimer;
 	}
 
+	public function getManager(): Manager {
+		return $this->manager;
+	}
+
 	protected function validateTimer(): void {
 		if ($this->lobbyTimer !== null && $this->lobbyTimer < $this->timeFactory->getDateTime()) {
 			$this->setLobby(Webinary::LOBBY_NONE, null, true);

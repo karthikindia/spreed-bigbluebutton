@@ -29,13 +29,6 @@ use OCP\EventDispatcher\IEventDispatcher;
 class Listener {
 
 	public static function register(IEventDispatcher $dispatcher): void {
-		$dispatcher->addListener(RoomController::EVENT_BEFORE_ROOMS_GET, static function(UserEvent $event) {
-			$userId = $event->getUserId();
-
-			/** @var Listener $listener */
-			$listener = \OC::$server->query(self::class);
-			$listener->preGetRooms($userId);
-		}, -100);
 	}
 
 	/** @var Manager */

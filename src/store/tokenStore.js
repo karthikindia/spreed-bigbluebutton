@@ -23,11 +23,15 @@
 const state = {
 	token: '',
 	fileIdForToken: null,
+	callUrl: null,
 }
 
 const getters = {
 	getToken: (state) => () => {
 		return state.token
+	},
+	getCallUrl: (state) => () => {
+		return state.callUrl
 	},
 	getFileIdForToken: (state) => () => {
 		return state.fileIdForToken
@@ -43,6 +47,10 @@ const mutations = {
 	 */
 	updateToken(state, newToken) {
 		state.token = newToken
+	},
+
+	updateCallUrl(state, newCallUrl) {
+		state.callUrl = newCallUrl !== '' ? newCallUrl : null
 	},
 
 	/**
@@ -68,6 +76,10 @@ const actions = {
 	 */
 	updateToken(context, newToken) {
 		context.commit('updateToken', newToken)
+	},
+
+	updateCallUrl(context, newCallUrl) {
+		context.commit('updateCallUrl', newCallUrl)
 	},
 
 	/**

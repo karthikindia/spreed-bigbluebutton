@@ -831,6 +831,10 @@ class Manager {
 		return $this->userManager->userExists($userId);
 	}
 
+	public function getUserManager(): IUserManager {
+		return $this->userManager;
+	}
+
 	protected function loadLastMessageInfo(IQueryBuilder $query): void {
 		$query->leftJoin('r','comments', 'c', $query->expr()->eq('r.last_message', 'c.id'));
 		$query->selectAlias('c.id', 'comment_id');

@@ -26,11 +26,19 @@ declare(strict_types=1);
 
 namespace OCA\Talk\Controller;
 
+if ((@include_once __DIR__ . '/../../vendor/autoload.php')===false) {
+	throw new Exception('Cannot include autoload. Did you run install dependencies using composer?');
+}
+
 use OCA\Talk\Participant;
 use OCP\AppFramework\Http;
 use OCP\AppFramework\Http\DataResponse;
 use OCP\AppFramework\Utility\ITimeFactory;
 use OCP\IRequest;
+use BigBlueButton\BigBlueButton;
+use BigBlueButton\Parameters\CreateMeetingParameters;
+use BigBlueButton\Parameters\GetMeetingInfoParameters;
+use BigBlueButton\Parameters\JoinMeetingParameters;
 
 class CallController extends AEnvironmentAwareController {
 
@@ -83,21 +91,55 @@ class CallController extends AEnvironmentAwareController {
 	 * @return DataResponse
 	 */
 	public function joinCall(?int $flags): DataResponse {
-		$this->room->ensureOneToOneRoomIsFilled();
 
-		$sessionId = $this->participant->getSessionId();
-		if ($sessionId === '0') {
-			return new DataResponse([], Http::STATUS_NOT_FOUND);
-		}
+	$sessionId = $this->participant->getSessionId();
 
-		if ($flags === null) {
-			// Default flags: user is in room with audio/video.
-			$flags = Participant::FLAG_IN_CALL | Participant::FLAG_WITH_AUDIO | Participant::FLAG_WITH_VIDEO;
-		}
+	if ($sessionId === '0') {
+		return new DataResponse([], Http::STATUS_NOT_FOUND);
+	}
 
-		$this->room->changeInCall($this->participant, $flags);
+	$url = '';
 
-		return new DataResponse();
+	$config = \OC::$server->getConfig();
+	$appConfig = $config->getSystemValue('spreed');
+	if (array_key_exists('bbb_server', $appConfig) && array_key_exists('bbb_secret', $appConfig)) {
+		putenv("BBB_SERVER_BASE_URL=" . $appConfig['bbb_server']);
+		putenv("BBB_SECRET=" . $appConfig['bbb_secret']);
+	}
+	else {
+		return new DataResponse($url);
+	}
+
+    $bbb = new BigBlueButton();
+    $token = $this->room->getToken();
+
+    # checking if meeting already exists
+    $getMeetingInfoParams = new GetMeetingInfoParameters($token, 'IAmAModerator');
+    $response = $bbb->getMeetingInfo($getMeetingInfoParams);
+    if ($response->getReturnCode() == 'FAILED') {
+      $createMeetingParams = new CreateMeetingParameters($token, $this->room->getName());
+      $createMeetingParams = $createMeetingParams->setModeratorPassword('IAmAModerator')->setAttendeePassword('IAmAnAttendee');
+      $response = $bbb->createMeeting($createMeetingParams);
+      if ($response->getReturnCode() == 'FAILED') return new DataResponse($url);
+    }
+
+    $password = ($this->participant->getParticipantType() <= 2) ? 'IAmAModerator' : 'IAmAnAttendee';
+    $displayname = $this->participant->getDisplayName();
+    $joinMeetingParams = new JoinMeetingParameters($token, $displayname , $password);
+    # https://github.com/bigbluebutton/bigbluebutton-api-php/wiki/Full-Usage-Sample
+    $joinMeetingParams->setRedirect(true);
+    $joinMeetingParams->setJoinViaHtml5(true);
+    $url = $bbb->getJoinMeetingURL($joinMeetingParams);
+
+    // we only change the flags after we successfully obtained the BBB url
+    if ($flags === null) {
+      // Default flags: user is in room with audio/video.
+      $flags = Participant::FLAG_IN_CALL | Participant::FLAG_WITH_AUDIO | Participant::FLAG_WITH_VIDEO;
+    }
+
+    $this->room->changeInCall($this->participant, $flags);
+
+		return new DataResponse($url);
 	}
 
 	/**

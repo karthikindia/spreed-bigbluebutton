@@ -3,18 +3,23 @@
 		<LobbyScreen v-if="isInLobby" />
 		<template v-else>
 			<TopBar :force-white-icons="showChatInSidebar" />
-
 			<ChatView v-if="!showChatInSidebar" :token="token" />
 			<template v-else>
-				<CallView
-					:token="token" />
+				<div class="resp-container">
+					<iframe class="resp-iframe"
+						allow="geolocation; microphone; camera"
+						allowfullscreen
+						width="100%"
+						height="100%"
+						frameborder="0"
+						:src="src" />
+				</div>
 			</template>
 		</template>
 	</div>
 </template>
 
 <script>
-import CallView from '../components/CallView/CallView'
 import ChatView from '../components/ChatView'
 import LobbyScreen from '../components/LobbyScreen'
 import TopBar from '../components/TopBar/TopBar'
@@ -24,7 +29,6 @@ import isInLobby from '../mixins/isInLobby'
 export default {
 	name: 'MainView',
 	components: {
-		CallView,
 		ChatView,
 		LobbyScreen,
 		TopBar,
@@ -71,7 +75,11 @@ export default {
 		},
 
 		showChatInSidebar() {
-			return this.participant.inCall !== PARTICIPANT.CALL_FLAG.DISCONNECTED
+			return this.participant.inCall !== PARTICIPANT.CALL_FLAG.DISCONNECTED && this.$store.getters.getCallUrl() !== null
+		},
+
+		src() {
+			return this.$store.getters.getCallUrl()
 		},
 	},
 
@@ -118,5 +126,20 @@ export default {
 	flex-grow: 1;
 	flex-direction: column;
 	align-content: space-between;
+}
+.resp-container {
+	position: relative;
+	overflow: hidden;
+	padding-top: 56.25%;
+	width: 100%;
+	height: 100%;
+}
+.resp-iframe {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	border: 0;
 }
 </style>

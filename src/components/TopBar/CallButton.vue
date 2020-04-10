@@ -144,12 +144,12 @@ export default {
 
 		showStartCallButton() {
 			return this.conversation.readOnly === CONVERSATION.STATE.READ_WRITE
-				&& this.participant.inCall === PARTICIPANT.CALL_FLAG.DISCONNECTED
+				&& this.$store.getters.getCallUrl() === null
 		},
 
 		showLeaveCallButton() {
 			return this.conversation.readOnly === CONVERSATION.STATE.READ_WRITE
-				&& this.participant.inCall !== PARTICIPANT.CALL_FLAG.DISCONNECTED
+				&& this.$store.getters.getCallUrl() !== null
 		},
 	},
 

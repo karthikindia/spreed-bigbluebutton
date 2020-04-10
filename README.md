@@ -1,3 +1,99 @@
+# Nextcloud Talk using Big Blue Button 
+
+This is a fork to use [Big Blue Button](https://bigbluebutton.org/) as the video / audio conferencing server instead of Nextcloud's PHP-based signalling engine (or their paid cloud signaling servers)
+
+## Rationale for the fork
+
+Using PHP as a backend for conferencing is a bad idea for many reasons. It remains a good technical feat, but suffers from:
+- Latency -- PHP does not maintain persistent connections with users and is an interpreted language
+- Cannot maintain many connections at the same time (max is about 4-5 based on our own experience)
+
+Paying for a third-party service was not an option for us (maybe it is for you)
+
+## Why Big Blue Button
+
+This is a tried-tested-and-true solutions used by many educational institutions worldwide. It has been under active development for a very long time and is well-maintained. Uses Red5 and Kurento under the hood, and has a very nice and solid client (using our beloved [MeteorJS](https://www.meteor.com))
+
+- A recommended BBB server can support over 100 simultaneous users
+- BBB client can handle a lot more participants in the UI
+- BBB client has drawing board, breakout rooms, uploading PDF,DOC,PPT,XLS
+- BBB client has realtime notes
+- BBB client UI is professional-grade (no offense intended for current Talk client UI)
+
+## How to setup BBB
+
+Super easy, they have an [automated install script](http://docs.bigbluebutton.org/2.2/install.html). You do need to have an SSL certificate setup (does it for you, but you need to setup your domains properly). Don't forget that you need Ubuntu 16
+
+## What we did
+
+We load up an iframe with your BBB server where the old Talk client was. That's it in a nutshell.
+Right now it is still internally called **spreed** which is the original name of the Talk App. The reasons are many, but prevent us from pushing into the NC Apps store. If you can help with this, please open an issue.
+
+## How to use this plugin
+
+### First you have to manually clone it in your /apps folder
+
+Of course, remove the original spreed
+
+`clone git@github.com:ramezrafla/spreed-bigbluebutton.git spreed`
+
+Notes: 
+- We included the build dir in this repo. In the future we will add releases (help wanted)
+
+### Add your BBB server info in config/config.php
+```
+  'spreed' =>
+  array (
+    'bbb_server' => 'https://YOURSERVER/bigbluebutton/',
+    'bbb_secret' => 'YOURSECRET',
+  ),
+```
+
+Notes:
+- The trailing slash is important in the URL above
+- You can get both info from your BBB server: `sudo bbb-conf --secret`
+- We need to add to the admin settings of the app the ability to edit these manually (help wanted)
+
+### Edit allowed iframes
+
+Unfortunately you have to make a change in the core of Nextcloud to allow the iframe to load (help wanted with that)
+
+In `/nextcloud/lib/public/AppFramework/Http/ContentSecurityPolicy.php`
+
+Change this:
+```
+protected $allowedFrameDomains = [];
+```
+
+To this:
+```
+protected $allowedFrameDomains = [
+    'https://YOURSERVER'
+  ];
+```
+
+### Test it
+
+Reload your browser, clear your cache, etc. and you can now start calls with BBB
+
+## TODO
+
+Needless to say, help wanted
+
+1. Allow iframe within the App
+2. (Maybe) Use original internal signaling server in file-side video chat
+3. Add the 2 parameters in the admin settings (and change code to load app parameters)
+4. Change name of this app 
+5. Publish to apps store
+
+## Please don't
+
+1. Ask for help to setup your BBB server -- out of scope. If you are having issues read the docs or look for a third-party provider
+2. Criticize this work needlessly -- it was done to serve a purpose (for example, we did not add the doc above the new functions, later ...)
+3. Ask us to add your must-have features for you -- we are sharing this in the hopes that it is useful and welcome good PRs; so there is no reason you can't do it yourself or pay someone else
+
+> Original README below this line
+
 # Nextcloud Talk
 
 **Video- & audio-conferencing app for Nextcloud**

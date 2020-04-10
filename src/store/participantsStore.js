@@ -196,7 +196,8 @@ const actions = {
 			return
 		}
 
-		await joinCall(token, flags)
+		const callUrl = await joinCall(token, flags)
+		commit('updateCallUrl', callUrl)
 
 		const updatedData = {
 			inCall: flags,
@@ -210,6 +211,7 @@ const actions = {
 			return
 		}
 
+		commit('updateCallUrl', null)
 		await leaveCall(token)
 
 		const updatedData = {
