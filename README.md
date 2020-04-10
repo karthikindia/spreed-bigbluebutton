@@ -1,6 +1,6 @@
 # Nextcloud Talk using Big Blue Button 
 
-![](https://raw.githubusercontent.com/ramezrafla/spreed-bigbluebutton/stable18-bbb/docs/call-in-action.png)
+![](https://raw.githubusercontent.com/ramezrafla/spreed-bigbluebutton/stable18-bbb/docs/talkwithbbb.jpeg)
 
 This is a fork to use [Big Blue Button](https://bigbluebutton.org/) as the video / audio conferencing server instead of Nextcloud's PHP-based signalling engine (or the NextCloud paid cloud signaling servers)
 
