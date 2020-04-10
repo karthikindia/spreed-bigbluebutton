@@ -28,7 +28,7 @@ This is a tried-tested-and-true solution used by many educational institutions w
 
 Super easy, they have an [automated install script](http://docs.bigbluebutton.org/2.2/install.html). You do need to have an SSL certificate setup (does it for you, but you need to setup your domains properly). Don't forget that you need Ubuntu 16
 
-## What we did
+# What we did
 
 1. We load up an iframe with your BBB server where the old Talk client was, **only when in the Talk app**. The files details chat still uses the original signaling.
 
@@ -42,9 +42,9 @@ That's it in a nutshell.
 
 > The original code is very well-written. Kudos to the original developers. Made it easier to make changes. We had to add a few helper functions here and there as some needs were not served well by existing ones (e.g. get the name of a guest to send to BBB)
 
-## How to use this App
+# How to use this App
 
-### First you have to manually clone it in your /apps folder
+## First you have to manually clone it in your /apps folder
 
 Of course, remove the original spreed
 
@@ -55,7 +55,7 @@ Notes:
 - Supports NC 18 only -- sorry, too much work porting back
 - If you intend to develop omit the --depth argument
 
-### Add your BBB server info in config/config.php
+## Add your BBB server info in config/config.php
 
 ```
   'spreed' =>
@@ -70,11 +70,11 @@ Notes:
 - You can get both info from your BBB server: `sudo bbb-conf --secret`
 - We need to add to the admin settings of the app the ability to edit these manually (help wanted)
 
-### Test it
+## Test it
 
 Reload your browser, clear your cache, etc. and you can now start calls with BBB
 
-## Troubleshooting
+# Troubleshooting
 
 1. Is the iframe loading when you start a call in the Talk app --> If not you are still using the old App
 2. Make sure BBB server is working. Open your browser to `https://DOMAIN/bigbluebutton/` then to `https://DOMAIN/bigbluebutton/api/`. You should get a response like this
@@ -85,9 +85,10 @@ Reload your browser, clear your cache, etc. and you can now start calls with BBB
    <version>2.0</version>
 </response>
 ```
+> **Anything else is a problem. Fix your BBB server first**
 3. You are getting a blank iframe --> are you sure you properly setup `bbb_secret` and `bbb_server` parameters?
 
-## TODO
+# TODO
 
 Needless to say, help wanted
 
@@ -97,7 +98,7 @@ Needless to say, help wanted
 
 If you need a BBB server for testing, please PM me.
 
-## Please don't
+# Please don't
 
 1. Ask for help to setup your BBB server -- out of scope. If you are having issues read the docs or look for a third-party provider
 2. Ask for help before you go through the troubleshooting steps above
