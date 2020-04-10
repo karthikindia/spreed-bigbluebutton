@@ -61,6 +61,13 @@ export default {
 
 	mixins: [browserCheck],
 
+	props: {
+		sidebar: {
+			type: Boolean,
+			required: false,
+		},
+	},
+
 	data() {
 		return {
 			loading: false,
@@ -144,12 +151,18 @@ export default {
 
 		showStartCallButton() {
 			return this.conversation.readOnly === CONVERSATION.STATE.READ_WRITE
-				&& this.$store.getters.getCallUrl() === null
+				&& (
+					(!this.sidebar && this.$store.getters.getCallUrl() === null)
+					|| (this.sidebar && this.participant.inCall === PARTICIPANT.CALL_FLAG.DISCONNECTED)
+				)
 		},
 
 		showLeaveCallButton() {
 			return this.conversation.readOnly === CONVERSATION.STATE.READ_WRITE
-				&& this.$store.getters.getCallUrl() !== null
+				&& (
+					(!this.sidebar && this.$store.getters.getCallUrl() !== null)
+					|| (this.sidebar && this.participant.inCall !== PARTICIPANT.CALL_FLAG.DISCONNECTED)
+				)
 		},
 	},
 
@@ -161,7 +174,8 @@ export default {
 		async joinCall() {
 			console.info('Joining call')
 			this.loading = true
-			await this.$store.dispatch('joinCall', {
+			const func = this.sidebar ? 'joinCallSideBar' : 'joinCall'
+			await this.$store.dispatch(func, {
 				token: this.token,
 				participantIdentifier: this.$store.getters.getParticipantIdentifier(),
 				flags: PARTICIPANT.CALL_FLAG.IN_CALL, // FIXME add audio+video as per setting
@@ -172,7 +186,8 @@ export default {
 		async leaveCall() {
 			console.info('Leaving call')
 			this.loading = true
-			await this.$store.dispatch('leaveCall', {
+			const func = this.sidebar ? 'leaveCallSideBar' : 'leaveCall'
+			await this.$store.dispatch(func, {
 				token: this.token,
 				participantIdentifier: this.$store.getters.getParticipantIdentifier(),
 			})

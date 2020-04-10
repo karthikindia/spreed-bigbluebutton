@@ -39,7 +39,7 @@
 			</button>
 		</div>
 		<template v-else>
-			<CallButton class="call-button" />
+			<CallButton class="call-button" :sidebar="true" />
 			<ChatView :token="token" />
 		</template>
 	</div>

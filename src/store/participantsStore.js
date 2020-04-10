@@ -28,7 +28,9 @@ import {
 } from '../services/participantsService'
 import {
 	joinCall,
+	joinCallSideBar,
 	leaveCall,
+	leaveCallSideBar,
 } from '../services/callsService'
 import { PARTICIPANT } from '../constants'
 
@@ -205,6 +207,21 @@ const actions = {
 		commit('updateParticipant', { token, index, updatedData })
 	},
 
+	async joinCallSideBar({ commit, getters }, { token, participantIdentifier, flags }) {
+		const index = getters.getParticipantIndex(token, participantIdentifier)
+		if (index === -1) {
+			console.error('Participant not found', participantIdentifier)
+			return
+		}
+
+		await joinCallSideBar(token, flags)
+
+		const updatedData = {
+			inCall: flags,
+		}
+		commit('updateParticipant', { token, index, updatedData })
+	},
+
 	async leaveCall({ commit, getters }, { token, participantIdentifier }) {
 		const index = getters.getParticipantIndex(token, participantIdentifier)
 		if (index === -1) {
@@ -213,6 +230,20 @@ const actions = {
 
 		commit('updateCallUrl', null)
 		await leaveCall(token)
+
+		const updatedData = {
+			inCall: PARTICIPANT.CALL_FLAG.DISCONNECTED,
+		}
+		commit('updateParticipant', { token, index, updatedData })
+	},
+
+	async leaveCallSideBar({ commit, getters }, { token, participantIdentifier }) {
+		const index = getters.getParticipantIndex(token, participantIdentifier)
+		if (index === -1) {
+			return
+		}
+
+		await leaveCallSideBar(token)
 
 		const updatedData = {
 			inCall: PARTICIPANT.CALL_FLAG.DISCONNECTED,
