@@ -70,12 +70,11 @@ Reload your browser, clear your cache, etc. and you can now start calls with BBB
 
 Needless to say, help wanted
 
-1. Allow iframe within the App
-2. (Maybe) Use original internal signaling server in file-side video chat -- if not, we need to remove TURN / STUN from settings (maybe even external signaling server)
-3. Add the 2 parameters in the admin settings (and change code to load app parameters)
-4. Change name of this app 
-5. Publish to apps store
-6. Change the name of a guest (if possible) in BBB if a user changes it in this App -- haven't checked the API yet so not sure if feasible
+1. (Maybe) Use original internal signaling server in file-side video chat -- if not, we need to remove TURN / STUN from settings (maybe even external signaling server)
+2. Add the 2 parameters in the admin settings (and change code to load app parameters)
+3. Change name of this app 
+4. Publish to apps store
+5. Change the name of a guest (if possible) in BBB if a user changes it in this App -- haven't checked the API yet so not sure if feasible
 
 If you need a BBB server for testing, please PM me.
 
