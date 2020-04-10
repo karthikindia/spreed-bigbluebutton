@@ -77,7 +77,7 @@ Reload your browser, clear your cache, etc. and you can now start calls with BBB
 ## Troubleshooting
 
 1. Is the iframe loading when you start a call in the Talk app --> If not you are still using the old App
-2. Make sure BBB server is working. Open your browser to `https://DOMAIN/bigbluebutton/` then to . You should get a response like this
+2. Make sure BBB server is working. Open your browser to `https://DOMAIN/bigbluebutton/` then to `https://DOMAIN/bigbluebutton/api/`. You should get a response like this
 ```
 <response>
    <script/>
