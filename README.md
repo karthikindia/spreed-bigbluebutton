@@ -35,17 +35,18 @@ We also removed the changelog that appears for new users (I understand the ratio
 
 > The original code is very well-written. Kudos to the original developers. Made it easier to make changes. We had to add a few helper functions here and there as some needs were not served well by existing ones (e.g. get the name of a guest to send to BBB)
 
-## How to use this plugin
+## How to use this App
 
 ### First you have to manually clone it in your /apps folder
 
 Of course, remove the original spreed
 
-`git clone git@github.com:ramezrafla/spreed-bigbluebutton.git spreed --branch stable18-bbb`
+`git clone git@github.com:ramezrafla/spreed-bigbluebutton.git spreed --branch stable18-bbb --depth 1`
 
 Notes: 
 - We included the build dir in this repo. In the future we will add releases (help wanted) or push in the Apps store
 - Supports NC 18 only -- sorry, too much work porting back
+- If you intend to develop omit the --depth argument
 
 ### Add your BBB server info in config/config.php
 
