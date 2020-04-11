@@ -32,13 +32,13 @@ Super easy, they have an [automated install script](http://docs.bigbluebutton.or
 
 1. We load up an iframe with your BBB server where the old Talk client was, **only when in the Talk app**. The files details chat still uses the original signaling.
 
-That's it in a nutshell.
-
 > Right now it is still internally called **spreed** which is the original name of the Talk App. The reasons are many, but prevent us from pushing into the NC Apps store. If you can help with this, please open an issue.
 
-2. We kept the chat as-is (using the internal signaling server)
+2. When a call is launched in the Talk app (not file sidebar) we hide the sidebars to have the call full width (you can reopen the call sidebar on the right by clicking on the icon)
 
-3. We also removed the Talk changelog that appears for new users (I understand the rationale, but annoying for system administrators)
+3. We kept the chat as-is using the internal signaling server which is more than capable of handling chat traffic
+
+4. We removed the Talk changelog that appears for new users (I understand the rationale, but annoying for system administrators)
 
 > The original code is very well-written. Kudos to the original developers. Made it easier to make changes. We had to add a few helper functions here and there as some needs were not served well by existing ones (e.g. get the name of a guest to send to BBB)
 
