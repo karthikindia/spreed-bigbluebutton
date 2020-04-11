@@ -21,7 +21,7 @@
 
 <template>
 	<Content :class="{ 'icon-loading': loading, 'in-call': isInCall }" app-name="Talk">
-		<LeftSidebar v-if="getUserId && !isFullscreen" />
+		<LeftSidebar v-if="getUserId && !isFullscreen && !isInCall" />
 		<AppContent>
 			<router-view />
 		</AppContent>

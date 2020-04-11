@@ -113,6 +113,8 @@ const mutations = {
 	},
 }
 
+let contentPaddingTop = null
+
 const actions = {
 
 	/**
@@ -200,6 +202,16 @@ const actions = {
 
 		const callUrl = await joinCall(token, flags)
 		commit('updateCallUrl', callUrl)
+		// we hide the sidebar to give the call fullscreen -- user can open it again if need be
+		if (callUrl !== '') {
+			commit('hideSidebar')
+			// hiding top bar
+			document.getElementById('header').style.display = 'none'
+			// saving top padding for when we end the call
+			contentPaddingTop = document.getElementById('content').style.paddingTop
+			// move content and sidebar app where the heading used to be
+			document.getElementById('content').style.paddingTop = 0
+		}
 
 		const updatedData = {
 			inCall: flags,
@@ -228,8 +240,14 @@ const actions = {
 			return
 		}
 
-		commit('updateCallUrl', null)
 		await leaveCall(token)
+		commit('updateCallUrl', null)
+		// revert back all UI changes
+		document.getElementById('header').style.display = ''
+		if (contentPaddingTop !== null) {
+			document.getElementById('content').style.paddingTop = contentPaddingTop
+			contentPaddingTop = null
+		}
 
 		const updatedData = {
 			inCall: PARTICIPANT.CALL_FLAG.DISCONNECTED,
