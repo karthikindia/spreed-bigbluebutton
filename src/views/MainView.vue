@@ -130,7 +130,7 @@ export default {
 .resp-container {
 	position: relative;
 	overflow: hidden;
-	padding-top: 56.25%;
+	padding-top: 50%;
 	width: 100%;
 	height: 100%;
 }
