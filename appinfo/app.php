@@ -26,7 +26,7 @@ $config = \OC::$server->getConfig();
 # Setting global variables needed by BBB PHP API
 # Adding BBB server to allowed iframe domains
 $appConfig = $config->getSystemValue('spreed');
-if (array_key_exists('bbb_server', $appConfig) && array_key_exists('bbb_secret', $appConfig)) {
+if (is_array($appConfig) && array_key_exists('bbb_server', $appConfig) && array_key_exists('bbb_secret', $appConfig)) {
     putenv("BBB_SERVER_BASE_URL=" . $appConfig['bbb_server']);
     putenv("BBB_SECRET=" . $appConfig['bbb_secret']);
     $urlInfo = parse_url($appConfig['bbb_server']);
