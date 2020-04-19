@@ -1,8 +1,8 @@
-# Nextcloud Talk using Big Blue Button 
+# NextCloud Talk using Big Blue Button 
 
 ![](https://raw.githubusercontent.com/ramezrafla/spreed-bigbluebutton/stable18-bbb/docs/talkwithbbb.jpeg)
 
-This is a fork to use [Big Blue Button](https://bigbluebutton.org/) as the video / audio conferencing server instead of Nextcloud's PHP-based signalling engine (or the NextCloud paid cloud signaling servers)
+This is a fork of NextCloud Talk to use [Big Blue Button](https://bigbluebutton.org/) as the video / audio conferencing server & client instead of Nextcloud's PHP-based signalling engine (or the NextCloud paid cloud signaling servers)
 
 ## Rationale for the fork
 
@@ -21,20 +21,21 @@ This is a tried-tested-and-true solution used by many educational institutions w
 - A recommended BBB server can support over 100 simultaneous users
 - BBB client can handle a lot more participants in the UI
 - BBB client has drawing board, breakout rooms, uploading PDF,DOC,PPT,XLS
-- BBB client has realtime notes
+- BBB client has real-time notes
 - BBB client UI is professional-grade (no offense intended for current Talk client UI)
+- BBB uses WebRTC -- don't want to get sued like Zoom because they used their own protocol
 
 ## How to setup BBB
 
-Super easy, they have an [automated install script](http://docs.bigbluebutton.org/2.2/install.html). You do need to have an SSL certificate setup (does it for you, but you need to setup your domains properly). Don't forget that you need Ubuntu 16
+Super easy, they have an [automated install script](http://docs.bigbluebutton.org/2.2/install.html). You do need to have an SSL certificate setup (the install script does it for you, but you need to setup your domains properly). **Don't forget that you need to use Ubuntu 16**
 
 # What we did
 
-1. We load up an iframe with your BBB server where the old Talk client was, **only when in the Talk app**. The files details chat still uses the original signaling.
+1. We load up an iframe with your BBB server where the old Talk client was, **only when in the Talk app**. The files details chat still uses the original signaling (which is easily capable of handling such a low-attendees call).
 
 > Right now it is still internally called **spreed** which is the original name of the Talk App. The reasons are many, but prevent us from pushing into the NC Apps store. If you can help with this, please open an issue.
 
-2. When a call is launched in the Talk app (not file sidebar) we hide the sidebars to have the call full width (you can reopen the call sidebar on the right by clicking on the icon)
+2. When a call is launched in the Talk app (not files sidebar) we hide both sidebars to have the call full width (you can reopen the call sidebar on the right by clicking on its icon)
 
 3. We kept the chat as-is using the internal signaling server which is more than capable of handling chat traffic
 
@@ -51,6 +52,7 @@ Of course, remove the original spreed
 `git clone git@github.com:ramezrafla/spreed-bigbluebutton.git spreed --branch stable18-bbb --depth 1`
 
 Notes: 
+- Run that clone command in your /apps folder
 - We included the build dir (/js) in this repo. In the future we will add releases (help wanted) or push in the Apps store (help wanted)
 - Supports NC 18 only -- sorry, too much work porting back
 - If you intend to develop omit the --depth argument
@@ -68,7 +70,7 @@ Notes:
 Notes:
 - The trailing slash is important in the URL above
 - You can get both info from your BBB server: `sudo bbb-conf --secret`
-- We need to add to the admin settings of the app the ability to edit these manually (help wanted)
+- We hope to add soon to the admin settings UI of this App the ability to edit these manually (help wanted)
 
 ## Test it
 
@@ -92,8 +94,8 @@ Reload your browser, clear your cache, etc. and you can now start calls with BBB
 
 Needless to say, help wanted
 
-1. Add the 2 BBB parameters (server and key) in the admin settings of this App instead of config.php
-2. Change name of this app -- recommended: 'Talk with BigBlueButton'
+1. Add the 2 BBB parameters (server and key) in the admin settings UI of this App instead of config.php
+2. Change name of this app -- recommended: name = 'Talk with BigBlueButton' and id = 'talk_bbb'
 3. Publish to apps store under new name
 
 If you need a BBB server for testing, please PM me.
@@ -102,10 +104,10 @@ If you need a BBB server for testing, please PM me.
 
 1. Ask for help to setup your BBB server -- out of scope. If you are having issues read the docs or look for a third-party provider
 2. Ask for help before you go through the troubleshooting steps above
-3. Criticize this work needlessly -- it was done to serve a purpose (for example, we did not add the doc above the new functions, later ...)
+3. Criticize this work needlessly -- it was done to serve a purpose (for example, we did not add function docs above the new functions, later ...)
 4. Ask us to add your must-have features for you -- we are sharing this in the hopes that it is useful and welcome good PRs; so there is no reason you can't do it yourself or pay someone else
 
-> Original README below this line
+> ---- Original Talk README below this line ----
 
 # Nextcloud Talk
 
