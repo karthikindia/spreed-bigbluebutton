@@ -66,6 +66,17 @@ Notes:
     'bbb_secret' => 'YOURSECRET',
   ),
 ```
+or, alternatively create a config/custom.config.php: 
+```
+<?php
+$CONFIG = <?php
+$CONFIG = array ('spreed' =>
+  array (
+    'bbb_server' => 'https://YOURSERVER/bigbluebutton/',
+    'bbb_secret' => 'YOURSECRET',
+  ),
+);
+```
 
 Notes:
 - The trailing slash is important in the URL above
@@ -89,6 +100,7 @@ Reload your browser, clear your cache, etc. and you can now start calls with BBB
 ```
 > **Anything else is a problem. Fix your BBB server first**
 3. You are getting a blank iframe --> are you sure you properly setup `bbb_secret` and `bbb_server` parameters?
+4. if you're getting a black iframe, check your browser console for cookie errors. Your BBB domain must be equal to the nextcloud domain: cloud.mydomain.de/bbb.mydomain.de work; cloud.mydomain.de/bbb.yourdomain.de might not work (same site cookie issue)
 
 # TODO
 
