@@ -7,7 +7,7 @@
 			<template v-else>
 				<div class="resp-container">
 					<iframe class="resp-iframe"
-						allow="geolocation; microphone; camera"
+						allow="geolocation; microphone; camera; display-capture;"
 						allowfullscreen
 						width="100%"
 						height="100%"
