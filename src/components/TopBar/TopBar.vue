@@ -22,16 +22,6 @@
 <template>
 	<div class="top-bar">
 		<CallButton />
-		<Actions class="top-bar__button">
-			<ActionButton
-				v-shortkey="['f']"
-				:icon="iconFullscreen"
-				:aria-label="t('spreed', 'Toggle fullscreen')"
-				@shortkey.native="toggleFullscreen"
-				@click="toggleFullscreen">
-				{{ labelFullscreen }}
-			</ActionButton>
-		</Actions>
 		<Actions v-if="showOpenSidebarButton"
 			class="top-bar__button"
 			close-after-click="true">
@@ -64,24 +54,6 @@ export default {
 	},
 
 	computed: {
-		isFullscreen() {
-			return this.$store.getters.isFullscreen()
-		},
-
-		iconFullscreen() {
-			if (this.forceWhiteIcons) {
-				return 'forced-white icon-fullscreen'
-			}
-			return 'icon-fullscreen'
-		},
-
-		labelFullscreen() {
-			if (this.isFullscreen) {
-				return t('spreed', 'Exit fullscreen (f)')
-			}
-			return t('spreed', 'Fullscreen (f)')
-		},
-
 		iconMenuPeople() {
 			if (this.forceWhiteIcons) {
 				return 'forced-white icon-menu-people'
@@ -94,66 +66,9 @@ export default {
 		},
 	},
 
-	mounted() {
-		document.addEventListener('fullscreenchange', this.fullScreenChanged, false)
-		document.addEventListener('mozfullscreenchange', this.fullScreenChanged, false)
-		document.addEventListener('MSFullscreenChange', this.fullScreenChanged, false)
-		document.addEventListener('webkitfullscreenchange', this.fullScreenChanged, false)
-	},
-
-	beforeDestroy() {
-		document.removeEventListener('fullscreenchange', this.fullScreenChanged, false)
-		document.removeEventListener('mozfullscreenchange', this.fullScreenChanged, false)
-		document.removeEventListener('MSFullscreenChange', this.fullScreenChanged, false)
-		document.removeEventListener('webkitfullscreenchange', this.fullScreenChanged, false)
-	},
-
 	methods: {
 		openSidebar() {
 			this.$store.dispatch('showSidebar')
-		},
-
-		fullScreenChanged() {
-			this.$store.dispatch(
-				'setIsFullscreen',
-				document.webkitIsFullScreen || document.mozFullScreen || document.msFullscreenElement
-			)
-		},
-
-		toggleFullscreen() {
-			if (this.isFullscreen) {
-				this.disableFullscreen()
-				this.$store.dispatch('setIsFullscreen', false)
-			} else {
-				this.enableFullscreen()
-				this.$store.dispatch('setIsFullscreen', true)
-			}
-		},
-
-		enableFullscreen() {
-			const fullscreenElem = document.getElementById('content')
-
-			if (fullscreenElem.requestFullscreen) {
-				fullscreenElem.requestFullscreen()
-			} else if (fullscreenElem.webkitRequestFullscreen) {
-				fullscreenElem.webkitRequestFullscreen(Element.ALLOW_KEYBOARD_INPUT)
-			} else if (fullscreenElem.mozRequestFullScreen) {
-				fullscreenElem.mozRequestFullScreen()
-			} else if (fullscreenElem.msRequestFullscreen) {
-				fullscreenElem.msRequestFullscreen()
-			}
-		},
-
-		disableFullscreen() {
-			if (document.exitFullscreen) {
-				document.exitFullscreen()
-			} else if (document.webkitExitFullscreen) {
-				document.webkitExitFullscreen()
-			} else if (document.mozCancelFullScreen) {
-				document.mozCancelFullScreen()
-			} else if (document.msExitFullscreen) {
-				document.msExitFullscreen()
-			}
 		},
 	},
 }

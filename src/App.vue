@@ -21,7 +21,7 @@
 
 <template>
 	<Content :class="{ 'icon-loading': loading, 'in-call': isInCall }" app-name="Talk">
-		<LeftSidebar v-if="getUserId && !isFullscreen && !isInCall" />
+		<LeftSidebar v-if="getUserId && !isInCall" />
 		<AppContent>
 			<router-view />
 		</AppContent>
@@ -76,9 +76,7 @@ export default {
 		windowIsVisible() {
 			return this.$store.getters.windowIsVisible()
 		},
-		isFullscreen() {
-			return this.$store.getters.isFullscreen()
-		},
+
 		conversations() {
 			return this.$store.getters.conversations
 		},
@@ -402,8 +400,8 @@ export default {
 
 	&.in-call {
 		::v-deep #app-navigation-toggle:before {
-			/* Force white handle when inside a call */
-			color: #FFFFFF;
+			/* hide when in call */
+			display: none;
 		}
 	}
 }
