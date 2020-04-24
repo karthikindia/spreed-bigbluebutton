@@ -25,6 +25,12 @@ This is a tried-tested-and-true solution used by many educational institutions w
 - BBB client UI is professional-grade (no offense intended for current Talk client UI)
 - BBB uses WebRTC -- don't want to get sued like Zoom because they used their own protocol
 
+## A note about mobile
+
+Big Blue Button uses webrtc protocol which is supported by all recent browsers (even on iOS). Therefore, they do not have a mobile application for it.
+
+> If you are using the Talk mobile app it won't work with this app. If a mobile app is a must you are stuck with the original Talk app.
+
 ## How to setup BBB
 
 Super easy, they have an [automated install script](http://docs.bigbluebutton.org/2.2/install.html). You do need to have an SSL certificate setup (the install script does it for you, but you need to setup your domains properly). **Don't forget that you need to use Ubuntu 16**
@@ -49,7 +55,7 @@ Super easy, they have an [automated install script](http://docs.bigbluebutton.or
 
 Of course, remove the original spreed
 
-`git clone git@github.com:ramezrafla/spreed-bigbluebutton.git spreed --branch stable18-bbb --depth 1`
+`git clone https://github.com/ramezrafla/spreed-bigbluebutton.git spreed --branch stable18-bbb --depth 1`
 
 Notes: 
 - Run that clone command in your /apps folder
