@@ -26,7 +26,7 @@
 		type="password"
 		:value="value"
 		class="password-protect"
-		:placeholder="t('spreed', 'Choose a password')"
+		:placeholder="t('talk_bbb', 'Choose a password')"
 		@input="handleInput">
 </template>
 

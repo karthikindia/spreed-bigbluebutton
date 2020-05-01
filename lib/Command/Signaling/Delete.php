@@ -54,7 +54,7 @@ class Delete extends Base {
 	protected function execute(InputInterface $input, OutputInterface $output): ?int {
 		$server = $input->getArgument('server');
 
-		$config = $this->config->getAppValue('spreed', 'signaling_servers');
+		$config = $this->config->getAppValue('talk_bbb', 'signaling_servers');
 		$signaling = json_decode($config, true);
 		if ($signaling === null || empty($signaling) || !is_array($signaling)) {
 			$signaling = [
@@ -69,7 +69,7 @@ class Delete extends Base {
 		});
 		$signaling['servers'] = array_values($servers); // reindex
 
-		$this->config->setAppValue('spreed', 'signaling_servers', json_encode($signaling));
+		$this->config->setAppValue('talk_bbb', 'signaling_servers', json_encode($signaling));
 		if ($count > count($signaling['servers'])) {
 			$output->writeln('<info>Deleted ' . $server . '.</info>');
 		} else {

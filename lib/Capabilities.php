@@ -59,7 +59,7 @@ class Capabilities implements IPublicCapability {
 		}
 
 		return [
-			'spreed' => [
+			'talk_bbb' => [
 				'features' => [
 					'audio',
 					'video',

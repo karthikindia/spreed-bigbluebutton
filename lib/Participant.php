@@ -255,7 +255,7 @@ class Participant {
 	}
 
 	public function canStartCall(): bool {
-		$defaultStartCall = (int) $this->config->getAppValue('spreed', 'start_calls', Room::START_CALL_EVERYONE);
+		$defaultStartCall = (int) $this->config->getAppValue('talk_bbb', 'start_calls', Room::START_CALL_EVERYONE);
 
 		if ($defaultStartCall === Room::START_CALL_EVERYONE) {
 			return true;

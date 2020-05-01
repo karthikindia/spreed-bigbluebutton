@@ -28,11 +28,11 @@
 			placeholder="stunserver:port"
 			:value="server"
 			:disabled="loading"
-			:aria-label="t('spreed', 'STUN server URL')"
+			:aria-label="t('talk_bbb', 'STUN server URL')"
 			@input="update">
 		<span v-show="!isValidServer" class="icon icon-error" />
 		<a v-show="!loading"
-			v-tooltip.auto="t('spreed', 'Delete this server')"
+			v-tooltip.auto="t('talk_bbb', 'Delete this server')"
 			class="icon icon-delete"
 			@click="removeServer" />
 	</div>

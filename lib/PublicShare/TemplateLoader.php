@@ -57,8 +57,8 @@ class TemplateLoader {
 	 */
 	public static function loadTalkSidebarUi(IShare $share): void {
 		$config = \OC::$server->getConfig();
-		if ($config->getAppValue('spreed', 'conversations_files', '1') !== '1' ||
-			$config->getAppValue('spreed', 'conversations_files_public_shares', '1') !== '1') {
+		if ($config->getAppValue('talk_bbb', 'conversations_files', '1') !== '1' ||
+			$config->getAppValue('talk_bbb', 'conversations_files_public_shares', '1') !== '1') {
 			return;
 		}
 
@@ -66,8 +66,8 @@ class TemplateLoader {
 			return;
 		}
 
-		Util::addStyle('spreed', 'merged-public-share');
-		Util::addScript('spreed', 'talk-public-share-sidebar');
+		Util::addStyle('talk_bbb', 'merged-public-share');
+		Util::addScript('talk_bbb', 'talk-public-share-sidebar');
 
 		// Needed to enable the screensharing extension in Chromium < 72.
 		Util::addHeader('meta', ['id' => "app", 'class' => 'nc-enable-screensharing-extension']);

@@ -28,7 +28,7 @@
 			placeholder="turnserver:port"
 			:value="server"
 			:disabled="loading"
-			:aria-label="t('spreed', 'TURN server URL')"
+			:aria-label="t('talk_bbb', 'TURN server URL')"
 			@input="updateServer">
 		<input ref="turn_secret"
 			type="text"
@@ -36,22 +36,22 @@
 			placeholder="secret"
 			:value="secret"
 			:disabled="loading"
-			:aria-label="t('spreed', 'TURN server secret')"
+			:aria-label="t('talk_bbb', 'TURN server secret')"
 			@input="updateSecret">
 
 		<select class="protocols"
 			:value="protocols"
 			:disabled="loading"
-			:aria-label="t('spreed', 'TURN server protocols')"
+			:aria-label="t('talk_bbb', 'TURN server protocols')"
 			@input="updateProtocols">
 			<option value="udp,tcp">
-				{{ t('spreed', 'UDP and TCP') }}
+				{{ t('talk_bbb', 'UDP and TCP') }}
 			</option>
 			<option value="udp">
-				{{ t('spreed', 'UDP only') }}
+				{{ t('talk_bbb', 'UDP only') }}
 			</option>
 			<option value="tcp">
-				{{ t('spreed', 'TCP only') }}
+				{{ t('talk_bbb', 'TCP only') }}
 			</option>
 		</select>
 
@@ -61,7 +61,7 @@
 			:class="testIconClasses"
 			@click="testServer" />
 		<a v-show="!loading"
-			v-tooltip.auto="t('spreed', 'Delete this server')"
+			v-tooltip.auto="t('talk_bbb', 'Delete this server')"
 			class="icon icon-delete"
 			@click="removeServer" />
 	</div>
@@ -118,13 +118,13 @@ export default {
 		},
 		testResult() {
 			if (this.testingSuccess) {
-				return t('spreed', 'OK: Successful ICE candidates returned by the TURN server')
+				return t('talk_bbb', 'OK: Successful ICE candidates returned by the TURN server')
 			} else if (this.testingError) {
-				return t('spreed', 'Error: No working ICE candidates returned by the TURN server')
+				return t('talk_bbb', 'Error: No working ICE candidates returned by the TURN server')
 			} else if (this.testing) {
-				return t('spreed', 'Testing whether the TURN server returns ICE candidates')
+				return t('talk_bbb', 'Testing whether the TURN server returns ICE candidates')
 			}
-			return t('spreed', 'Test this server')
+			return t('talk_bbb', 'Test this server')
 		},
 	},
 

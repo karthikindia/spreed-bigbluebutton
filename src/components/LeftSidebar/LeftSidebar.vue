@@ -31,7 +31,7 @@
 		</div>
 		<ul class="left-sidebar__list">
 			<Caption v-if="isSearching"
-				:title="t('spreed', 'Conversations')" />
+				:title="t('talk_bbb', 'Conversations')" />
 			<li>
 				<ConversationsList
 					:search-text="searchText" />
@@ -39,7 +39,7 @@
 			<template v-if="isSearching">
 				<template v-if="searchResultsUsers.length !== 0">
 					<Caption
-						:title="t('spreed', 'Contacts')" />
+						:title="t('talk_bbb', 'Contacts')" />
 					<li v-if="searchResultsUsers.length !== 0">
 						<ConversationsOptionsList
 							:items="searchResultsUsers"
@@ -49,7 +49,7 @@
 
 				<template v-if="searchResultsGroups.length !== 0">
 					<Caption
-						:title="t('spreed', 'Groups')" />
+						:title="t('talk_bbb', 'Groups')" />
 					<li v-if="searchResultsGroups.length !== 0">
 						<ConversationsOptionsList
 							:items="searchResultsGroups"
@@ -59,7 +59,7 @@
 
 				<template v-if="searchResultsCircles.length !== 0">
 					<Caption
-						:title="t('spreed', 'Circles')" />
+						:title="t('talk_bbb', 'Circles')" />
 					<li v-if="searchResultsCircles.length !== 0">
 						<ConversationsOptionsList
 							:items="searchResultsCircles"
@@ -69,8 +69,8 @@
 
 				<Caption v-if="sourcesWithoutResults"
 					:title="sourcesWithoutResultsList" />
-				<Hint v-if="contactsLoading" :hint="t('spreed', 'Loading')" />
-				<Hint v-else :hint="t('spreed', 'No search results')" />
+				<Hint v-if="contactsLoading" :hint="t('talk_bbb', 'Loading')" />
+				<Hint v-else :hint="t('talk_bbb', 'No search results')" />
 			</template>
 		</ul>
 	</AppNavigation>
@@ -137,31 +137,31 @@ export default {
 			if (!this.searchResultsUsers.length) {
 				if (!this.searchResultsGroups.length) {
 					if (this.isCirclesEnabled && !this.searchResultsCircles.length) {
-						return t('spreed', 'Contacts, groups and circles')
+						return t('talk_bbb', 'Contacts, groups and circles')
 					} else {
-						return t('spreed', 'Contacts and groups')
+						return t('talk_bbb', 'Contacts and groups')
 					}
 				} else {
 					if (this.isCirclesEnabled && !this.searchResultsCircles.length) {
-						return t('spreed', 'Contacts and circles')
+						return t('talk_bbb', 'Contacts and circles')
 					} else {
-						return t('spreed', 'Contacts')
+						return t('talk_bbb', 'Contacts')
 					}
 				}
 			} else {
 				if (!this.searchResultsGroups.length) {
 					if (this.isCirclesEnabled && !this.searchResultsCircles.length) {
-						return t('spreed', 'Groups and circles')
+						return t('talk_bbb', 'Groups and circles')
 					} else {
-						return t('spreed', 'Groups')
+						return t('talk_bbb', 'Groups')
 					}
 				} else {
 					if (this.isCirclesEnabled && !this.searchResultsCircles.length) {
-						return t('spreed', 'Circles')
+						return t('talk_bbb', 'Circles')
 					}
 				}
 			}
-			return t('spreed', 'Other sources')
+			return t('talk_bbb', 'Other sources')
 		},
 	},
 

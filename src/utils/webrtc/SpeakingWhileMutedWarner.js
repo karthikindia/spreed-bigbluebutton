@@ -78,7 +78,7 @@ SpeakingWhileMutedWarner.prototype = {
 	},
 
 	_showWarning: function() {
-		const message = t('spreed', 'You seem to be talking while muted, please unmute yourself for others to hear you')
+		const message = t('talk_bbb', 'You seem to be talking while muted, please unmute yourself for others to hear you')
 
 		if (!document.hidden) {
 			this._showNotification(message)

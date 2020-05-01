@@ -39,7 +39,7 @@ class Invitation extends Base {
 		$event = $this->preParse($event);
 
 		if ($event->getSubject() === 'invitation') {
-			$l = $this->languageFactory->get('spreed', $language);
+			$l = $this->languageFactory->get('talk_bbb', $language);
 			$parameters = $event->getSubjectParameters();
 
 			$roomParameter = $this->getFormerRoom($l, (int) $parameters['room']);

@@ -55,7 +55,7 @@ class StunServer implements ISettings {
 	public function getForm(): TemplateResponse {
 		$this->initialStateService->provideInitialState('talk', 'stun_servers', $this->config->getStunServers());
 		$this->initialStateService->provideInitialState('talk', 'has_internet_connection', $this->serverConfig->getSystemValueBool('has_internet_connection', true));
-		return new TemplateResponse('spreed', 'settings/admin/stun-server', [], '');
+		return new TemplateResponse('talk_bbb', 'settings/admin/stun-server', [], '');
 	}
 
 	/**

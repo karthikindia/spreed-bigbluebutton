@@ -84,7 +84,7 @@ export default {
 		},
 
 		firstLetterOfGuestName() {
-			const customName = this.guestName !== t('spreed', 'Guest') ? this.guestName : '?'
+			const customName = this.guestName !== t('talk_bbb', 'Guest') ? this.guestName : '?'
 			return customName.charAt(0)
 		},
 
@@ -96,7 +96,7 @@ export default {
 			return this.$store.getters.getGuestName(
 				this.$store.getters.getToken(),
 				this.sessionHash,
-			) || localStorage.getItem('nick') || t('spreed', 'Guest')
+			) || localStorage.getItem('nick') || t('talk_bbb', 'Guest')
 		},
 
 		avatarSize() {

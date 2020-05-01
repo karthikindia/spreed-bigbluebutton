@@ -159,7 +159,7 @@ class Version2001Date20171026134605 extends SimpleMigrationStep {
 	 */
 	public function postSchemaChange(IOutput $output, \Closure $schemaClosure, array $options): void {
 
-		if (version_compare($this->config->getAppValue('spreed', 'installed_version', '0.0.0'), '2.0.0', '<')) {
+		if (version_compare($this->config->getAppValue('talk_bbb', 'installed_version', '0.0.0'), '2.0.0', '<')) {
 			// Migrations only work after 2.0.0
 			return;
 		}
@@ -276,7 +276,7 @@ class Version2001Date20171026134605 extends SimpleMigrationStep {
 		$query = $this->connection->getQueryBuilder();
 		$query->select(['notification_id', 'object_id'])
 			->from('notifications')
-			->where($query->expr()->eq('app', $query->createNamedParameter('spreed')))
+			->where($query->expr()->eq('app', $query->createNamedParameter('talk_bbb')))
 			->andWhere($query->expr()->eq('object_type', $query->createNamedParameter('room')));
 
 		try {
@@ -322,8 +322,8 @@ class Version2001Date20171026134605 extends SimpleMigrationStep {
 		$query = $this->connection->getQueryBuilder();
 		$query->select(['activity_id', 'object_id', 'subjectparams'])
 			->from('activity')
-			->where($query->expr()->eq('app', $query->createNamedParameter('spreed')))
-			->andWhere($query->expr()->eq('type', $query->createNamedParameter('spreed')))
+			->where($query->expr()->eq('app', $query->createNamedParameter('talk_bbb')))
+			->andWhere($query->expr()->eq('type', $query->createNamedParameter('talk_bbb')))
 			->andWhere($query->expr()->eq('object_type', $query->createNamedParameter('room')));
 
 		try {
@@ -383,8 +383,8 @@ class Version2001Date20171026134605 extends SimpleMigrationStep {
 		$query = $this->connection->getQueryBuilder();
 		$query->select(['mail_id', 'amq_subjectparams'])
 			->from('activity_mq')
-			->where($query->expr()->eq('amq_appid', $query->createNamedParameter('spreed')))
-			->andWhere($query->expr()->eq('amq_type', $query->createNamedParameter('spreed')));
+			->where($query->expr()->eq('amq_appid', $query->createNamedParameter('talk_bbb')))
+			->andWhere($query->expr()->eq('amq_type', $query->createNamedParameter('talk_bbb')));
 
 		try {
 			$result = $query->execute();

@@ -76,7 +76,7 @@ class Add extends Base {
 			return 1;
 		}
 
-		$config = $this->config->getAppValue('spreed', 'signaling_servers');
+		$config = $this->config->getAppValue('talk_bbb', 'signaling_servers');
 
 		$signaling = json_decode($config, true);
 		if ($signaling === null || empty($signaling) || !is_array($signaling)) {
@@ -93,7 +93,7 @@ class Add extends Base {
 			'secret' => $secret,
 		];
 
-		$this->config->setAppValue('spreed', 'signaling_servers', json_encode($signaling));
+		$this->config->setAppValue('talk_bbb', 'signaling_servers', json_encode($signaling));
 		$output->writeln('<info>Added signaling server ' . $server . '.</info>');
 		return 0;
 	}

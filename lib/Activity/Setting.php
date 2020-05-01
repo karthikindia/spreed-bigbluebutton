@@ -40,7 +40,7 @@ class Setting implements ISetting {
 	 * @since 11.0.0
 	 */
 	public function getIdentifier(): string {
-		return 'spreed';
+		return 'talk_bbb';
 	}
 
 	/**

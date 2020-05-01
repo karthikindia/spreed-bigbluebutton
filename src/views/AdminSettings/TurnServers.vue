@@ -23,13 +23,13 @@
 <template>
 	<div id="turn_server" class="videocalls section">
 		<h2>
-			{{ t('spreed', 'TURN servers') }}
-			<span v-if="saved" class="icon icon-checkmark-color" :title="t('spreed', 'Saved')" />
+			{{ t('talk_bbb', 'TURN servers') }}
+			<span v-if="saved" class="icon icon-checkmark-color" :title="t('talk_bbb', 'Saved')" />
 			<a v-else-if="!loading"
-				v-tooltip.auto="t('spreed', 'Add a new server')"
+				v-tooltip.auto="t('talk_bbb', 'Add a new server')"
 				class="icon icon-add"
 				@click="newServer">
-				<span class="hidden-visually">{{ t('spreed', 'Add a new server') }}</span>
+				<span class="hidden-visually">{{ t('talk_bbb', 'Add a new server') }}</span>
 			</a>
 			<span v-else class="icon icon-loading-small" />
 		</h2>
@@ -81,7 +81,7 @@ export default {
 
 	computed: {
 		documentationHint() {
-			return t('spreed', 'A TURN server is used to proxy the traffic from participants behind a firewall. If individual participants can not connect to others a TURN server is mostlikely required. See {linkstart}this documentation{linkend} for setup instructions.')
+			return t('talk_bbb', 'A TURN server is used to proxy the traffic from participants behind a firewall. If individual participants can not connect to others a TURN server is mostlikely required. See {linkstart}this documentation{linkend} for setup instructions.')
 				.replace('{linkstart}', '<a  target="_blank" rel="noreferrer nofollow" class="external" href="https://nextcloud-talk.readthedocs.io/en/latest/TURN/">')
 				.replace('{linkend}', ' ↗</a>')
 		},
@@ -135,7 +135,7 @@ export default {
 			const self = this
 
 			this.loading = true
-			OCP.AppConfig.setValue('spreed', 'turn_servers', JSON.stringify(servers), {
+			OCP.AppConfig.setValue('talk_bbb', 'turn_servers', JSON.stringify(servers), {
 				success() {
 					self.loading = false
 					self.toggleSave()

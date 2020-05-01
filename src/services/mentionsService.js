@@ -30,7 +30,7 @@ import { generateOcsUrl } from '@nextcloud/router'
  */
 const searchPossibleMentions = async function(token, searchText) {
 	try {
-		const response = await axios.get(generateOcsUrl('apps/spreed/api/v1/chat', 2) + `${token}/mentions`, {
+		const response = await axios.get(generateOcsUrl('apps/talk_bbb/api/v1/chat', 2) + `${token}/mentions`, {
 			params: {
 				search: searchText,
 			},

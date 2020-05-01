@@ -48,7 +48,7 @@ class Section implements IIconSection {
 	 * @since 12
 	 */
 	public function getIcon(): string {
-		return $this->url->imagePath('spreed', 'app-dark.svg');
+		return $this->url->imagePath('talk_bbb', 'app-dark.svg');
 	}
 
 	/**

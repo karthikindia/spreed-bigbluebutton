@@ -25,9 +25,9 @@
 		<aside v-if="isOpen" id="talk-sidebar">
 			<div v-if="!conversation" class="emptycontent room-not-joined">
 				<div class="icon icon-talk" />
-				<h2>{{ t('spreed', 'Discuss this file') }}</h2>
+				<h2>{{ t('talk_bbb', 'Discuss this file') }}</h2>
 				<button class="primary" :disabled="joiningConversation" @click="joinConversation">
-					{{ t('spreed', 'Join conversation') }}
+					{{ t('talk_bbb', 'Join conversation') }}
 					<span v-if="joiningConversation" class="icon icon-loading-small" />
 				</button>
 			</div>

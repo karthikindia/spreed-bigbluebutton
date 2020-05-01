@@ -56,7 +56,7 @@ class ConversationProvider implements IProvider {
 			$room = $this->manager->getRoomByToken($resource->getId());
 			$user = $this->userSession->getUser();
 
-			$iconURL = $this->urlGenerator->getAbsoluteURL($this->urlGenerator->imagePath('spreed', 'app-dark.svg'));
+			$iconURL = $this->urlGenerator->getAbsoluteURL($this->urlGenerator->imagePath('talk_bbb', 'app-dark.svg'));
 			/**
 			 * Disabled for now, because it would show a square avatar
 			if ($room->getType() === Room::ONE_TO_ONE_CALL) {
@@ -70,7 +70,7 @@ class ConversationProvider implements IProvider {
 				'name' => $room->getDisplayName($user instanceof IUser ? $user->getUID() : ''),
 				'call-type' => $this->getRoomType($room),
 				'iconUrl' => $iconURL,
-				'link' => $this->urlGenerator->linkToRouteAbsolute('spreed.pagecontroller.showCall', ['token' => $room->getToken()])
+				'link' => $this->urlGenerator->linkToRouteAbsolute('talk_bbb.pagecontroller.showCall', ['token' => $room->getToken()])
 			];
 		} catch (RoomNotFoundException $e) {
 			throw new ResourceException('Conversation not found');

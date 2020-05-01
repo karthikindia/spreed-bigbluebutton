@@ -29,14 +29,14 @@
 			v-observe-visibility="visibilityChanged"
 			class="set-contacts__input"
 			type="text"
-			:placeholder="t('spreed', 'Search participants')"
+			:placeholder="t('talk_bbb', 'Search participants')"
 			@input="handleInput">
 		<!-- Loading state -->
 		<Caption v-if="contactsLoading"
-			:title="t('spreed', 'Loading contacts')" />
+			:title="t('talk_bbb', 'Loading contacts')" />
 		<!-- List of possilbe participants -->
 		<Caption v-if="!contactsLoading"
-			:title="t('spreed', 'Select participants')" />
+			:title="t('talk_bbb', 'Select participants')" />
 		<ParticipantsList
 			:add-on-click="false"
 			height="200px"
@@ -111,7 +111,7 @@ export default {
 				}
 			} catch (exception) {
 				console.error(exception)
-				OCP.Toast.error(t('spreed', 'An error occurred while performing the search'))
+				OCP.Toast.error(t('talk_bbb', 'An error occurred while performing the search'))
 			}
 		},
 		/**

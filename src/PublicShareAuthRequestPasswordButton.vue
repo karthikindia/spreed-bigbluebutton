@@ -26,13 +26,13 @@
 			<input id="request-password-button"
 				class="primary"
 				type="button"
-				:value="t('spreed', 'Request password')"
+				:value="t('talk_bbb', 'Request password')"
 				:disabled="isRequestInProgress"
 				@click="requestPassword">
 			<div class="icon" :class="iconClass" />
 		</div>
 		<p v-if="hasRequestFailed" class="warning error-message">
-			{{ t('spreed', 'Error requesting the password.') }}
+			{{ t('talk_bbb', 'Error requesting the password.') }}
 		</p>
 	</div>
 </template>

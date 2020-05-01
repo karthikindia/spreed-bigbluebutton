@@ -50,7 +50,7 @@ const browserCheck = {
 		},
 		// Used both in the toast and in the call button tooltip
 		unsupportedWarning() {
-			return t('spreed', "The browser you're using is not fully supported by Talk. Please use the latest version of Mozilla Firefox, Microsoft Edge, Google Chrome or Apple Safari.")
+			return t('talk_bbb', "The browser you're using is not fully supported by Talk. Please use the latest version of Mozilla Firefox, Microsoft Edge, Google Chrome or Apple Safari.")
 		},
 		// Used in CallButton.vue
 		callButtonTooltipText() {

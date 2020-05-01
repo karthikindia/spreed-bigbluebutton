@@ -117,7 +117,7 @@ class FilesIntegrationController extends OCSController {
 	 * @throws OCSNotFoundException
 	 */
 	public function getRoomByFileId(string $fileId): DataResponse {
-		if ($this->config->getAppValue('spreed', 'conversations_files', '1') !== '1') {
+		if ($this->config->getAppValue('talk_bbb', 'conversations_files', '1') !== '1') {
 			return new DataResponse([], Http::STATUS_BAD_REQUEST);
 		}
 
@@ -189,8 +189,8 @@ class FilesIntegrationController extends OCSController {
 	 *         or "404 Not found" if the given share token was invalid.
 	 */
 	public function getRoomByShareToken(string $shareToken): DataResponse {
-		if ($this->config->getAppValue('spreed', 'conversations_files', '1') !== '1' ||
-			$this->config->getAppValue('spreed', 'conversations_files_public_shares', '1') !== '1') {
+		if ($this->config->getAppValue('talk_bbb', 'conversations_files', '1') !== '1' ||
+			$this->config->getAppValue('talk_bbb', 'conversations_files_public_shares', '1') !== '1') {
 			return new DataResponse([], Http::STATUS_BAD_REQUEST);
 		}
 

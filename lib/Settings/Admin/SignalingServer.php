@@ -50,7 +50,7 @@ class SignalingServer implements ISettings {
 			'secret' => $this->config->getSignalingSecret(),
 			'hideWarning' => $this->config->getHideSignalingWarning(),
 		]);
-		return new TemplateResponse('spreed', 'settings/admin/signaling-server', [], '');
+		return new TemplateResponse('talk_bbb', 'settings/admin/signaling-server', [], '');
 	}
 	/**
 	 * @return string the section ID, e.g. 'sharing'

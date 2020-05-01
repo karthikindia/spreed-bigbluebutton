@@ -59,7 +59,7 @@ class Delete extends Base {
 		$server = $input->getArgument('server');
 		$protocols = $input->getArgument('protocols');
 
-		$config = $this->config->getAppValue('spreed', 'turn_servers');
+		$config = $this->config->getAppValue('talk_bbb', 'turn_servers');
 		$servers = json_decode($config, true);
 
 		if ($servers === null || empty($servers) || !is_array($servers)) {
@@ -73,7 +73,7 @@ class Delete extends Base {
 		});
 		$servers = array_values($servers); // reindex
 
-		$this->config->setAppValue('spreed', 'turn_servers', json_encode($servers));
+		$this->config->setAppValue('talk_bbb', 'turn_servers', json_encode($servers));
 		if ($count > count($servers)) {
 			$output->writeln('<info>Deleted ' . $server . '.</info>');
 		} else {

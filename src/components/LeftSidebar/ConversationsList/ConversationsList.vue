@@ -33,7 +33,7 @@
 				:key="n" />
 		</template>
 		<Hint v-else-if="searchText && !conversationsList.length"
-			:hint="t('spreed', 'No matches')" />
+			:hint="t('talk_bbb', 'No matches')" />
 	</ul>
 </template>
 

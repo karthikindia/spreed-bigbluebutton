@@ -31,7 +31,7 @@
 					<button
 						v-if="canShareAndUploadFiles"
 						class="new-message-form__button icon-clip-add-file"
-						:aria-label="t('spreed', 'Share files to the conversation')"
+						:aria-label="t('talk_bbb', 'Share files to the conversation')"
 						@click.prevent="handleFileShare" />
 				</div>
 				<div class="new-message-form__input">
@@ -47,7 +47,7 @@
 				</div>
 				<button
 					type="submit"
-					:aria-label="t('spreed', 'Send message')"
+					:aria-label="t('talk_bbb', 'Send message')"
 					class="new-message-form__button submit icon-confirm-fade"
 					@click.prevent="handleSubmit" />
 			</form>
@@ -64,7 +64,7 @@ import { postNewMessage } from '../../services/messagesService'
 import Quote from '../Quote'
 import { CONVERSATION } from '../../constants'
 
-const picker = getFilePickerBuilder(t('spreed', 'File to share'))
+const picker = getFilePickerBuilder(t('talk_bbb', 'File to share'))
 	.setMultiSelect(false)
 	.setModal(true)
 	.setType(1)

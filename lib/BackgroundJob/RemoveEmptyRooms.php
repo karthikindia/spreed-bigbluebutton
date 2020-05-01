@@ -57,7 +57,7 @@ class RemoveEmptyRooms extends TimedJob {
 		if ($this->numDeletedRooms) {
 			$this->logger->info('Deleted {numDeletedRooms} rooms because they were empty', [
 				'numDeletedRooms' => $this->numDeletedRooms,
-				'app' => 'spreed',
+				'app' => 'talk_bbb',
 			]);
 		}
 	}

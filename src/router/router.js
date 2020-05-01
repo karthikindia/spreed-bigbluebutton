@@ -43,13 +43,13 @@ export default new Router({
 	linkActiveClass: 'active',
 	routes: [
 		{
-			path: '/apps/spreed',
+			path: '/apps/talk_bbb',
 			name: 'root',
 			component: WelcomeView,
 			props: true,
 		},
 		{
-			path: '/apps/spreed/not-found',
+			path: '/apps/talk_bbb/not-found',
 			name: 'notfound',
 			component: NotFoundView,
 			props: true,

@@ -53,7 +53,7 @@ class Config {
 	 * @return string[]
 	 */
 	public function getAllowedGroupIds(): array {
-		$groups = $this->config->getAppValue('spreed', 'allowed_groups', '[]');
+		$groups = $this->config->getAppValue('talk_bbb', 'allowed_groups', '[]');
 		$groups = json_decode($groups, true);
 		return \is_array($groups) ? $groups : [];
 	}
@@ -162,7 +162,7 @@ class Config {
 	 * @return string[]
 	 */
 	public function getStunServers(): array {
-		$config = $this->config->getAppValue('spreed', 'stun_servers', json_encode(['stun.nextcloud.com:443']));
+		$config = $this->config->getAppValue('talk_bbb', 'stun_servers', json_encode(['stun.nextcloud.com:443']));
 		$servers = json_decode($config, true);
 
 		if (!is_array($servers) || empty($servers)) {
@@ -202,7 +202,7 @@ class Config {
 	 * @return array
 	 */
 	public function getTurnServers(): array {
-		$config = $this->config->getAppValue('spreed', 'turn_servers');
+		$config = $this->config->getAppValue('talk_bbb', 'turn_servers');
 		$servers = json_decode($config, true);
 
 		if ($servers === null || empty($servers) || !is_array($servers)) {
@@ -258,7 +258,7 @@ class Config {
 	 * @return array
 	 */
 	public function getSignalingServers(): array {
-		$config = $this->config->getAppValue('spreed', 'signaling_servers');
+		$config = $this->config->getAppValue('talk_bbb', 'signaling_servers');
 		$signaling = json_decode($config, true);
 		if (!is_array($signaling) || !isset($signaling['servers'])) {
 			return [];
@@ -271,7 +271,7 @@ class Config {
 	 * @return string
 	 */
 	public function getSignalingSecret(): string {
-		$config = $this->config->getAppValue('spreed', 'signaling_servers');
+		$config = $this->config->getAppValue('talk_bbb', 'signaling_servers');
 		$signaling = json_decode($config, true);
 
 		if (!is_array($signaling)) {
@@ -282,7 +282,34 @@ class Config {
 	}
 
 	public function getHideSignalingWarning(): bool {
-		return $this->config->getAppValue('spreed', 'hide_signaling_warning', 'no') === 'yes';
+		return $this->config->getAppValue('talk_bbb', 'hide_signaling_warning', 'no') === 'yes';
+	}
+
+	/**
+	 * @return string
+	 */
+	public function getBBBServer(): array {
+		$config = $this->config->getAppValue('talk_bbb', 'bbb_server');
+		$bbb = json_decode($config, true);
+		if (!is_array($bbb) || !isset($bbb['server'])) {
+			return '';
+		}
+
+		return $bbb['servers'];
+	}
+
+	/**
+	 * @return string
+	 */
+	public function getBBBSecret(): string {
+		$config = $this->config->getAppValue('talk_bbb', 'bbb_server');
+		$bbb = json_decode($config, true);
+
+		if (!is_array($bbb)) {
+			return '';
+		}
+
+		return $bbb['secret'];
 	}
 
 	/**
@@ -291,18 +318,18 @@ class Config {
 	 */
 	public function getSignalingTicket(?string $userId): string {
 		if (empty($userId)) {
-			$secret = $this->config->getAppValue('spreed', 'signaling_ticket_secret');
+			$secret = $this->config->getAppValue('talk_bbb', 'signaling_ticket_secret');
 		} else {
-			$secret = $this->config->getUserValue($userId, 'spreed', 'signaling_ticket_secret');
+			$secret = $this->config->getUserValue($userId, 'talk_bbb', 'signaling_ticket_secret');
 		}
 		if (empty($secret)) {
 			// Create secret lazily on first access.
 			// TODO(fancycode): Is there a possibility for a race condition?
 			$secret = $this->secureRandom->generate(255);
 			if (empty($userId)) {
-				$this->config->setAppValue('spreed', 'signaling_ticket_secret', $secret);
+				$this->config->setAppValue('talk_bbb', 'signaling_ticket_secret', $secret);
 			} else {
-				$this->config->setUserValue($userId, 'spreed', 'signaling_ticket_secret', $secret);
+				$this->config->setUserValue($userId, 'talk_bbb', 'signaling_ticket_secret', $secret);
 			}
 		}
 
@@ -322,9 +349,9 @@ class Config {
 	 */
 	public function validateSignalingTicket(?string $userId, string $ticket): bool {
 		if (empty($userId)) {
-			$secret = $this->config->getAppValue('spreed', 'signaling_ticket_secret');
+			$secret = $this->config->getAppValue('talk_bbb', 'signaling_ticket_secret');
 		} else {
-			$secret = $this->config->getUserValue($userId, 'spreed', 'signaling_ticket_secret');
+			$secret = $this->config->getUserValue($userId, 'talk_bbb', 'signaling_ticket_secret');
 		}
 		if (empty($secret)) {
 			return false;

@@ -40,7 +40,7 @@ const joinConversation = async(token) => {
 		EventBus.$emit('joinedConversation')
 
 		// FIXME Signaling should not handle joining a conversation
-		// const response = await axios.post(generateOcsUrl('apps/spreed/api/v1', 2) + `room/${token}/participants/active`)
+		// const response = await axios.post(generateOcsUrl('apps/talk_bbb/api/v1', 2) + `room/${token}/participants/active`)
 		// return response
 	} catch (error) {
 		console.debug(error)
@@ -59,7 +59,7 @@ const leaveConversation = async function(token) {
 		await signaling.leaveRoom(token)
 
 		// FIXME Signaling should not handle leaving a conversation
-		// const response = await axios.delete(generateOcsUrl('apps/spreed/api/v1', 2) + `room/${token}/participants/active`)
+		// const response = await axios.delete(generateOcsUrl('apps/talk_bbb/api/v1', 2) + `room/${token}/participants/active`)
 		// return response
 	} catch (error) {
 		console.debug(error)
@@ -72,7 +72,7 @@ const leaveConversation = async function(token) {
  * @param {string} token The conversation token;
  */
 const leaveConversationSync = function(token) {
-	axios.delete(generateOcsUrl('apps/spreed/api/v1/room', 2) + token + '/participants/active')
+	axios.delete(generateOcsUrl('apps/talk_bbb/api/v1/room', 2) + token + '/participants/active')
 }
 
 /**
@@ -82,7 +82,7 @@ const leaveConversationSync = function(token) {
  * @param {string} source the source Source of the participant as returned by the autocomplete suggestion endpoint (default is users)
  */
 const addParticipant = async function(token, newParticipant, source) {
-	const response = await axios.post(generateOcsUrl('apps/spreed/api/v1', 2) + `room/${token}/participants`, {
+	const response = await axios.post(generateOcsUrl('apps/talk_bbb/api/v1', 2) + `room/${token}/participants`, {
 		newParticipant,
 		source,
 	})
@@ -95,13 +95,13 @@ const addParticipant = async function(token, newParticipant, source) {
  * @param {string} token The conversation token;
  */
 const removeCurrentUserFromConversation = async function(token) {
-	const response = await axios.delete(generateOcsUrl('apps/spreed/api/v1', 2) + `room/${token}/participants/self`)
+	const response = await axios.delete(generateOcsUrl('apps/talk_bbb/api/v1', 2) + `room/${token}/participants/self`)
 	return response
 }
 
 const removeUserFromConversation = async function(token, userId) {
 	try {
-		const response = await axios.delete(generateOcsUrl('apps/spreed/api/v1', 2) + `room/${token}/participants`, {
+		const response = await axios.delete(generateOcsUrl('apps/talk_bbb/api/v1', 2) + `room/${token}/participants`, {
 			params: {
 				participant: userId,
 			},
@@ -114,7 +114,7 @@ const removeUserFromConversation = async function(token, userId) {
 
 const removeGuestFromConversation = async function(token, sessionId) {
 	try {
-		const response = await axios.delete(generateOcsUrl('apps/spreed/api/v1', 2) + `room/${token}/participants/guests`, {
+		const response = await axios.delete(generateOcsUrl('apps/talk_bbb/api/v1', 2) + `room/${token}/participants/guests`, {
 			params: {
 				participant: sessionId,
 			},
@@ -126,24 +126,24 @@ const removeGuestFromConversation = async function(token, sessionId) {
 }
 
 const promoteToModerator = async(token, options) => {
-	const response = await axios.post(generateOcsUrl('apps/spreed/api/v1/room', 2) + token + '/moderators', options)
+	const response = await axios.post(generateOcsUrl('apps/talk_bbb/api/v1/room', 2) + token + '/moderators', options)
 	return response
 }
 
 const demoteFromModerator = async(token, options) => {
-	const response = await axios.delete(generateOcsUrl('apps/spreed/api/v1/room', 2) + token + '/moderators', {
+	const response = await axios.delete(generateOcsUrl('apps/talk_bbb/api/v1/room', 2) + token + '/moderators', {
 		params: options,
 	})
 	return response
 }
 
 const fetchParticipants = async(token, options) => {
-	const response = await axios.get(generateOcsUrl('apps/spreed/api/v1/room', 2) + token + '/participants', options)
+	const response = await axios.get(generateOcsUrl('apps/talk_bbb/api/v1/room', 2) + token + '/participants', options)
 	return response
 }
 
 const setGuestUserName = async(token, userName) => {
-	const response = await axios.post(generateOcsUrl('apps/spreed/api/v1/guest', 2) + token + '/name', {
+	const response = await axios.post(generateOcsUrl('apps/talk_bbb/api/v1/guest', 2) + token + '/name', {
 		displayName: userName,
 	})
 	return response

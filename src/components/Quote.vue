@@ -113,11 +113,11 @@ export default {
 			const displayName = this.actorDisplayName.trim()
 
 			if (displayName === '' && this.actorType === 'guests') {
-				return t('spreed', 'Guest')
+				return t('talk_bbb', 'Guest')
 			}
 
 			if (displayName === '') {
-				return t('spreed', '[Unknown user name]')
+				return t('talk_bbb', '[Unknown user name]')
 			}
 
 			return displayName

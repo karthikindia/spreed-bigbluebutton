@@ -281,16 +281,16 @@ export default {
 			// Use the relative day for today and yesterday
 			const dayOfYearToday = moment().format('YYYY-DDD')
 			if (dayOfYear === dayOfYearToday) {
-				relativePrefix = t('spreed', 'Today')
+				relativePrefix = t('talk_bbb', 'Today')
 			} else {
 				const dayOfYearYesterday = moment().subtract(1, 'days').format('YYYY-DDD')
 				if (dayOfYear === dayOfYearYesterday) {
-					relativePrefix = t('spreed', 'Yesterday')
+					relativePrefix = t('talk_bbb', 'Yesterday')
 				}
 			}
 
 			// <Today>, <November 11th, 2019>
-			return t('spreed', '{relativeDate}, {absoluteDate}', {
+			return t('talk_bbb', '{relativeDate}, {absoluteDate}', {
 				relativeDate: relativePrefix,
 				// 'LL' formats a localized date including day of month, month
 				// name and year
@@ -483,6 +483,7 @@ export default {
 		 */
 		async handleScroll() {
 			const scroller = document.querySelector('.scroller')
+			if (!scroller) return
 			const scrollHeight = scroller.scrollHeight
 			const scrollTop = scroller.scrollTop
 			const scrollOffset = scrollHeight - scrollTop

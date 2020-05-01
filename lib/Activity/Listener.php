@@ -138,8 +138,8 @@ class Listener {
 
 		$event = $this->activityManager->generateEvent();
 		try {
-			$event->setApp('spreed')
-				->setType('spreed')
+			$event->setApp('talk_bbb')
+				->setType('talk_bbb')
 				->setAuthor('')
 				->setObject('room', $room->getId())
 				->setTimestamp($this->timeFactory->getTime())
@@ -150,7 +150,7 @@ class Listener {
 					'duration' => $duration,
 				]);
 		} catch (\InvalidArgumentException $e) {
-			$this->logger->logException($e, ['app' => 'spreed']);
+			$this->logger->logException($e, ['app' => 'talk_bbb']);
 			return false;
 		}
 
@@ -159,9 +159,9 @@ class Listener {
 				$event->setAffectedUser($userId);
 				$this->activityManager->publish($event);
 			} catch (\BadMethodCallException $e) {
-				$this->logger->logException($e, ['app' => 'spreed']);
+				$this->logger->logException($e, ['app' => 'talk_bbb']);
 			} catch (\InvalidArgumentException $e) {
-				$this->logger->logException($e, ['app' => 'spreed']);
+				$this->logger->logException($e, ['app' => 'talk_bbb']);
 			}
 		}
 
@@ -183,8 +183,8 @@ class Listener {
 
 		$event = $this->activityManager->generateEvent();
 		try {
-			$event->setApp('spreed')
-				->setType('spreed')
+			$event->setApp('talk_bbb')
+				->setType('talk_bbb')
 				->setAuthor($actorId)
 				->setObject('room', $room->getId())
 				->setTimestamp($this->timeFactory->getTime())
@@ -193,7 +193,7 @@ class Listener {
 					'room' => $room->getId(),
 				]);
 		} catch (\InvalidArgumentException $e) {
-			$this->logger->logException($e, ['app' => 'spreed']);
+			$this->logger->logException($e, ['app' => 'talk_bbb']);
 			return;
 		}
 
@@ -215,9 +215,9 @@ class Listener {
 					->setAffectedUser($participant['userId']);
 				$this->activityManager->publish($event);
 			} catch (\InvalidArgumentException $e) {
-				$this->logger->logException($e, ['app' => 'spreed']);
+				$this->logger->logException($e, ['app' => 'talk_bbb']);
 			} catch (\BadMethodCallException $e) {
-				$this->logger->logException($e, ['app' => 'spreed']);
+				$this->logger->logException($e, ['app' => 'talk_bbb']);
 			}
 		}
 	}

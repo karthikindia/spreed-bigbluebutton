@@ -205,7 +205,7 @@ Signaling.Base.prototype.leaveCurrentCall = function() {
 
 Signaling.Base.prototype.joinRoom = function(token, password) {
 	return new Promise((resolve, reject) => {
-		axios.post(generateOcsUrl('apps/spreed/api/v1/room', 2) + token + '/participants/active', {
+		axios.post(generateOcsUrl('apps/talk_bbb/api/v1/room', 2) + token + '/participants/active', {
 			password: password,
 		})
 			.then(function(result) {
@@ -229,15 +229,15 @@ Signaling.Base.prototype.joinRoom = function(token, password) {
 					// This should not happen anymore since we ask for the password before
 					// even trying to join the call, but let's keep it for now.
 					OC.dialogs.prompt(
-						t('spreed', 'Please enter the password for this call'),
-						t('spreed', 'Password required'),
+						t('talk_bbb', 'Please enter the password for this call'),
+						t('talk_bbb', 'Password required'),
 						function(result, password) {
 							if (result && password !== '') {
 								this.joinRoom(token, password)
 							}
 						}.bind(this),
 						true,
-						t('spreed', 'Password'),
+						t('talk_bbb', 'Password'),
 						true
 					).then(function() {
 						const $dialog = $('.oc-dialog:visible')
@@ -263,7 +263,7 @@ Signaling.Base.prototype.leaveRoom = function(token) {
 			this._doLeaveRoom(token)
 
 			return new Promise((resolve, reject) => {
-				axios.delete(generateOcsUrl('apps/spreed/api/v1/room', 2) + token + '/participants/active')
+				axios.delete(generateOcsUrl('apps/talk_bbb/api/v1/room', 2) + token + '/participants/active')
 					.then(function() {
 						this._leaveRoomSuccess(token)
 						resolve()
@@ -293,7 +293,7 @@ Signaling.Base.prototype._joinCallSuccess = function(/* token */) {
 
 Signaling.Base.prototype.joinCall = function(token, flags) {
 	return new Promise((resolve, reject) => {
-		axios.post(generateOcsUrl('apps/spreed/api/v1/call', 2) + token, {
+		axios.post(generateOcsUrl('apps/talk_bbb/api/v1/call', 2) + token, {
 			flags: flags,
 		})
 			.then(function() {
@@ -324,7 +324,7 @@ Signaling.Base.prototype.leaveCall = function(token, keepToken) {
 			return
 		}
 
-		axios.delete(generateOcsUrl('apps/spreed/api/v1/call', 2) + token)
+		axios.delete(generateOcsUrl('apps/talk_bbb/api/v1/call', 2) + token)
 			.then(function() {
 				this._trigger('leaveCall', [token, keepToken])
 				this._leaveCallSuccess(token)
@@ -345,7 +345,7 @@ Signaling.Base.prototype.leaveCall = function(token, keepToken) {
 function Internal(settings) {
 	Signaling.Base.prototype.constructor.apply(this, arguments)
 	this.hideWarning = settings.hideWarning
-	this.spreedArrayConnection = []
+	this.talk_bbbArrayConnection = []
 
 	this.pullMessagesFails = 0
 	this.pullMessagesRequest = null
@@ -361,7 +361,7 @@ Internal.prototype.constructor = Internal
 Signaling.Internal = Internal
 
 Signaling.Internal.prototype.disconnect = function() {
-	this.spreedArrayConnection = []
+	this.talk_bbbArrayConnection = []
 	if (this.sendInterval) {
 		window.clearInterval(this.sendInterval)
 		this.sendInterval = null
@@ -415,7 +415,7 @@ Signaling.Internal.prototype._sendMessageWithCallback = function(ev) {
 }
 
 Signaling.Internal.prototype._sendMessages = function(messages) {
-	return axios.post(generateOcsUrl('apps/spreed/api/v1/signaling', 2) + this.currentRoomToken, {
+	return axios.post(generateOcsUrl('apps/talk_bbb/api/v1/signaling', 2) + this.currentRoomToken, {
 		messages: JSON.stringify(messages),
 	})
 }
@@ -434,7 +434,7 @@ Signaling.Internal.prototype.sendCallMessage = function(data) {
 	} else if (data.type === 'offer') {
 		console.log('OFFER', data)
 	}
-	this.spreedArrayConnection.push({
+	this.talk_bbbArrayConnection.push({
 		ev: 'message',
 		fn: JSON.stringify(data),
 		sessionId: this.sessionId,
@@ -512,15 +512,15 @@ Signaling.Internal.prototype._startPullingMessages = function() {
 	 * @private
 	 */
 Signaling.Internal.prototype.sendPendingMessages = function() {
-	if (!this.spreedArrayConnection.length || this.isSendingMessages) {
+	if (!this.talk_bbbArrayConnection.length || this.isSendingMessages) {
 		return
 	}
 
-	const pendingMessagesLength = this.spreedArrayConnection.length
+	const pendingMessagesLength = this.talk_bbbArrayConnection.length
 	this.isSendingMessages = true
 
-	this._sendMessages(this.spreedArrayConnection).then(function(/* result */) {
-		this.spreedArrayConnection.splice(0, pendingMessagesLength)
+	this._sendMessages(this.talk_bbbArrayConnection).then(function(/* result */) {
+		this.talk_bbbArrayConnection.splice(0, pendingMessagesLength)
 		this.isSendingMessages = false
 	}.bind(this)).catch(function(/* xhr, textStatus, errorThrown */) {
 		console.log('Sending pending signaling messages has failed.')
@@ -546,7 +546,7 @@ function Standalone(settings, urls) {
 	if (url[url.length - 1] === '/') {
 		url = url.substr(0, url.length - 1)
 	}
-	this.url = url + '/spreed'
+	this.url = url + '/talk_bbb'
 	this.initialReconnectIntervalMs = 1000
 	this.maxReconnectIntervalMs = 16000
 	this.reconnectIntervalMs = this.initialReconnectIntervalMs
@@ -587,7 +587,7 @@ Signaling.Standalone.prototype.connect = function() {
 
 	if (this.signalingConnectionWarning === null) {
 		this.signalingConnectionTimeout = setTimeout(() => {
-			this.signalingConnectionWarning = showWarning(t('spreed', 'Establishing signaling connection is taking longer than expected …'), {
+			this.signalingConnectionWarning = showWarning(t('talk_bbb', 'Establishing signaling connection is taking longer than expected …'), {
 				timeout: 0,
 			})
 		}, 2000)
@@ -629,7 +629,7 @@ Signaling.Standalone.prototype.connect = function() {
 			this.signalingConnectionWarning = null
 		}
 		if (this.signalingConnectionError === null) {
-			this.signalingConnectionError = showError(t('spreed', 'Failed to establish signaling connection. Retrying …'), {
+			this.signalingConnectionError = showError(t('talk_bbb', 'Failed to establish signaling connection. Retrying …'), {
 				timeout: 0,
 			})
 		}
@@ -810,7 +810,7 @@ Signaling.Standalone.prototype.sendHello = function() {
 	} else {
 		// Already reconnected with a new session.
 		this._forceReconnect = false
-		const url = OC.linkToOCS('apps/spreed/api/v1/signaling', 2) + 'backend'
+		const url = OC.linkToOCS('apps/talk_bbb/api/v1/signaling', 2) + 'backend'
 		msg = {
 			'type': 'hello',
 			'hello': {

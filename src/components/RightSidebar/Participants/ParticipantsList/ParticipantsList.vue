@@ -40,7 +40,7 @@
 				@click="handleClickHint">
 				<div class="icon-contacts-dark set-contacts__icon" />
 				<p>
-					{{ t('spreed', 'Search for more contacts') }}
+					{{ t('talk_bbb', 'Search for more contacts') }}
 				</p>
 			</li>
 		</ul>
@@ -53,14 +53,14 @@
 			<template v-else>
 				<div class="icon-loading participants-list__icon" />
 				<p class="participants-list__warning">
-					{{ t('spreed', 'Contacts loading') }}
+					{{ t('talk_bbb', 'Contacts loading') }}
 				</p>
 			</template>
 		</template>
 		<template v-if="noResults">
 			<div class="icon-category-search participants-list__icon" />
 			<p class="participants-list__warning">
-				{{ t('spreed', 'No results') }}
+				{{ t('talk_bbb', 'No results') }}
 			</p>
 		</template>
 	</div>

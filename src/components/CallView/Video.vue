@@ -52,7 +52,7 @@
 				:class="videoButtonClass"
 				@click="toggleVideo" />
 			<button v-show="!connectionStateFailedNoRestart"
-				v-tooltip="t('spreed', 'Show screen')"
+				v-tooltip="t('talk_bbb', 'Show screen')"
 				class="screensharingIndicator forced-white icon-screen"
 				:class="screenSharingButtonClass"
 				@click="switchToScreen" />
@@ -131,7 +131,7 @@ export default {
 		},
 
 		firstLetterOfGuestName() {
-			const customName = this.participantName !== t('spreed', 'Guest') ? this.participantName : '?'
+			const customName = this.participantName !== t('talk_bbb', 'Guest') ? this.participantName : '?'
 			return customName.charAt(0)
 		},
 
@@ -172,10 +172,10 @@ export default {
 
 		videoButtonTooltip() {
 			if (this.sharedData.videoEnabled) {
-				return t('spreed', 'Disable video')
+				return t('talk_bbb', 'Disable video')
 			}
 
-			return t('spreed', 'Enable video')
+			return t('talk_bbb', 'Enable video')
 		},
 
 		screenSharingButtonClass() {

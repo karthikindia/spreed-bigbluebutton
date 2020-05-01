@@ -124,7 +124,7 @@ export default {
 			}
 
 			if (displayName === '') {
-				return t('spreed', '[Unknown user name]')
+				return t('talk_bbb', '[Unknown user name]')
 			}
 
 			return displayName

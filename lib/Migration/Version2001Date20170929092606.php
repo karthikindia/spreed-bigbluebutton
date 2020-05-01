@@ -43,21 +43,21 @@ class Version2001Date20170929092606 extends SimpleMigrationStep {
 	 * @since 13.0.0
 	 */
 	public function preSchemaChange(IOutput $output, \Closure $schemaClosure, array $options): void {
-		$stunServer = $this->config->getAppValue('spreed', 'stun_server', 'stun.nextcloud.com:443');
+		$stunServer = $this->config->getAppValue('talk_bbb', 'stun_server', 'stun.nextcloud.com:443');
 		$turnServer = [
-			'server' => $this->config->getAppValue('spreed', 'turn_server'),
-			'secret' => $this->config->getAppValue('spreed', 'turn_server_secret'),
-			'protocols' => $this->config->getAppValue('spreed', 'turn_server_protocols'),
+			'server' => $this->config->getAppValue('talk_bbb', 'turn_server'),
+			'secret' => $this->config->getAppValue('talk_bbb', 'turn_server_secret'),
+			'protocols' => $this->config->getAppValue('talk_bbb', 'turn_server_protocols'),
 		];
 
-		$this->config->setAppValue('spreed', 'stun_servers', json_encode([$stunServer]));
+		$this->config->setAppValue('talk_bbb', 'stun_servers', json_encode([$stunServer]));
 		if ($turnServer['server'] !== '' && $turnServer['secret'] !== '' && $turnServer['protocols'] !== '') {
-			$this->config->setAppValue('spreed', 'turn_servers', json_encode([$turnServer]));
+			$this->config->setAppValue('talk_bbb', 'turn_servers', json_encode([$turnServer]));
 		}
 
-		$this->config->deleteAppValue('spreed', 'stun_server');
-		$this->config->deleteAppValue('spreed', 'turn_server');
-		$this->config->deleteAppValue('spreed', 'turn_server_secret');
-		$this->config->deleteAppValue('spreed', 'turn_server_protocols');
+		$this->config->deleteAppValue('talk_bbb', 'stun_server');
+		$this->config->deleteAppValue('talk_bbb', 'turn_server');
+		$this->config->deleteAppValue('talk_bbb', 'turn_server_secret');
+		$this->config->deleteAppValue('talk_bbb', 'turn_server_protocols');
 	}
 }

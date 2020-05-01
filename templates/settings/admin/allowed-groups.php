@@ -1,8 +1,8 @@
 <?php
 /** @var array $_ */
 /** @var \OCP\IL10N $l */
-script('spreed', ['admin/allowed-groups']);
-style('spreed', ['settings-admin']);
+script('talk_bbb', ['admin/allowed-groups']);
+style('talk_bbb', ['settings-admin']);
 ?>
 
 <div class="videocalls section" id="allowed_groups">

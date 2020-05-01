@@ -62,7 +62,7 @@ the main body of the message as well as a quote.
 						icon="icon-reply"
 						:close-after-click="true"
 						@click.stop="handleReply">
-						{{ t('spreed', 'Reply') }}
+						{{ t('talk_bbb', 'Reply') }}
 					</ActionButton>
 				</Actions>
 			</div>

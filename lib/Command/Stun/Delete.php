@@ -54,7 +54,7 @@ class Delete extends Base {
 	protected function execute(InputInterface $input, OutputInterface $output): ?int {
 		$server = $input->getArgument('server');
 
-		$config = $this->config->getAppValue('spreed', 'stun_servers');
+		$config = $this->config->getAppValue('talk_bbb', 'stun_servers');
 		$servers = json_decode($config);
 		if (! is_array($servers)) {
 			$servers = [];
@@ -68,10 +68,10 @@ class Delete extends Base {
 
 		if (empty($servers)) {
 			$servers = ['stun.nextcloud.com:443'];
-			$this->config->setAppValue('spreed', 'stun_servers', json_encode($servers));
+			$this->config->setAppValue('talk_bbb', 'stun_servers', json_encode($servers));
 			$output->writeln('<info>You deleted all STUN servers. A default STUN server was added.</info>');
 		} else {
-			$this->config->setAppValue('spreed', 'stun_servers', json_encode($servers));
+			$this->config->setAppValue('talk_bbb', 'stun_servers', json_encode($servers));
 			if ($count > count($servers)) {
 				$output->writeln('<info>Deleted ' . $server . '.</info>');
 			} else {

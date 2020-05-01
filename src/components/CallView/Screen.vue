@@ -61,14 +61,14 @@ export default {
 
 		name() {
 			if (this.localMediaModel) {
-				return t('spreed', 'Your screen')
+				return t('talk_bbb', 'Your screen')
 			}
 
 			if (this.callParticipantModel.attributes.name) {
-				return t('spreed', "{participantName}'s screen", { participantName: this.callParticipantModel.attributes.name })
+				return t('talk_bbb', "{participantName}'s screen", { participantName: this.callParticipantModel.attributes.name })
 			}
 
-			return t('spreed', "Guest's screen")
+			return t('talk_bbb', "Guest's screen")
 		},
 
 	},

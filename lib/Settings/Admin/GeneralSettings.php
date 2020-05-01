@@ -48,11 +48,11 @@ class GeneralSettings implements ISettings {
 	 * @return TemplateResponse
 	 */
 	public function getForm(): TemplateResponse {
-		$this->initialStateService->provideInitialState('talk', 'start_calls', (int) $this->config->getAppValue('spreed', 'start_calls', Room::START_CALL_EVERYONE));
-		$this->initialStateService->provideInitialState('talk', 'default_group_notification', (int) $this->config->getAppValue('spreed', 'default_group_notification', Participant::NOTIFY_MENTION));
-		$this->initialStateService->provideInitialState('talk', 'conversations_files', (int) $this->config->getAppValue('spreed', 'conversations_files', '1'));
-		$this->initialStateService->provideInitialState('talk', 'conversations_files_public_shares', (int) $this->config->getAppValue('spreed', 'conversations_files_public_shares', '1'));
-		return new TemplateResponse('spreed', 'settings/admin/general-settings', [], '');
+		$this->initialStateService->provideInitialState('talk', 'start_calls', (int) $this->config->getAppValue('talk_bbb', 'start_calls', Room::START_CALL_EVERYONE));
+		$this->initialStateService->provideInitialState('talk', 'default_group_notification', (int) $this->config->getAppValue('talk_bbb', 'default_group_notification', Participant::NOTIFY_MENTION));
+		$this->initialStateService->provideInitialState('talk', 'conversations_files', (int) $this->config->getAppValue('talk_bbb', 'conversations_files', '1'));
+		$this->initialStateService->provideInitialState('talk', 'conversations_files_public_shares', (int) $this->config->getAppValue('talk_bbb', 'conversations_files_public_shares', '1'));
+		return new TemplateResponse('talk_bbb', 'settings/admin/general-settings', [], '');
 	}
 
 	/**

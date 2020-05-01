@@ -72,7 +72,7 @@ abstract class Base implements IProvider {
 	 * @throws \InvalidArgumentException
 	 */
 	public function preParse(IEvent $event): IEvent {
-		if ($event->getApp() !== 'spreed') {
+		if ($event->getApp() !== 'talk_bbb') {
 			throw new \InvalidArgumentException('Wrong app');
 		}
 
@@ -82,9 +82,9 @@ abstract class Base implements IProvider {
 		}
 
 		if ($this->activityManager->getRequirePNG()) {
-			$event->setIcon($this->url->getAbsoluteURL($this->url->imagePath('spreed', 'app-dark.png')));
+			$event->setIcon($this->url->getAbsoluteURL($this->url->imagePath('talk_bbb', 'app-dark.png')));
 		} else {
-			$event->setIcon($this->url->getAbsoluteURL($this->url->imagePath('spreed', 'app-dark.svg')));
+			$event->setIcon($this->url->getAbsoluteURL($this->url->imagePath('talk_bbb', 'app-dark.svg')));
 		}
 
 		return $event;

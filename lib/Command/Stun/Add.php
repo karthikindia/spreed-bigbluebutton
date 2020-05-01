@@ -61,7 +61,7 @@ class Add extends Base {
 			return 1;
 		}
 
-		$config = $this->config->getAppValue('spreed', 'stun_servers');
+		$config = $this->config->getAppValue('talk_bbb', 'stun_servers');
 		$servers = json_decode($config, true);
 
 		if ($servers === null || empty($servers) || !is_array($servers)) {
@@ -70,7 +70,7 @@ class Add extends Base {
 
 		$servers[] = "$host:$port";
 
-		$this->config->setAppValue('spreed', 'stun_servers', json_encode($servers));
+		$this->config->setAppValue('talk_bbb', 'stun_servers', json_encode($servers));
 		$output->writeln('<info>Added ' . $server . '.</info>');
 		return 0;
 	}

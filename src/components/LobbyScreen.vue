@@ -48,13 +48,13 @@ export default {
 		},
 
 		message() {
-			let message = t('spreed', 'You are currently waiting in the lobby')
+			let message = t('talk_bbb', 'You are currently waiting in the lobby')
 
 			if (this.currentConversation.lobbyTimer) {
 				// PHP timestamp is second-based; JavaScript timestamp is
 				// millisecond based.
 				const startTime = moment.unix(this.currentConversation.lobbyTimer).format('LLL')
-				message = t('spreed', 'You are currently waiting in the lobby. This meeting is scheduled for {startTime}', { startTime: startTime })
+				message = t('talk_bbb', 'You are currently waiting in the lobby. This meeting is scheduled for {startTime}', { startTime: startTime })
 			}
 
 			return message

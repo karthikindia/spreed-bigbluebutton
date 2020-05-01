@@ -70,7 +70,7 @@ class BackendNotifier {
 			$client->post($url, $params);
 		} catch (\Exception $e) {
 			$this->logger->logException($e, [
-				'app' => 'spreed',
+				'app' => 'talk_bbb',
 				'message' => 'Failed to send message to signaling server',
 			]);
 		}
@@ -126,7 +126,7 @@ class BackendNotifier {
 	 * @throws \Exception
 	 */
 	public function roomInvited(Room $room, array $users): void {
-		$this->logger->info('Now invited to ' . $room->getToken() . ': ' . print_r($users, true), ['app' => 'spreed']);
+		$this->logger->info('Now invited to ' . $room->getToken() . ': ' . print_r($users, true), ['app' => 'talk_bbb']);
 		$userIds = [];
 		foreach ($users as $user) {
 			$userIds[] = $user['userId'];
@@ -151,7 +151,7 @@ class BackendNotifier {
 	 * @throws \Exception
 	 */
 	public function roomsDisinvited(Room $room, array $userIds): void {
-		$this->logger->info('No longer invited to ' . $room->getToken() . ': ' . print_r($userIds, true), ['app' => 'spreed']);
+		$this->logger->info('No longer invited to ' . $room->getToken() . ': ' . print_r($userIds, true), ['app' => 'talk_bbb']);
 		$this->backendRequest('/api/v1/room/' . $room->getToken(), [
 			'type' => 'disinvite',
 			'disinvite' => [
@@ -172,7 +172,7 @@ class BackendNotifier {
 	 * @throws \Exception
 	 */
 	public function roomSessionsRemoved(Room $room, array $sessionIds): void {
-		$this->logger->info('Removed from ' . $room->getToken() . ': ' . print_r($sessionIds, true), ['app' => 'spreed']);
+		$this->logger->info('Removed from ' . $room->getToken() . ': ' . print_r($sessionIds, true), ['app' => 'talk_bbb']);
 		$this->backendRequest('/api/v1/room/' . $room->getToken(), [
 			'type' => 'disinvite',
 			'disinvite' => [
@@ -192,7 +192,7 @@ class BackendNotifier {
 	 * @throws \Exception
 	 */
 	public function roomModified(Room $room): void {
-		$this->logger->info('Room modified: ' . $room->getToken(), ['app' => 'spreed']);
+		$this->logger->info('Room modified: ' . $room->getToken(), ['app' => 'talk_bbb']);
 		$this->backendRequest('/api/v1/room/' . $room->getToken(), [
 			'type' => 'update',
 			'update' => [
@@ -210,7 +210,7 @@ class BackendNotifier {
 	 * @throws \Exception
 	 */
 	public function roomDeleted(Room $room, array $participants): void {
-		$this->logger->info('Room deleted: ' . $room->getToken(), ['app' => 'spreed']);
+		$this->logger->info('Room deleted: ' . $room->getToken(), ['app' => 'talk_bbb']);
 		$userIds = array_keys($participants['users']);
 		$this->backendRequest('/api/v1/room/' . $room->getToken(), [
 			'type' => 'delete',
@@ -228,7 +228,7 @@ class BackendNotifier {
 	 * @throws \Exception
 	 */
 	public function participantsModified(Room $room, array $sessionIds): void {
-		$this->logger->info('Room participants modified: ' . $room->getToken() . ' ' . print_r($sessionIds, true), ['app' => 'spreed']);
+		$this->logger->info('Room participants modified: ' . $room->getToken() . ' ' . print_r($sessionIds, true), ['app' => 'talk_bbb']);
 		$changed = [];
 		$users = [];
 		$participants = $room->getParticipantsLegacy();
@@ -266,7 +266,7 @@ class BackendNotifier {
 	 * @throws \Exception
 	 */
 	public function roomInCallChanged(Room $room, int $flags, array $sessionIds): void {
-		$this->logger->info('Room in-call status changed: ' . $room->getToken() . ' ' . $flags . ' ' . print_r($sessionIds, true), ['app' => 'spreed']);
+		$this->logger->info('Room in-call status changed: ' . $room->getToken() . ' ' . $flags . ' ' . print_r($sessionIds, true), ['app' => 'talk_bbb']);
 		$changed = [];
 		$users = [];
 		$participants = $room->getParticipantsLegacy();

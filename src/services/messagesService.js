@@ -31,7 +31,7 @@ import { generateOcsUrl } from '@nextcloud/router'
  * @param {object} options options
  */
 const fetchMessages = async function({ token, lastKnownMessageId, includeLastKnown }, options) {
-	const response = await axios.get(generateOcsUrl('apps/spreed/api/v1/chat', 2) + token, Object.assign(options, {
+	const response = await axios.get(generateOcsUrl('apps/talk_bbb/api/v1/chat', 2) + token, Object.assign(options, {
 		params: {
 			lookIntoFuture: 0,
 			lastKnownMessageId,
@@ -50,7 +50,7 @@ const fetchMessages = async function({ token, lastKnownMessageId, includeLastKno
  * @param {int} lastKnownMessageId The id of the last message in the store.
  */
 const lookForNewMessages = async({ token, lastKnownMessageId }, options) => {
-	const response = await axios.get(generateOcsUrl('apps/spreed/api/v1/chat', 2) + token, Object.assign(options, {
+	const response = await axios.get(generateOcsUrl('apps/talk_bbb/api/v1/chat', 2) + token, Object.assign(options, {
 		params: {
 			lookIntoFuture: 1,
 			lastKnownMessageId,
@@ -69,7 +69,7 @@ const lookForNewMessages = async({ token, lastKnownMessageId }, options) => {
  * @param {Number} parent The id of the message to be replied to.
  */
 const postNewMessage = async function({ token, message, actorDisplayName, parent }) {
-	const response = await axios.post(generateOcsUrl('apps/spreed/api/v1/chat', 2) + token, { message, actorDisplayName, replyTo: parent })
+	const response = await axios.post(generateOcsUrl('apps/talk_bbb/api/v1/chat', 2) + token, { message, actorDisplayName, replyTo: parent })
 	return response
 }
 

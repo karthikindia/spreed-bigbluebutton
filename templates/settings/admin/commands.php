@@ -1,8 +1,8 @@
 <?php
 /** @var array $_ */
 /** @var \OCP\IL10N $l */
-script('spreed', ['admin/commands']);
-style('spreed', ['settings-admin']);
+script('talk_bbb', ['admin/commands']);
+style('talk_bbb', ['settings-admin']);
 ?>
 
 <div class="videocalls section" id="chat_commands">

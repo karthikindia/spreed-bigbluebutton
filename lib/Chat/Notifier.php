@@ -188,7 +188,7 @@ class Notifier {
 		$notification = $this->notificationManager->createNotification();
 
 		// @todo this should be in the Notifications\Hooks
-		$notification->setApp('spreed');
+		$notification->setApp('talk_bbb');
 
 		$notification->setObject('chat', $chat->getToken());
 		$this->notificationManager->markProcessed($notification);
@@ -215,7 +215,7 @@ class Notifier {
 		$notification = $this->notificationManager->createNotification();
 
 		$notification
-			->setApp('spreed')
+			->setApp('talk_bbb')
 			->setObject('chat', $chat->getToken())
 			->setUser($userId);
 
@@ -257,7 +257,7 @@ class Notifier {
 	private function createNotification(Room $chat, IComment $comment, string $subject): INotification {
 		$notification = $this->notificationManager->createNotification();
 		$notification
-			->setApp('spreed')
+			->setApp('talk_bbb')
 			->setObject('chat', $chat->getToken())
 			->setSubject($subject, [
 				'userType' => $comment->getActorType(),
@@ -272,7 +272,7 @@ class Notifier {
 	}
 
 	protected function getDefaultGroupNotification(): int {
-		return (int) $this->config->getAppValue('spreed', 'default_group_notification', Participant::NOTIFY_MENTION);
+		return (int) $this->config->getAppValue('talk_bbb', 'default_group_notification', Participant::NOTIFY_MENTION);
 	}
 
 	/**

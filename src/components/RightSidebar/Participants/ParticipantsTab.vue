@@ -24,19 +24,19 @@
 		<SearchBox
 			v-if="displaySearchBox"
 			v-model="searchText"
-			:placeholder-text="t('spreed', 'Add participants to the conversation')"
+			:placeholder-text="t('talk_bbb', 'Add participants to the conversation')"
 			:is-searching="isSearching"
 			@input="handleInput"
 			@abort-search="abortSearch" />
 		<Caption v-if="isSearching"
-			:title="t('spreed', 'Participants')" />
+			:title="t('talk_bbb', 'Participants')" />
 		<CurrentParticipants
 			:search-text="searchText"
 			:participants-initialised="participantsInitialised" />
 		<template v-if="isSearching">
 			<template v-if="addableUsers.length !== 0">
 				<Caption
-					:title="t('spreed', 'Add contacts')" />
+					:title="t('talk_bbb', 'Add contacts')" />
 				<ParticipantsList
 
 					:items="addableUsers"
@@ -45,7 +45,7 @@
 
 			<template v-if="addableGroups.length !== 0">
 				<Caption
-					:title="t('spreed', 'Add groups')" />
+					:title="t('talk_bbb', 'Add groups')" />
 				<ParticipantsList
 					:items="addableGroups"
 					@click="addParticipants" />
@@ -53,7 +53,7 @@
 
 			<template v-if="addableEmails.length !== 0">
 				<Caption
-					:title="t('spreed', 'Add emails')" />
+					:title="t('talk_bbb', 'Add emails')" />
 				<ParticipantsList
 					:items="addableEmails"
 					@click="addParticipants" />
@@ -61,7 +61,7 @@
 
 			<template v-if="addableCircles.length !== 0">
 				<Caption
-					:title="t('spreed', 'Add circles')" />
+					:title="t('talk_bbb', 'Add circles')" />
 				<ParticipantsList
 					:items="addableCircles"
 					@click="addParticipants" />
@@ -69,8 +69,8 @@
 
 			<Caption v-if="sourcesWithoutResults"
 				:title="sourcesWithoutResultsList" />
-			<Hint v-if="contactsLoading" :hint="t('spreed', 'Searching …')" />
-			<Hint v-else :hint="t('spreed', 'No search results')" />
+			<Hint v-if="contactsLoading" :hint="t('talk_bbb', 'Searching …')" />
+			<Hint v-else :hint="t('talk_bbb', 'No search results')" />
 		</template>
 	</div>
 </template>
@@ -169,31 +169,31 @@ export default {
 			if (!this.addableUsers.length) {
 				if (!this.addableGroups.length) {
 					if (this.isCirclesEnabled && !this.addableCircles.length) {
-						return t('spreed', 'Add contacts, groups or circles')
+						return t('talk_bbb', 'Add contacts, groups or circles')
 					} else {
-						return t('spreed', 'Add contacts or groups')
+						return t('talk_bbb', 'Add contacts or groups')
 					}
 				} else {
 					if (this.isCirclesEnabled && !this.addableCircles.length) {
-						return t('spreed', 'Add contacts or circles')
+						return t('talk_bbb', 'Add contacts or circles')
 					} else {
-						return t('spreed', 'Add contacts')
+						return t('talk_bbb', 'Add contacts')
 					}
 				}
 			} else {
 				if (!this.addableGroups.length) {
 					if (this.isCirclesEnabled && !this.addableCircles.length) {
-						return t('spreed', 'Add groups or circles')
+						return t('talk_bbb', 'Add groups or circles')
 					} else {
-						return t('spreed', 'Add groups')
+						return t('talk_bbb', 'Add groups')
 					}
 				} else {
 					if (this.isCirclesEnabled && !this.addableCircles.length) {
-						return t('spreed', 'Add circles')
+						return t('talk_bbb', 'Add circles')
 					}
 				}
 			}
-			return t('spreed', 'Add other sources')
+			return t('talk_bbb', 'Add other sources')
 		},
 
 		addableUsers() {
@@ -296,7 +296,7 @@ export default {
 				this.contactsLoading = false
 			} catch (exception) {
 				console.error(exception)
-				showError(t('spreed', 'An error occurred while performing the search'))
+				showError(t('talk_bbb', 'An error occurred while performing the search'))
 			}
 		},
 
@@ -351,7 +351,7 @@ export default {
 			} catch (exception) {
 				if (!Axios.isCancel(exception)) {
 					console.error(exception)
-					showError(t('spreed', 'An error occurred while fetching the participants'))
+					showError(t('talk_bbb', 'An error occurred while fetching the participants'))
 				}
 			} finally {
 				this.fetchingParticipants = false

@@ -118,7 +118,7 @@ export default {
 		},
 
 		leaveCallLabel() {
-			return t('spreed', 'Leave call')
+			return t('talk_bbb', 'Leave call')
 		},
 
 		leaveCallIcon() {
@@ -131,10 +131,10 @@ export default {
 
 		startCallLabel() {
 			if (this.conversation.hasCall && !this.isBlockedByLobby) {
-				return t('spreed', 'Join call')
+				return t('talk_bbb', 'Join call')
 			}
 
-			return t('spreed', 'Start call')
+			return t('talk_bbb', 'Start call')
 		},
 
 		startCallIcon() {

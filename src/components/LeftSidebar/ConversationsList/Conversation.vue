@@ -53,30 +53,30 @@
 			<ActionButton
 				icon="icon-clippy"
 				@click.stop.prevent="copyLinkToConversation">
-				{{ t('spreed', 'Copy link') }}
+				{{ t('talk_bbb', 'Copy link') }}
 			</ActionButton>
 
 			<ActionSeparator />
 
 			<ActionText
-				:title="t('spreed', 'Chat notifications')" />
+				:title="t('talk_bbb', 'Chat notifications')" />
 			<ActionButton
 				:class="{'forced-active': isNotifyAlways}"
 				icon="icon-sound"
 				@click.prevent.exact="setNotificationLevel(1)">
-				{{ t('spreed', 'All messages') }}
+				{{ t('talk_bbb', 'All messages') }}
 			</ActionButton>
 			<ActionButton
 				:class="{'forced-active': isNotifyMention}"
 				icon="icon-user"
 				@click.prevent.exact="setNotificationLevel(2)">
-				{{ t('spreed', '@-mentions only') }}
+				{{ t('talk_bbb', '@-mentions only') }}
 			</ActionButton>
 			<ActionButton
 				:class="{'forced-active': isNotifyNever}"
 				icon="icon-sound-off"
 				@click.prevent.exact="setNotificationLevel(3)">
-				{{ t('spreed', 'Off') }}
+				{{ t('talk_bbb', 'Off') }}
 			</ActionButton>
 
 			<ActionSeparator />
@@ -84,13 +84,13 @@
 			<ActionButton v-if="canLeaveConversation"
 				:icon="iconLeaveConversation"
 				@click.prevent.exact="leaveConversation">
-				{{ t('spreed', 'Leave conversation') }}
+				{{ t('talk_bbb', 'Leave conversation') }}
 			</ActionButton>
 			<ActionButton v-if="canDeleteConversation"
 				icon="icon-delete-critical"
 				class="critical"
 				@click.prevent.exact="deleteConversation">
-				{{ t('spreed', 'Delete conversation') }}
+				{{ t('talk_bbb', 'Delete conversation') }}
 			</ActionButton>
 		</template>
 	</AppContentListItem>
@@ -155,7 +155,7 @@ export default {
 			return this.item.isFavorite ? 'icon-star-dark' : 'icon-starred'
 		},
 		labelFavorite() {
-			return this.item.isFavorite ? t('spreed', 'Remove from favorites') : t('spreed', 'Add to favorites')
+			return this.item.isFavorite ? t('talk_bbb', 'Remove from favorites') : t('talk_bbb', 'Add to favorites')
 		},
 		isNotifyAlways() {
 			return this.item.notificationLevel === PARTICIPANT.NOTIFY.ALWAYS
@@ -189,7 +189,7 @@ export default {
 			}
 
 			if (this.lastChatMessage.actorId === this.$store.getters.getUserId()) {
-				return t('spreed', 'You: {lastMessage}', {
+				return t('talk_bbb', 'You: {lastMessage}', {
 					lastMessage: this.simpleLastChatMessage,
 				}, undefined, {
 					escape: false,
@@ -201,7 +201,7 @@ export default {
 				return this.simpleLastChatMessage
 			}
 
-			return t('spreed', '{actor}: {lastMessage}', {
+			return t('talk_bbb', '{actor}: {lastMessage}', {
 				actor: this.shortLastChatMessageAuthor,
 				lastMessage: this.simpleLastChatMessage,
 			}, undefined, {
@@ -270,7 +270,7 @@ export default {
 			}
 
 			if (author.length === 0 && this.lastChatMessage.actorType === 'guests') {
-				return t('spreed', 'Guest')
+				return t('talk_bbb', 'Guest')
 			}
 
 			return author
@@ -280,9 +280,9 @@ export default {
 		async copyLinkToConversation() {
 			try {
 				await this.$copyText(this.linkToConversation)
-				OCP.Toast.success(t('spreed', 'Conversation link copied to clipboard.'))
+				OCP.Toast.success(t('talk_bbb', 'Conversation link copied to clipboard.'))
 			} catch (error) {
-				OCP.Toast.error(t('spreed', 'The link could not be copied.'))
+				OCP.Toast.error(t('talk_bbb', 'The link could not be copied.'))
 			}
 		},
 		async joinConversation() {
@@ -294,15 +294,15 @@ export default {
 		 */
 		async deleteConversation() {
 			OC.dialogs.confirm(
-				t('spreed', 'Do you really want to delete "{displayName}"?', this.item),
-				t('spreed', 'Delete conversation'),
+				t('talk_bbb', 'Do you really want to delete "{displayName}"?', this.item),
+				t('talk_bbb', 'Delete conversation'),
 				async function(decision) {
 					if (!decision) {
 						return
 					}
 
 					if (this.item.token === this.$store.getters.getToken()) {
-						this.$router.push('/apps/spreed')
+						this.$router.push('/apps/talk_bbb')
 						this.$store.dispatch('updateToken', '')
 					}
 
@@ -326,7 +326,7 @@ export default {
 				this.$store.dispatch('deleteConversation', this.item)
 			} catch (error) {
 				if (error.response.status === 400) {
-					OCP.Toast.error(t('spreed', 'You need to promote a new moderator before you can leave the conversation.'))
+					OCP.Toast.error(t('talk_bbb', 'You need to promote a new moderator before you can leave the conversation.'))
 				} else {
 					console.debug(`error while removing yourself from conversation ${error}`)
 				}

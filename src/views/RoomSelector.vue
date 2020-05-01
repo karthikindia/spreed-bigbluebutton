@@ -24,7 +24,7 @@
 	<Modal @close="close">
 		<div id="modal-inner" :class="{ 'icon-loading': loading }">
 			<div id="modal-content">
-				<h1>{{ t('spreed', 'Select a conversation to add to the project') }}</h1>
+				<h1>{{ t('talk_bbb', 'Select a conversation to add to the project') }}</h1>
 				<div id="room-list">
 					<ul v-if="!loading">
 						<li v-for="room in availableRooms"
@@ -40,7 +40,7 @@
 				</div>
 				<div id="modal-buttons">
 					<button v-if="!loading" class="primary" @click="select">
-						{{ t('spreed', 'Select conversation') }}
+						{{ t('talk_bbb', 'Select conversation') }}
 					</button>
 				</div>
 			</div>
@@ -148,7 +148,7 @@ export default {
 	},
 	methods: {
 		fetchRooms() {
-			axios.get(OC.linkToOCS('/apps/spreed/api/v1', 2) + 'room').then((response) => {
+			axios.get(OC.linkToOCS('/apps/talk_bbb/api/v1', 2) + 'room').then((response) => {
 				this.rooms = response.data.ocs.data
 				this.loading = false
 			})

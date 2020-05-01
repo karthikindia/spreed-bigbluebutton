@@ -27,7 +27,7 @@
 			type="text"
 			:value="value"
 			class="conversation-name"
-			:placeholder="t('spreed', 'Conversation name')"
+			:placeholder="t('talk_bbb', 'Conversation name')"
 			@input="handleInput"
 			@keydown.enter="handleKeydown">
 	</div>

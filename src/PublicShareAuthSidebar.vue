@@ -25,7 +25,7 @@
 		<aside v-if="isOpen" id="talk-sidebar">
 			<div v-if="!token" class="emptycontent">
 				<div class="icon icon-talk" />
-				<h2>{{ t('spreed', 'This conversation has ended') }}</h2>
+				<h2>{{ t('talk_bbb', 'This conversation has ended') }}</h2>
 			</div>
 			<template v-else>
 				<CallView :token="token" />

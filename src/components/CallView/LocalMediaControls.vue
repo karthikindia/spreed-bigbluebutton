@@ -57,25 +57,25 @@
 				<li v-if="!model.attributes.localScreen && splitScreenSharingMenu" id="share-screen-entry">
 					<button id="share-screen-button" @click="shareScreen">
 						<span class="icon-screen" />
-						<span>{{ t('spreed', 'Share whole screen') }}</span>
+						<span>{{ t('talk_bbb', 'Share whole screen') }}</span>
 					</button>
 				</li>
 				<li v-if="!model.attributes.localScreen && splitScreenSharingMenu" id="share-window-entry">
 					<button id="share-window-button" @click="shareWindow">
 						<span class="icon-share-window" />
-						<span>{{ t('spreed', 'Share a single window') }}</span>
+						<span>{{ t('talk_bbb', 'Share a single window') }}</span>
 					</button>
 				</li>
 				<li v-if="model.attributes.localScreen" id="show-screen-entry">
 					<button id="show-screen-button" @click="showScreen">
 						<span class="icon-screen" />
-						<span>{{ t('spreed', 'Show your screen') }}</span>
+						<span>{{ t('talk_bbb', 'Show your screen') }}</span>
 					</button>
 				</li>
 				<li v-if="model.attributes.localScreen" id="stop-screen-entry">
 					<button id="stop-screen-button" @click="stopScreen">
 						<span class="icon-screen-off" />
-						<span>{{ t('spreed', 'Stop screensharing') }}</span>
+						<span>{{ t('talk_bbb', 'Stop screensharing') }}</span>
 					</button>
 				</li>
 			</ul>
@@ -134,7 +134,7 @@ export default {
 		audioButtonTooltip() {
 			if (!this.model.attributes.audioAvailable) {
 				return {
-					content: t('spreed', 'No audio'),
+					content: t('talk_bbb', 'No audio'),
 					show: false,
 				}
 			}
@@ -147,16 +147,16 @@ export default {
 			}
 
 			return {
-				content: this.model.attributes.audioEnabled ? t('spreed', 'Mute audio (m)') : t('spreed', 'Unmute audio (m)'),
+				content: this.model.attributes.audioEnabled ? t('talk_bbb', 'Mute audio (m)') : t('talk_bbb', 'Unmute audio (m)'),
 				show: false,
 			}
 		},
 
 		audioButtonAriaLabel() {
 			if (!this.model.attributes.audioAvailable) {
-				return t('spreed', 'No audio')
+				return t('talk_bbb', 'No audio')
 			}
-			return this.model.attributes.audioEnabled ? t('spreed', 'Mute audio') : t('spreed', 'Unmute audio')
+			return this.model.attributes.audioEnabled ? t('talk_bbb', 'Mute audio') : t('talk_bbb', 'Unmute audio')
 		},
 
 		currentVolumeIndicatorHeight() {
@@ -192,34 +192,34 @@ export default {
 
 		videoButtonTooltip() {
 			if (!this.model.attributes.videoAvailable) {
-				return t('spreed', 'No camera')
+				return t('talk_bbb', 'No camera')
 			}
 
 			if (this.model.attributes.videoEnabled) {
-				return t('spreed', 'Disable video (v)')
+				return t('talk_bbb', 'Disable video (v)')
 			}
 
 			if (!this.model.getWebRtc() || !this.model.getWebRtc().connection || this.model.getWebRtc().connection.getSendVideoIfAvailable()) {
-				return t('spreed', 'Enable video (v)')
+				return t('talk_bbb', 'Enable video (v)')
 			}
 
-			return t('spreed', 'Enable video (v) - Your connection will be briefly interrupted when enabling the video for the first time')
+			return t('talk_bbb', 'Enable video (v) - Your connection will be briefly interrupted when enabling the video for the first time')
 		},
 
 		videoButtonAriaLabel() {
 			if (!this.model.attributes.videoAvailable) {
-				return t('spreed', 'No camera')
+				return t('talk_bbb', 'No camera')
 			}
 
 			if (this.model.attributes.videoEnabled) {
-				return t('spreed', 'Disable video')
+				return t('talk_bbb', 'Disable video')
 			}
 
 			if (!this.model.getWebRtc() || !this.model.getWebRtc().connection || this.model.getWebRtc().connection.getSendVideoIfAvailable()) {
-				return t('spreed', 'Enable video')
+				return t('talk_bbb', 'Enable video')
 			}
 
-			return t('spreed', 'Enable video. Your connection will be briefly interrupted when enabling the video for the first time')
+			return t('talk_bbb', 'Enable video. Your connection will be briefly interrupted when enabling the video for the first time')
 		},
 
 		screenSharingButtonClass() {
@@ -235,7 +235,7 @@ export default {
 				return null
 			}
 
-			return (this.model.attributes.localScreen || this.splitScreenSharingMenu) ? t('spreed', 'Screensharing options') : t('spreed', 'Enable screensharing')
+			return (this.model.attributes.localScreen || this.splitScreenSharingMenu) ? t('talk_bbb', 'Screensharing options') : t('talk_bbb', 'Enable screensharing')
 		},
 
 		screenSharingButtonAriaLabel() {
@@ -243,7 +243,7 @@ export default {
 				return ''
 			}
 
-			return (this.model.attributes.localScreen || this.splitScreenSharingMenu) ? t('spreed', 'Screensharing options') : t('spreed', 'Enable screensharing')
+			return (this.model.attributes.localScreen || this.splitScreenSharingMenu) ? t('talk_bbb', 'Screensharing options') : t('talk_bbb', 'Enable screensharing')
 		},
 
 	},
@@ -297,9 +297,9 @@ export default {
 		toggleScreenSharingMenu() {
 			if (!this.model.getWebRtc().capabilities.supportScreenSharing) {
 				if (window.location.protocol === 'https:') {
-					OCP.Toast.message(t('spreed', 'Screen sharing is not supported by your browser.'))
+					OCP.Toast.message(t('talk_bbb', 'Screen sharing is not supported by your browser.'))
 				} else {
-					OCP.Toast.message(t('spreed', 'Screen sharing requires the page to be loaded through HTTPS.'))
+					OCP.Toast.message(t('talk_bbb', 'Screen sharing requires the page to be loaded through HTTPS.'))
 				}
 				return
 			}
@@ -353,14 +353,14 @@ export default {
 
 				switch (err.name) {
 				case 'HTTPS_REQUIRED':
-					OCP.Toast.message(t('spreed', 'Screensharing requires the page to be loaded through HTTPS.'))
+					OCP.Toast.message(t('talk_bbb', 'Screensharing requires the page to be loaded through HTTPS.'))
 					break
 				case 'PERMISSION_DENIED':
 				case 'NotAllowedError':
 				case 'CEF_GETSCREENMEDIA_CANCELED': // Experimental, may go away in the future.
 					break
 				case 'FF52_REQUIRED':
-					OCP.Toast.message(t('spreed', 'Sharing your screen only works with Firefox version 52 or newer.'))
+					OCP.Toast.message(t('talk_bbb', 'Sharing your screen only works with Firefox version 52 or newer.'))
 					break
 				case 'EXTENSION_UNAVAILABLE':
 					if (window.chrome) { // Chrome
@@ -368,16 +368,16 @@ export default {
 					}
 
 					if (extensionURL) {
-						const text = t('spreed', 'Screensharing extension is required to share your screen.')
+						const text = t('talk_bbb', 'Screensharing extension is required to share your screen.')
 						const element = '<a href="' + extensionURL + '" target="_blank">' + escapeHtml(text) + '</a>'
 
 						OCP.Toast.message(element, { isHTML: true })
 					} else {
-						OCP.Toast.message(t('spreed', 'Please use a different browser like Firefox or Chrome to share your screen.'))
+						OCP.Toast.message(t('talk_bbb', 'Please use a different browser like Firefox or Chrome to share your screen.'))
 					}
 					break
 				default:
-					OCP.Toast.message(t('spreed', 'An error occurred while starting screensharing.'))
+					OCP.Toast.message(t('talk_bbb', 'An error occurred while starting screensharing.'))
 					break
 				}
 			})

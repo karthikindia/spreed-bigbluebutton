@@ -61,13 +61,13 @@ class Version2000Date20171026140257 extends SimpleMigrationStep {
 	 */
 	public function postSchemaChange(IOutput $output, \Closure $schemaClosure, array $options): void {
 
-		if (version_compare($this->config->getAppValue('spreed', 'installed_version', '0.0.0'), '2.0.0', '<')) {
+		if (version_compare($this->config->getAppValue('talk_bbb', 'installed_version', '0.0.0'), '2.0.0', '<')) {
 			// Migrations only work after 2.0.0
 			return;
 		}
 
 		$chars = str_replace(['l', '0', '1'], '', ISecureRandom::CHAR_LOWER . ISecureRandom::CHAR_DIGITS);
-		$entropy = (int) $this->config->getAppValue('spreed', 'token_entropy', 8);
+		$entropy = (int) $this->config->getAppValue('talk_bbb', 'token_entropy', 8);
 
 		$update = $this->connection->getQueryBuilder();
 		$update->update('spreedme_rooms')

@@ -63,7 +63,7 @@ use OCP\Settings\IManager;
 
 class Application extends App {
 
-	const APP_ID = 'spreed';
+	const APP_ID = 'talk_bbb';
 
 	public function __construct(array $urlParams = []) {
 		parent::__construct(self::APP_ID, $urlParams);
@@ -142,7 +142,7 @@ class Application extends App {
 			return [
 				'id' => self::APP_ID,
 				'name' => $server->getL10N(self::APP_ID)->t('Talk'),
-				'href' => $server->getURLGenerator()->linkToRouteAbsolute('spreed.Page.index'),
+				'href' => $server->getURLGenerator()->linkToRouteAbsolute('talk_bbb.Page.index'),
 				'icon' => $server->getURLGenerator()->imagePath(self::APP_ID, 'app.svg'),
 				'order' => 3,
 				'type' => $user instanceof IUser && !$config->isDisabledForUser($user) ? 'link' : 'hidden',

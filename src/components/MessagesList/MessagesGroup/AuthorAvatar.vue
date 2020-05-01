@@ -78,7 +78,7 @@ export default {
 		},
 
 		firstLetterOfGuestName() {
-			const customName = this.displayName !== t('spreed', 'Guest') ? this.displayName : '?'
+			const customName = this.displayName !== t('talk_bbb', 'Guest') ? this.displayName : '?'
 			return customName.charAt(0)
 		},
 	},

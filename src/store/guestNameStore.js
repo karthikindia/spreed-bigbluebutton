@@ -36,7 +36,7 @@ const getters = {
 		if (state.guestNames[token] && state.guestNames[token][actorId]) {
 			return state.guestNames[token][actorId]
 		}
-		return t('spreed', 'Guest')
+		return t('talk_bbb', 'Guest')
 	},
 }
 
@@ -54,7 +54,7 @@ const mutations = {
 			Vue.set(state.guestNames, token, [])
 		}
 		if (!state.guestNames[token][actorId]) {
-			Vue.set(state.guestNames[token], actorId, t('spreed', 'Guest'))
+			Vue.set(state.guestNames[token], actorId, t('talk_bbb', 'Guest'))
 		} else if (noUpdate) {
 			return
 		}

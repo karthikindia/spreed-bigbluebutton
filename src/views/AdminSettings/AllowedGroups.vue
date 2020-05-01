@@ -22,22 +22,22 @@
 
 <template>
 	<div id="allowed_groups" class="videocalls section">
-		<h2>{{ t('spreed', 'Limit to groups') }}</h2>
+		<h2>{{ t('talk_bbb', 'Limit to groups') }}</h2>
 		<p class="settings-hint">
-			{{ t('spreed', 'When at least one group is selected, only people of the listed groups can be part of conversations.') }}
+			{{ t('talk_bbb', 'When at least one group is selected, only people of the listed groups can be part of conversations.') }}
 		</p>
 		<p class="settings-hint">
-			{{ t('spreed', 'Guests can still join public conversations.') }}
+			{{ t('talk_bbb', 'Guests can still join public conversations.') }}
 		</p>
 		<p class="settings-hint">
-			{{ t('spreed', 'Users that can not use Talk anymore will still be listed as participants in their previous conversations and also their chat messages will be kept.') }}
+			{{ t('talk_bbb', 'Users that can not use Talk anymore will still be listed as participants in their previous conversations and also their chat messages will be kept.') }}
 		</p>
 
 		<p class="allowed-groups-settings-content">
 			<Multiselect v-model="allowedGroups"
 				class="allowed-groups-select"
 				:options="groups"
-				:placeholder="t('spreed', 'Limit app usage to groups.')"
+				:placeholder="t('talk_bbb', 'Limit app usage to groups.')"
 				:disabled="loading"
 				:multiple="true"
 				:searchable="true"
@@ -76,7 +76,7 @@ export default {
 			loadingGroups: false,
 			groups: [],
 			allowedGroups: [],
-			saveButtonText: t('spreed', 'Save changes'),
+			saveButtonText: t('talk_bbb', 'Save changes'),
 		}
 	},
 
@@ -108,15 +108,15 @@ export default {
 		saveChanges() {
 			this.loading = true
 			this.loadingGroups = true
-			this.saveButtonText = t('spreed', 'Saving …')
+			this.saveButtonText = t('talk_bbb', 'Saving …')
 
-			OCP.AppConfig.setValue('spreed', 'allowed_groups', JSON.stringify(this.allowedGroups), {
+			OCP.AppConfig.setValue('talk_bbb', 'allowed_groups', JSON.stringify(this.allowedGroups), {
 				success: function() {
 					this.loading = false
 					this.loadingGroups = false
-					this.saveButtonText = t('spreed', 'Saved!')
+					this.saveButtonText = t('talk_bbb', 'Saved!')
 					setTimeout(function() {
-						this.saveButtonText = t('spreed', 'Save changes')
+						this.saveButtonText = t('talk_bbb', 'Save changes')
 					}.bind(this), 5000)
 				}.bind(this),
 			})

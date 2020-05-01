@@ -27,10 +27,10 @@
 				<ActionButton
 					class="toggle"
 					icon="icon-add"
-					:aria-label="t('spreed','Create a new group conversation')"
+					:aria-label="t('talk_bbb','Create a new group conversation')"
 					@click="showModal" />
 			</Actions>
-			<p>{{ t('spreed','Create a new group conversation') }}</p>
+			<p>{{ t('talk_bbb','Create a new group conversation') }}</p>
 		</Popover>
 		<!-- New group form -->
 		<Modal
@@ -60,7 +60,7 @@
 								class="checkbox"
 								:checked="passwordProtect"
 								@input="handleCheckboxInput">
-							<label for="password-checkbox">{{ t('spreed', 'Password protect') }}</label>
+							<label for="password-checkbox">{{ t('talk_bbb', 'Password protect') }}</label>
 							<PasswordProtect
 								v-if="passwordProtect"
 								v-model="password" />
@@ -93,27 +93,27 @@
 						class="navigation__button-right primary"
 						:disabled="disabled"
 						@click="handleSetConversationName">
-						{{ t('spreed', 'Add participants') }}
+						{{ t('talk_bbb', 'Add participants') }}
 					</button>
 					<!-- Second page -->
 					<button
 						v-if="page===1"
 						class="navigation__button-left"
 						@click="handleClickBack">
-						{{ t('spreed', 'Back') }}
+						{{ t('talk_bbb', 'Back') }}
 					</button>
 					<button
 						v-if="page===1"
 						class="navigation__button-right primary"
 						@click="handleCreateConversation">
-						{{ t('spreed', 'Create conversation') }}
+						{{ t('talk_bbb', 'Create conversation') }}
 					</button>
 					<!-- Third page -->
 					<button
 						v-if="page===2 && (error || isPublic)"
 						class="navigation__button-right primary"
 						@click="closeModal">
-						{{ t('spreed', 'Close') }}
+						{{ t('talk_bbb', 'Close') }}
 					</button>
 				</div>
 			</div>

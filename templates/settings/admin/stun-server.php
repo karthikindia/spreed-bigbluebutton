@@ -1,8 +1,8 @@
 <?php
 /** @var array $_ */
 /** @var \OCP\IL10N $l */
-script('spreed', ['admin/stun-server']);
-style('spreed', ['settings-admin']);
+script('talk_bbb', ['admin/stun-server']);
+style('talk_bbb', ['settings-admin']);
 ?>
 
 <div id="stun_server" class="videocalls section">

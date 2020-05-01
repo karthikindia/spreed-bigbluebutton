@@ -23,19 +23,19 @@
 <template>
 	<div id="stun_server" class="videocalls section">
 		<h2>
-			{{ t('spreed', 'STUN servers') }}
-			<span v-if="saved" class="icon icon-checkmark-color" :title="t('spreed', 'Saved')" />
+			{{ t('talk_bbb', 'STUN servers') }}
+			<span v-if="saved" class="icon icon-checkmark-color" :title="t('talk_bbb', 'Saved')" />
 			<a v-else-if="!loading"
-				v-tooltip.auto="t('spreed', 'Add a new server')"
+				v-tooltip.auto="t('talk_bbb', 'Add a new server')"
 				class="icon icon-add"
 				@click="newServer">
-				<span class="hidden-visually">{{ t('spreed', 'Add a new server') }}</span>
+				<span class="hidden-visually">{{ t('talk_bbb', 'Add a new server') }}</span>
 			</a>
 			<span v-else class="icon icon-loading-small" />
 		</h2>
 
 		<p class="settings-hint">
-			{{ t('spreed', 'A STUN server is used to determine the public IP address of participants behind a router.') }}
+			{{ t('talk_bbb', 'A STUN server is used to determine the public IP address of participants behind a router.') }}
 		</p>
 
 		<ul class="stun-servers">
@@ -125,7 +125,7 @@ export default {
 			this.servers = servers
 			const self = this
 
-			OCP.AppConfig.setValue('spreed', 'stun_servers', JSON.stringify(servers), {
+			OCP.AppConfig.setValue('talk_bbb', 'stun_servers', JSON.stringify(servers), {
 				success() {
 					self.loading = false
 					self.toggleSave()

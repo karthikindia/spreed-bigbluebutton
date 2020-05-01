@@ -46,7 +46,7 @@ class TurnServer implements ISettings {
 	 */
 	public function getForm(): TemplateResponse {
 		$this->initialStateService->provideInitialState('talk', 'turn_servers', $this->config->getTurnServers());
-		return new TemplateResponse('spreed', 'settings/admin/turn-server', [], '');
+		return new TemplateResponse('talk_bbb', 'settings/admin/turn-server', [], '');
 	}
 
 	/**

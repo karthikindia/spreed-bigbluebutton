@@ -32,12 +32,12 @@
 		<div v-if="showCall"
 			class="overlap-icon">
 			<span class="icon icon-active-call" />
-			<span class="hidden-visually">{{ t('spreed', 'Call in progress') }}</span>
+			<span class="hidden-visually">{{ t('talk_bbb', 'Call in progress') }}</span>
 		</div>
 		<div v-else-if="showFavorite"
 			class="overlap-icon">
 			<span class="icon icon-favorite" />
-			<span class="hidden-visually">{{ t('spreed', 'Favorite') }}</span>
+			<span class="hidden-visually">{{ t('talk_bbb', 'Favorite') }}</span>
 		</div>
 	</div>
 </template>

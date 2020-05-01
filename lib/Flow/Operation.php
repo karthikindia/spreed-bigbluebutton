@@ -84,7 +84,7 @@ class Operation implements IOperation {
 		$dispatcher->addListener(FlowManager::EVENT_NAME_REG_OPERATION, function (GenericEvent $event) {
 			$operation = \OC::$server->query(Operation::class);
 			$event->getSubject()->registerOperation($operation);
-			Util::addScript('spreed', 'flow');
+			Util::addScript('talk_bbb', 'flow');
 		});
 	}
 
@@ -97,7 +97,7 @@ class Operation implements IOperation {
 	}
 
 	public function getIcon(): string {
-		return $this->urlGenerator->imagePath('spreed', 'app.svg');
+		return $this->urlGenerator->imagePath('talk_bbb', 'app.svg');
 	}
 
 	public function isAvailableForScope(int $scope): bool {

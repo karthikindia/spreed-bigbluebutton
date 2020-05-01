@@ -80,23 +80,23 @@ export default {
 		translatedResponse() {
 			switch (this.response) {
 			case 0:
-				return t('spreed', 'None')
+				return t('talk_bbb', 'None')
 			case 1:
-				return t('spreed', 'User')
+				return t('talk_bbb', 'User')
 			default:
-				return t('spreed', 'Everyone')
+				return t('talk_bbb', 'Everyone')
 			}
 		},
 		translatedEnabled() {
 			switch (this.enabled) {
 			case 0:
-				return t('spreed', 'Disabled')
+				return t('talk_bbb', 'Disabled')
 			case 1:
-				return t('spreed', 'Moderators')
+				return t('talk_bbb', 'Moderators')
 			case 2:
-				return t('spreed', 'Users')
+				return t('talk_bbb', 'Users')
 			default:
-				return t('spreed', 'Everyone')
+				return t('talk_bbb', 'Everyone')
 			}
 		},
 	},

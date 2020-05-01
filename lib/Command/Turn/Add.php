@@ -100,7 +100,7 @@ class Add extends Base {
 			$server = substr($server, 7);
 		}
 
-		$config = $this->config->getAppValue('spreed', 'turn_servers');
+		$config = $this->config->getAppValue('talk_bbb', 'turn_servers');
 		$servers = json_decode($config, true);
 
 		if ($servers === null || empty($servers) || !is_array($servers)) {
@@ -113,7 +113,7 @@ class Add extends Base {
 			'protocols' => $protocols,
 		];
 
-		$this->config->setAppValue('spreed', 'turn_servers', json_encode($servers));
+		$this->config->setAppValue('talk_bbb', 'turn_servers', json_encode($servers));
 		$output->writeln('<info>Added ' . $server . '.</info>');
 		return 0;
 	}

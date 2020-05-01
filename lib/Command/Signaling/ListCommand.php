@@ -49,7 +49,7 @@ class ListCommand extends Base {
 	}
 
 	protected function execute(InputInterface $input, OutputInterface $output): ?int {
-		$config = $this->config->getAppValue('spreed', 'signaling_servers');
+		$config = $this->config->getAppValue('talk_bbb', 'signaling_servers');
 		$signaling = json_decode($config, true);
 		if (!is_array($signaling)) {
 			$signaling = [];

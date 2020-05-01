@@ -30,11 +30,11 @@ const fetchSignalingSettings = async(token) => {
 	// This would allow to not use the HPB in one-to-one conversations where it
 	// brings not much of an advantage. Make sure participants from one
 	// conversation all use the same signaling server, etc.
-	return axios.get(generateOcsUrl('apps/spreed/api/v1/signaling', 2) + 'settings')
+	return axios.get(generateOcsUrl('apps/talk_bbb/api/v1/signaling', 2) + 'settings')
 }
 
 const pullSignalingMessages = async(token, options) => {
-	return axios.get(generateOcsUrl('apps/spreed/api/v1/signaling', 2) + token, options)
+	return axios.get(generateOcsUrl('apps/talk_bbb/api/v1/signaling', 2) + token, options)
 }
 
 export {

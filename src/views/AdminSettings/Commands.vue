@@ -23,9 +23,9 @@
 <template>
 	<div id="chat_commands" class="commands section">
 		<h2>
-			{{ t('spreed', 'Commands') }}
+			{{ t('talk_bbb', 'Commands') }}
 			<small>
-				{{ t('spreed', 'Beta') }}
+				{{ t('talk_bbb', 'Beta') }}
 				<span class="icon icon-beta-feature" />
 			</small>
 		</h2>
@@ -34,19 +34,19 @@
 
 		<div id="commands_list">
 			<div class="head name">
-				{{ t('spreed', 'Name') }}
+				{{ t('talk_bbb', 'Name') }}
 			</div>
 			<div class="head command">
-				{{ t('spreed', 'Command') }}
+				{{ t('talk_bbb', 'Command') }}
 			</div>
 			<div class="head script">
-				{{ t('spreed', 'Script') }}
+				{{ t('talk_bbb', 'Script') }}
 			</div>
 			<div class="head response">
-				{{ t('spreed', 'Response to') }}
+				{{ t('talk_bbb', 'Response to') }}
 			</div>
 			<div class="head enabled">
-				{{ t('spreed', 'Enabled for') }}
+				{{ t('talk_bbb', 'Enabled for') }}
 			</div>
 			<Command v-for="command in commands" :key="command.id" v-bind="command" />
 		</div>
@@ -71,7 +71,7 @@ export default {
 
 	computed: {
 		commandHint() {
-			return t('spreed', 'Commands are a new beta feature in Nextcloud Talk. They allow you to run scripts on your Nextcloud server. You can define them with our command line interface. An example of a calculator script can be found in our {linkstart}documentation{linkend}.')
+			return t('talk_bbb', 'Commands are a new beta feature in Nextcloud Talk. They allow you to run scripts on your Nextcloud server. You can define them with our command line interface. An example of a calculator script can be found in our {linkstart}documentation{linkend}.')
 				.replace('{linkstart}', '<a  target="_blank" rel="noreferrer nofollow" class="external" href="https://nextcloud-talk.readthedocs.io/en/latest/commands/">')
 				.replace('{linkend}', ' ↗</a>')
 		},

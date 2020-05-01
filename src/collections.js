@@ -29,7 +29,7 @@ import RoomSelector from './views/RoomSelector'
 	// eslint-disable-next-line
 	__webpack_nonce__ = btoa(OC.requestToken)
 	// eslint-disable-next-line
-	__webpack_public_path__ = OC.linkTo('spreed', 'js/')
+	__webpack_public_path__ = OC.linkTo('talk_bbb', 'js/')
 
 	Vue.prototype.t = t
 	Vue.prototype.n = n
@@ -39,7 +39,7 @@ import RoomSelector from './views/RoomSelector'
 		action: () => {
 			return new Promise((resolve, reject) => {
 				const container = document.createElement('div')
-				container.id = 'spreed-room-select'
+				container.id = 'talk_bbb-room-select'
 				const body = document.getElementById('body-user')
 				body.append(container)
 				const ComponentVM = new Vue({
@@ -58,7 +58,7 @@ import RoomSelector from './views/RoomSelector'
 				})
 			})
 		},
-		typeString: t('spreed', 'Link to a conversation'),
+		typeString: t('talk_bbb', 'Link to a conversation'),
 		typeIconClass: 'icon-talk',
 	})
 })(window.OCP, window.OC)

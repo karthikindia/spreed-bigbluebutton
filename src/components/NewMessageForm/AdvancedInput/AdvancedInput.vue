@@ -159,7 +159,7 @@ export default {
 		 */
 		placeholderText: {
 			type: String,
-			default: t('spreed', 'Write message, @ to mention someone …'),
+			default: t('talk_bbb', 'Write message, @ to mention someone …'),
 		},
 
 		/**
@@ -329,7 +329,7 @@ export default {
 		},
 
 		getFirstLetterOfGuestName(displayName) {
-			const customName = displayName !== t('spreed', 'Guest') ? displayName : '?'
+			const customName = displayName !== t('talk_bbb', 'Guest') ? displayName : '?'
 			return customName.charAt(0)
 		},
 

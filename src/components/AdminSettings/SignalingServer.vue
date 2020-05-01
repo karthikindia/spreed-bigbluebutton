@@ -28,7 +28,7 @@
 			placeholder="wss://signaling.example.org"
 			:value="server"
 			:disabled="loading"
-			:aria-label="t('spreed', 'TURN server URL')"
+			:aria-label="t('talk_bbb', 'TURN server URL')"
 			@input="updateServer">
 		<input :id="'verify' + index"
 			type="checkbox"
@@ -36,10 +36,10 @@
 			class="checkbox verify"
 			:checked="verify"
 			@change="updateVerify">
-		<label :for="'verify' + index">{{ t('spreed', 'Validate SSL certificate') }}</label>
+		<label :for="'verify' + index">{{ t('talk_bbb', 'Validate SSL certificate') }}</label>
 
 		<a v-show="!loading"
-			v-tooltip.auto="t('spreed', 'Delete this server')"
+			v-tooltip.auto="t('talk_bbb', 'Delete this server')"
 			class="icon icon-delete"
 			@click="removeServer" />
 	</div>

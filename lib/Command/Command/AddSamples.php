@@ -57,7 +57,7 @@ class AddSamples extends Base {
 
 	protected function execute(InputInterface $input, OutputInterface $output) {
 		try {
-			$appPath = $this->appManager->getAppPath('spreed');
+			$appPath = $this->appManager->getAppPath('talk_bbb');
 		} catch (AppPathNotFoundException $e) {
 			$output->writeln('<error>Could not determine the spreed/ app directory.</error>');
 			return 1;

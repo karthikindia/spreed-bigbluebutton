@@ -33,15 +33,15 @@ export default {
 			modeOptions: [
 				{
 					id: FLOW.MESSAGE_MODES.NO_MENTION,
-					text: t('spreed', 'Message without mention'),
+					text: t('talk_bbb', 'Message without mention'),
 				},
 				{
 					id: FLOW.MESSAGE_MODES.SELF_MENTION,
-					text: t('spreed', 'Mention myself'),
+					text: t('talk_bbb', 'Mention myself'),
 				},
 				{
 					id: FLOW.MESSAGE_MODES.ROOM_MENTION,
-					text: t('spreed', 'Mention room'),
+					text: t('talk_bbb', 'Mention room'),
 				},
 			],
 			roomOptions: [],
@@ -76,7 +76,7 @@ export default {
 	},
 	methods: {
 		fetchRooms() {
-			axios.get(OC.linkToOCS('/apps/spreed/api/v1', 2) + 'room').then((response) => {
+			axios.get(OC.linkToOCS('/apps/talk_bbb/api/v1', 2) + 'room').then((response) => {
 				this.roomOptions = response.data.ocs.data.filter(function(room) {
 					return room.readOnly === CONVERSATION.STATE.READ_WRITE
 				})

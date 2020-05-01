@@ -63,8 +63,8 @@ class TemplateLoader {
 			return;
 		}
 
-		Util::addStyle('spreed', 'merged-share-auth');
-		Util::addScript('spreed', 'talk-public-share-auth-sidebar');
+		Util::addStyle('talk_bbb', 'merged-share-auth');
+		Util::addScript('talk_bbb', 'talk-public-share-auth-sidebar');
 
 		// Needed to enable the screensharing extension in Chromium < 72.
 		Util::addHeader('meta', ['id' => "app", 'class' => 'nc-enable-screensharing-extension']);

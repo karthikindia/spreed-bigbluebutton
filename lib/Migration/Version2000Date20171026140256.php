@@ -57,7 +57,7 @@ class Version2000Date20171026140256 extends SimpleMigrationStep {
 	 */
 	public function postSchemaChange(IOutput $output, \Closure $schemaClosure, array $options): void {
 
-		if (version_compare($this->config->getAppValue('spreed', 'installed_version', '0.0.0'), '2.0.0', '<')) {
+		if (version_compare($this->config->getAppValue('talk_bbb', 'installed_version', '0.0.0'), '2.0.0', '<')) {
 			// Migrations only work after 2.0.0
 			return;
 		}

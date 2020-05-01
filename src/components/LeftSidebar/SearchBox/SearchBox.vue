@@ -47,7 +47,7 @@ export default {
 		 */
 		placeholderText: {
 			type: String,
-			default: t('spreed', 'Search conversations or contacts'),
+			default: t('talk_bbb', 'Search conversations or contacts'),
 		},
 		/**
 		 * The value of the input field, when receiving it as a prop the localValue

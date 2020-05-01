@@ -25,13 +25,13 @@
 			<template v-if="!success">
 				<div class="icon-loading confirmation__icon" />
 				<p class="confirmation__warning">
-					{{ t('spreed', 'Creating your conversation') }}
+					{{ t('talk_bbb', 'Creating your conversation') }}
 				</p>
 			</template>
 			<template v-if="success && isPublic">
 				<div class="icon-checkmark confirmation__icon" />
 				<p class="confirmation__warning">
-					{{ t('spreed', 'All set') }}
+					{{ t('talk_bbb', 'All set') }}
 				</p>
 				<button
 					id="copy-link"
@@ -40,7 +40,7 @@
 					v-clipboard:success="onCopy"
 					v-clipboard:error="onError"
 					class="confirmation__copy-link">
-					<label for="copy-link">{{ t('spreed', 'Copy conversation link') }}</label>
+					<label for="copy-link">{{ t('talk_bbb', 'Copy conversation link') }}</label>
 				</button>
 				<p class="confirmation__warning">
 					{{ confirmationText }}
@@ -50,7 +50,7 @@
 		<template v-else>
 			<div class="icon-error confirmation__icon" />
 			<p class="confirmation__warning">
-				{{ t('spreed', 'Error while creating the conversation') }}
+				{{ t('talk_bbb', 'Error while creating the conversation') }}
 			</p>
 		</template>
 	</div>
@@ -98,14 +98,14 @@ export default {
 
 	methods: {
 		onCopy() {
-			this.confirmationText = t('spreed', 'Link copied to the clipboard!')
+			this.confirmationText = t('talk_bbb', 'Link copied to the clipboard!')
 			this.showConfirmationText = true
 			setTimeout(function() {
 				this.showConfirmationText = false
 			}, 800)
 		},
 		onError() {
-			this.confirmationText = t('spreed', 'Error')
+			this.confirmationText = t('talk_bbb', 'Error')
 			this.showConfirmationText = true
 			setTimeout(function() {
 				this.showConfirmationText = false

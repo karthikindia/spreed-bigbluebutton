@@ -141,7 +141,7 @@ class PageController extends Controller {
 	 * @return Response
 	 */
 	public function notFound(): Response {
-		return new RedirectResponse($this->url->linkToRouteAbsolute('spreed.Page.index'));
+		return new RedirectResponse($this->url->linkToRouteAbsolute('talk_bbb.Page.index'));
 	}
 
 	/**
@@ -167,14 +167,14 @@ class PageController extends Controller {
 				$room = $this->manager->getRoomByToken($token);
 				$notification = $this->notificationManager->createNotification();
 				try {
-					$notification->setApp('spreed')
+					$notification->setApp('talk_bbb')
 						->setUser($this->userId)
 						->setObject('room', $room->getToken());
 					$this->notificationManager->markProcessed($notification);
 					$notification->setObject('call', $room->getToken());
 					$this->notificationManager->markProcessed($notification);
 				} catch (\InvalidArgumentException $e) {
-					$this->logger->logException($e, ['app' => 'spreed']);
+					$this->logger->logException($e, ['app' => 'talk_bbb']);
 				}
 
 				// If the room is not a public room, check if the user is in the participants
@@ -227,7 +227,7 @@ class PageController extends Controller {
 
 		$this->initialStateService->provideInitialState(
 			'talk', 'prefer_h264',
-			$this->serverConfig->getAppValue('spreed', 'prefer_h264', 'no') === 'yes'
+			$this->serverConfig->getAppValue('talk_bbb', 'prefer_h264', 'no') === 'yes'
 		);
 
 		$this->initialStateService->provideInitialState(
@@ -256,9 +256,9 @@ class PageController extends Controller {
 				throw new RoomNotFoundException();
 			}
 		} catch (RoomNotFoundException $e) {
-			$redirectUrl = $this->url->linkToRoute('spreed.Page.index');
+			$redirectUrl = $this->url->linkToRoute('talk_bbb.Page.index');
 			if ($token) {
-				$redirectUrl = $this->url->linkToRoute('spreed.pagecontroller.showCall', ['token' => $token]);
+				$redirectUrl = $this->url->linkToRoute('talk_bbb.pagecontroller.showCall', ['token' => $token]);
 			}
 			return new RedirectResponse($this->url->linkToRoute('core.login.showLoginForm', [
 				'redirect_url' => $redirectUrl,
@@ -288,7 +288,7 @@ class PageController extends Controller {
 
 		$this->initialStateService->provideInitialState(
 			'talk', 'prefer_h264',
-			$this->serverConfig->getAppValue('spreed', 'prefer_h264', 'no') === 'yes'
+			$this->serverConfig->getAppValue('talk_bbb', 'prefer_h264', 'no') === 'yes'
 		);
 
 		$response = new PublicTemplateResponse($this->appName, 'index');
@@ -315,13 +315,13 @@ class PageController extends Controller {
 				if ($room->getType() !== Room::PUBLIC_CALL) {
 					throw new RoomNotFoundException();
 				}
-				return new RedirectResponse($this->url->linkToRoute('spreed.pagecontroller.showCall', ['token' => $token]));
+				return new RedirectResponse($this->url->linkToRoute('talk_bbb.pagecontroller.showCall', ['token' => $token]));
 			} catch (RoomNotFoundException $e) {
 				return new RedirectResponse($this->url->linkToRoute('core.login.showLoginForm', [
-					'redirect_url' => $this->url->linkToRoute('spreed.pagecontroller.showCall', ['token' => $token]),
+					'redirect_url' => $this->url->linkToRoute('talk_bbb.pagecontroller.showCall', ['token' => $token]),
 				]));
 			}
 		}
-		return new RedirectResponse($this->url->linkToRoute('spreed.pagecontroller.showCall', ['token' => $token]));
+		return new RedirectResponse($this->url->linkToRoute('talk_bbb.pagecontroller.showCall', ['token' => $token]));
 	}
 }

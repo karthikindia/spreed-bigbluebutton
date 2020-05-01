@@ -25,17 +25,17 @@
 		</div>
 		<div v-else-if="!isTalkSidebarSupportedForFile" class="emptycontent file-not-shared">
 			<div class="icon icon-talk" />
-			<h2>{{ t('spreed', 'Discuss this file') }}</h2>
-			<p>{{ t('spreed', 'Share this file with others to discuss it') }}</p>
+			<h2>{{ t('talk_bbb', 'Discuss this file') }}</h2>
+			<p>{{ t('talk_bbb', 'Share this file with others to discuss it') }}</p>
 			<button class="primary" @click="openSharingTab">
-				{{ t('spreed', 'Share this file') }}
+				{{ t('talk_bbb', 'Share this file') }}
 			</button>
 		</div>
 		<div v-else-if="isTalkSidebarSupportedForFile && !token" class="emptycontent room-not-joined">
 			<div class="icon icon-talk" />
-			<h2>{{ t('spreed', 'Discuss this file') }}</h2>
+			<h2>{{ t('talk_bbb', 'Discuss this file') }}</h2>
 			<button class="primary" @click="joinConversation">
-				{{ t('spreed', 'Join conversation') }}
+				{{ t('talk_bbb', 'Join conversation') }}
 			</button>
 		</div>
 		<template v-else>

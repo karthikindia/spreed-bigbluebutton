@@ -23,20 +23,20 @@
 <template>
 	<div id="signaling_server" class="videocalls section">
 		<h2>
-			{{ t('spreed', 'Signaling servers') }}
-			<span v-if="saved" class="icon icon-checkmark-color" :title="t('spreed', 'Saved')" />
+			{{ t('talk_bbb', 'Signaling servers') }}
+			<span v-if="saved" class="icon icon-checkmark-color" :title="t('talk_bbb', 'Saved')" />
 			<a v-else-if="!loading"
-				v-tooltip.auto="t('spreed', 'Add a new server')"
+				v-tooltip.auto="t('talk_bbb', 'Add a new server')"
 				class="icon icon-add"
 				@click="newServer">
-				<span class="hidden-visually">{{ t('spreed', 'Add a new server') }}</span>
+				<span class="hidden-visually">{{ t('talk_bbb', 'Add a new server') }}</span>
 			</a>
 			<span v-else class="icon icon-loading-small" />
 		</h2>
 
 		<p class="settings-hint">
-			{{ t('spreed', 'An external signaling server should optionally be used for larger installations. Leave empty to use the internal signaling server.') }}
-			<span v-if="!servers.length">{{ t('spreed', 'Please note that calls with more than 4 participants without external signaling server, participants can experience connectivity issues and cause high load on participating devices.') }}</span>
+			{{ t('talk_bbb', 'An external signaling server should optionally be used for larger installations. Leave empty to use the internal signaling server.') }}
+			<span v-if="!servers.length">{{ t('talk_bbb', 'Please note that calls with more than 4 participants without external signaling server, participants can experience connectivity issues and cause high load on participating devices.') }}</span>
 		</p>
 
 		<div v-if="!servers.length" class="signaling-warning">
@@ -47,7 +47,7 @@
 				class="checkbox"
 				:disabled="loading"
 				@change="updateHideWarning">
-			<label for="hide_warning">{{ t('spreed', 'Don\'t warn about connectivity issues in calls with more than 4 participants') }}</label>
+			<label for="hide_warning">{{ t('talk_bbb', 'Don\'t warn about connectivity issues in calls with more than 4 participants') }}</label>
 		</div>
 
 		<ul class="turn-servers">
@@ -66,13 +66,13 @@
 		</ul>
 
 		<div class="signaling-secret">
-			<h4>{{ t('spreed', 'Shared secret') }}</h4>
+			<h4>{{ t('talk_bbb', 'Shared secret') }}</h4>
 			<input v-model="secret"
 				type="text"
 				name="signaling_secret"
 				:disabled="loading"
-				:placeholder="t('spreed', 'Shared secret')"
-				:aria-label="t('spreed', 'Shared secret')"
+				:placeholder="t('talk_bbb', 'Shared secret')"
+				:aria-label="t('talk_bbb', 'Shared secret')"
 				@input="debounceUpdateServers">
 		</div>
 	</div>
@@ -128,7 +128,7 @@ export default {
 			const self = this
 			self.loading = true
 
-			OCP.AppConfig.setValue('spreed', 'hide_signaling_warning', this.hideWarning ? 'yes' : 'no', {
+			OCP.AppConfig.setValue('talk_bbb', 'hide_signaling_warning', this.hideWarning ? 'yes' : 'no', {
 				success() {
 					self.loading = false
 					self.toggleSave()
@@ -146,7 +146,7 @@ export default {
 			this.servers = this.servers.filter(server => server.server.trim() !== '')
 
 			const self = this
-			OCP.AppConfig.setValue('spreed', 'signaling_servers', JSON.stringify({
+			OCP.AppConfig.setValue('talk_bbb', 'signaling_servers', JSON.stringify({
 				servers: this.servers,
 				secret: this.secret,
 			}), {

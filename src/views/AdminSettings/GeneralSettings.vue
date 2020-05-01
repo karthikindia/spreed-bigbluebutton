@@ -22,38 +22,38 @@
 
 <template>
 	<div id="general_settings" class="videocalls section">
-		<h2>{{ t('spreed', 'General settings') }}</h2>
+		<h2>{{ t('talk_bbb', 'General settings') }}</h2>
 
 		<p>
-			<label for="start_calls">{{ t('spreed', 'Start calls') }}</label>
+			<label for="start_calls">{{ t('talk_bbb', 'Start calls') }}</label>
 			<Multiselect id="start_calls"
 				v-model="startCalls"
 				:options="startCallOptions"
-				:placeholder="t('spreed', 'Who can start a call?')"
+				:placeholder="t('talk_bbb', 'Who can start a call?')"
 				label="label"
 				track-by="value"
 				:disabled="loading || loadingStartCalls"
 				@input="saveStartCalls" />
 		</p>
 		<p>
-			<em>{{ t('spreed', 'When a call has started, everyone with access to the conversation can join the call.') }}</em>
+			<em>{{ t('talk_bbb', 'When a call has started, everyone with access to the conversation can join the call.') }}</em>
 		</p>
 
-		<h3>{{ t('spreed', 'Default notification settings') }}</h3>
+		<h3>{{ t('talk_bbb', 'Default notification settings') }}</h3>
 
 		<p>
-			<label for="default_group_notification">{{ t('spreed', 'Default group notification') }}</label>
+			<label for="default_group_notification">{{ t('talk_bbb', 'Default group notification') }}</label>
 			<Multiselect id="default_group_notification"
 				v-model="defaultGroupNotification"
 				:options="defaultGroupNotificationOptions"
-				:placeholder="t('spreed', 'Default group notification for new groups')"
+				:placeholder="t('talk_bbb', 'Default group notification for new groups')"
 				label="label"
 				track-by="value"
 				:disabled="loading || loadingStartCalls"
 				@input="saveDefaultGroupNotification" />
 		</p>
 
-		<h3>{{ t('spreed', 'Integration into other apps') }}</h3>
+		<h3>{{ t('talk_bbb', 'Integration into other apps') }}</h3>
 
 		<p>
 			<input id="conversations_files"
@@ -63,7 +63,7 @@
 				class="checkbox"
 				:disabled="loading || loadingConversationsFiles"
 				@change="saveConversationsFiles">
-			<label for="conversations_files">{{ t('spreed', 'Allow conversations on files') }}</label>
+			<label for="conversations_files">{{ t('talk_bbb', 'Allow conversations on files') }}</label>
 		</p>
 
 		<p>
@@ -74,7 +74,7 @@
 				class="checkbox"
 				:disabled="loading || loadingConversationsFiles || !conversationsFiles"
 				@change="saveConversationsFilesPublicShares">
-			<label for="conversations_files_public_shares">{{ t('spreed', 'Allow conversations on public shares for files') }}</label>
+			<label for="conversations_files_public_shares">{{ t('talk_bbb', 'Allow conversations on public shares for files') }}</label>
 		</p>
 	</div>
 </template>
@@ -84,15 +84,15 @@ import Multiselect from '@nextcloud/vue/dist/Components/Multiselect'
 import { loadState } from '@nextcloud/initial-state'
 
 const startCallOptions = [
-	{ value: 0, label: t('spreed', 'Everyone') },
-	{ value: 1, label: t('spreed', 'Users and moderators') },
-	{ value: 2, label: t('spreed', 'Moderators only') },
+	{ value: 0, label: t('talk_bbb', 'Everyone') },
+	{ value: 1, label: t('talk_bbb', 'Users and moderators') },
+	{ value: 2, label: t('talk_bbb', 'Moderators only') },
 ]
 
 const defaultGroupNotificationOptions = [
-	{ value: 1, label: t('spreed', 'All messages') },
-	{ value: 2, label: t('spreed', '@-mentions only') },
-	{ value: 3, label: t('spreed', 'Off') },
+	{ value: 1, label: t('talk_bbb', 'All messages') },
+	{ value: 2, label: t('talk_bbb', '@-mentions only') },
+	{ value: 3, label: t('talk_bbb', 'Off') },
 ]
 export default {
 	name: 'GeneralSettings',
@@ -131,7 +131,7 @@ export default {
 		saveStartCalls() {
 			this.loadingStartCalls = true
 
-			OCP.AppConfig.setValue('spreed', 'start_calls', this.startCalls.value, {
+			OCP.AppConfig.setValue('talk_bbb', 'start_calls', this.startCalls.value, {
 				success: function() {
 					this.loadingStartCalls = false
 				}.bind(this),
@@ -140,7 +140,7 @@ export default {
 		saveDefaultGroupNotification() {
 			this.loadingStartCalls = true
 
-			OCP.AppConfig.setValue('spreed', 'default_group_notification', this.defaultGroupNotification.value, {
+			OCP.AppConfig.setValue('talk_bbb', 'default_group_notification', this.defaultGroupNotification.value, {
 				success: function() {
 					this.loadingStartCalls = false
 				}.bind(this),
@@ -149,11 +149,11 @@ export default {
 		saveConversationsFiles() {
 			this.loadingConversationsFiles = true
 
-			OCP.AppConfig.setValue('spreed', 'conversations_files', this.conversationsFiles ? '1' : '0', {
+			OCP.AppConfig.setValue('talk_bbb', 'conversations_files', this.conversationsFiles ? '1' : '0', {
 				success: function() {
 					if (!this.conversationsFiles) {
 						// When the file integration is disabled, the share integration is also disabled
-						OCP.AppConfig.setValue('spreed', 'conversations_files_public_shares', '0', {
+						OCP.AppConfig.setValue('talk_bbb', 'conversations_files_public_shares', '0', {
 							success: function() {
 								this.conversationsFilesPublicShares = false
 								this.loadingConversationsFiles = false
@@ -168,7 +168,7 @@ export default {
 		saveConversationsFilesPublicShares() {
 			this.loadingConversationsFiles = true
 
-			OCP.AppConfig.setValue('spreed', 'conversations_files_public_shares', this.conversationsFilesPublicShares ? '1' : '0', {
+			OCP.AppConfig.setValue('talk_bbb', 'conversations_files_public_shares', this.conversationsFilesPublicShares ? '1' : '0', {
 				success: function() {
 					this.loadingConversationsFiles = false
 				}.bind(this),

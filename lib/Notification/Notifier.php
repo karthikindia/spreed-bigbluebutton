@@ -114,7 +114,7 @@ class Notifier implements INotifier {
 	 * @since 17.0.0
 	 */
 	public function getName(): string {
-		return $this->lFactory->get('spreed')->t('Talk');
+		return $this->lFactory->get('talk_bbb')->t('Talk');
 	}
 
 	/**
@@ -125,7 +125,7 @@ class Notifier implements INotifier {
 	 * @since 9.0.0
 	 */
 	public function prepare(INotification $notification, string $languageCode): INotification {
-		if ($notification->getApp() !== 'spreed') {
+		if ($notification->getApp() !== 'talk_bbb') {
 			throw new \InvalidArgumentException('Incorrect app');
 		}
 
@@ -135,7 +135,7 @@ class Notifier implements INotifier {
 			throw new AlreadyProcessedException();
 		}
 
-		$l = $this->lFactory->get('spreed', $languageCode);
+		$l = $this->lFactory->get('talk_bbb', $languageCode);
 
 		try {
 			$room = $this->manager->getRoomByToken($notification->getObjectId());
@@ -157,8 +157,8 @@ class Notifier implements INotifier {
 		}
 
 		$notification
-			->setIcon($this->url->getAbsoluteURL($this->url->imagePath('spreed', 'app-dark.svg')))
-			->setLink($this->url->linkToRouteAbsolute('spreed.pagecontroller.showCall', ['token' => $room->getToken()]));
+			->setIcon($this->url->getAbsoluteURL($this->url->imagePath('talk_bbb', 'app-dark.svg')))
+			->setLink($this->url->linkToRouteAbsolute('talk_bbb.pagecontroller.showCall', ['token' => $room->getToken()]));
 
 		$subject = $notification->getSubject();
 		if ($subject === 'invitation') {

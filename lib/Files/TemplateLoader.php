@@ -51,7 +51,7 @@ class TemplateLoader implements IEventListener {
 		}
 
 		$config = \OC::$server->getConfig();
-		if ($config->getAppValue('spreed', 'conversations_files', '1') !== '1') {
+		if ($config->getAppValue('talk_bbb', 'conversations_files', '1') !== '1') {
 			return;
 		}
 

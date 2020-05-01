@@ -46,7 +46,7 @@ class AllowedGroups implements ISettings {
 	 */
 	public function getForm(): TemplateResponse {
 		$this->initialStateService->provideInitialState('talk', 'allowed_groups', $this->config->getAllowedGroupIds());
-		return new TemplateResponse('spreed', 'settings/admin/allowed-groups', [], '');
+		return new TemplateResponse('talk_bbb', 'settings/admin/allowed-groups', [], '');
 	}
 
 	/**

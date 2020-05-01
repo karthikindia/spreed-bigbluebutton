@@ -42,27 +42,27 @@
 		</div>
 
 		<span class="participant-row__user-name">{{ computedName }}</span>
-		<span v-if="showModeratorLabel" class="participant-row__moderator-indicator">({{ t('spreed', 'moderator') }})</span>
-		<span v-if="isGuest" class="participant-row__guest-indicator">({{ t('spreed', 'guest') }})</span>
+		<span v-if="showModeratorLabel" class="participant-row__moderator-indicator">({{ t('talk_bbb', 'moderator') }})</span>
+		<span v-if="isGuest" class="participant-row__guest-indicator">({{ t('talk_bbb', 'guest') }})</span>
 		<span v-if="callIconClass" class="icon callstate-icon" :class="callIconClass" />
 		<Actions
 			v-if="canModerate && !isSearched"
-			:aria-label="t('spreed', 'Participant settings')"
+			:aria-label="t('talk_bbb', 'Participant settings')"
 			class="participant-row__actions">
 			<ActionButton v-if="canBeDemoted"
 				icon="icon-rename"
 				@click="demoteFromModerator">
-				{{ t('spreed', 'Demote from moderator') }}
+				{{ t('talk_bbb', 'Demote from moderator') }}
 			</ActionButton>
 			<ActionButton v-if="canBePromoted"
 				icon="icon-rename"
 				@click="promoteToModerator">
-				{{ t('spreed', 'Promote to moderator') }}
+				{{ t('talk_bbb', 'Promote to moderator') }}
 			</ActionButton>
 			<ActionButton
 				icon="icon-delete"
 				@click="removeParticipant">
-				{{ t('spreed', 'Remove participant') }}
+				{{ t('talk_bbb', 'Remove participant') }}
 			</ActionButton>
 		</Actions>
 		<div v-if="isSelected" class="icon-checkmark participant-row__utils utils__checkmark" />
@@ -115,11 +115,11 @@ export default {
 				const displayName = this.participant.displayName.trim()
 
 				if (displayName === '' && this.isGuest) {
-					return t('spreed', 'Guest')
+					return t('talk_bbb', 'Guest')
 				}
 
 				if (displayName === '') {
-					return t('spreed', '[Unknown user name]')
+					return t('talk_bbb', '[Unknown user name]')
 				}
 
 				return displayName
@@ -202,7 +202,7 @@ export default {
 			return [PARTICIPANT.TYPE.GUEST, PARTICIPANT.TYPE.GUEST_MODERATOR].indexOf(this.participantType) !== -1
 		},
 		firstLetterOfGuestName() {
-			const customName = this.computedName !== t('spreed', 'Guest') ? this.computedName : '?'
+			const customName = this.computedName !== t('talk_bbb', 'Guest') ? this.computedName : '?'
 			return customName.charAt(0)
 		},
 		isModerator() {

@@ -226,8 +226,8 @@ export default {
 					console.info('Conversations received, but the current conversation is not in the list, trying to get potential public conversation manually')
 					this.refreshCurrentConversation()
 				} else {
-					console.info('Conversation received, but the current conversation is not in the list. Redirecting to /apps/spreed')
-					this.$router.push('/apps/spreed/not-found')
+					console.info('Conversation received, but the current conversation is not in the list. Redirecting to /apps/talk_bbb')
+					this.$router.push('/apps/talk_bbb/not-found')
 				}
 			}
 		})
@@ -276,15 +276,15 @@ export default {
 		Router.beforeEach((to, from, next) => {
 			if (this.isInCall) {
 				OC.dialogs.confirmDestructive(
-					t('spreed', 'Navigating away from the page will leave the call in {conversation}', {
+					t('talk_bbb', 'Navigating away from the page will leave the call in {conversation}', {
 						conversation: this.getConversationName(this.token),
 					}),
-					t('spreed', 'Leave call'),
+					t('talk_bbb', 'Leave call'),
 					{
 						type: OC.dialogs.YES_NO_BUTTONS,
-						confirm: t('spreed', 'Leave call'),
+						confirm: t('talk_bbb', 'Leave call'),
 						confirmClasses: 'error',
-						cancel: t('spreed', 'Stay in call'),
+						cancel: t('talk_bbb', 'Stay in call'),
 					},
 					(decision) => {
 						if (!decision) {
@@ -352,8 +352,8 @@ export default {
 				this.defaultPageTitle = window.document.title
 				// When a conversation is opened directly, the "Talk - " part is
 				// missing from the title
-				if (this.defaultPageTitle.indexOf(t('spreed', 'Talk') + ' - ') !== 0) {
-					this.defaultPageTitle = t('spreed', 'Talk') + ' - ' + this.defaultPageTitle
+				if (this.defaultPageTitle.indexOf(t('talk_bbb', 'Talk') + ' - ') !== 0) {
+					this.defaultPageTitle = t('talk_bbb', 'Talk') + ' - ' + this.defaultPageTitle
 				}
 			}
 
@@ -401,8 +401,8 @@ export default {
 					singleConversation: true,
 				})
 			} catch (exception) {
-				console.info('Conversation received, but the current conversation is not in the list. Redirecting to /apps/spreed')
-				this.$router.push('/apps/spreed/not-found')
+				console.info('Conversation received, but the current conversation is not in the list. Redirecting to /apps/talk_bbb')
+				this.$router.push('/apps/talk_bbb/not-found')
 				this.$store.dispatch('hideSidebar')
 			}
 		},

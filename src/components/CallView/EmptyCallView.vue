@@ -30,7 +30,7 @@
 		<button v-if="showLink"
 			class="primary"
 			@click.stop.prevent="copyLinkToConversation">
-			{{ t('spreed', 'Copy link') }}
+			{{ t('talk_bbb', 'Copy link') }}
 		</button>
 	</div>
 </template>
@@ -95,10 +95,10 @@ export default {
 
 		title() {
 			if (this.numberOfParticipants === 1) {
-				return t('spreed', 'No other people in this call')
+				return t('talk_bbb', 'No other people in this call')
 			}
 
-			return t('spreed', 'Waiting for others to join the call …')
+			return t('talk_bbb', 'Waiting for others to join the call …')
 		},
 
 		message() {
@@ -115,14 +115,14 @@ export default {
 			}
 
 			if (this.isGroupConversation) {
-				return t('spreed', 'You can invite others in the participant tab of the sidebar')
+				return t('talk_bbb', 'You can invite others in the participant tab of the sidebar')
 			}
 
 			if (this.isPublicConversation && this.canInviteOthersInPublicConversations) {
-				return t('spreed', 'You can invite others in the participant tab of the sidebar or share this link to invite others!')
+				return t('talk_bbb', 'You can invite others in the participant tab of the sidebar or share this link to invite others!')
 			}
 
-			return t('spreed', 'Share this link to invite others!')
+			return t('talk_bbb', 'Share this link to invite others!')
 		},
 
 		showLink() {
@@ -139,9 +139,9 @@ export default {
 		async copyLinkToConversation() {
 			try {
 				await this.$copyText(this.linkToConversation)
-				OCP.Toast.success(t('spreed', 'Conversation link copied to clipboard.'))
+				OCP.Toast.success(t('talk_bbb', 'Conversation link copied to clipboard.'))
 			} catch (error) {
-				OCP.Toast.error(t('spreed', 'The link could not be copied.'))
+				OCP.Toast.error(t('talk_bbb', 'The link could not be copied.'))
 			}
 		},
 	},

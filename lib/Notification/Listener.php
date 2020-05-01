@@ -116,14 +116,14 @@ class Listener {
 		$notification = $this->notificationManager->createNotification();
 		$dateTime = $this->timeFactory->getDateTime();
 		try {
-			$notification->setApp('spreed')
+			$notification->setApp('talk_bbb')
 				->setDateTime($dateTime)
 				->setObject('room', $room->getToken())
 				->setSubject('invitation', [
 					'actorId' => $actor->getUID(),
 				]);
 		} catch (\InvalidArgumentException $e) {
-			$this->logger->logException($e, ['app' => 'spreed']);
+			$this->logger->logException($e, ['app' => 'talk_bbb']);
 			return;
 		}
 
@@ -137,7 +137,7 @@ class Listener {
 				$notification->setUser($participant['userId']);
 				$this->notificationManager->notify($notification);
 			} catch (\InvalidArgumentException $e) {
-				$this->logger->logException($e, ['app' => 'spreed']);
+				$this->logger->logException($e, ['app' => 'talk_bbb']);
 			}
 		}
 	}
@@ -155,13 +155,13 @@ class Listener {
 
 		$notification = $this->notificationManager->createNotification();
 		try {
-			$notification->setApp('spreed')
+			$notification->setApp('talk_bbb')
 				->setUser($currentUser->getUID())
 				->setObject('room', $room->getToken())
 				->setSubject('invitation');
 			$this->notificationManager->markProcessed($notification);
 		} catch (\InvalidArgumentException $e) {
-			$this->logger->logException($e, ['app' => 'spreed']);
+			$this->logger->logException($e, ['app' => 'talk_bbb']);
 			return;
 		}
 	}
@@ -203,7 +203,7 @@ class Listener {
 		$dateTime = $this->timeFactory->getDateTime();
 		try {
 			// Remove all old notifications for this room
-			$notification->setApp('spreed')
+			$notification->setApp('talk_bbb')
 				->setObject('room', $room->getToken());
 			$this->notificationManager->markProcessed($notification);
 
@@ -215,7 +215,7 @@ class Listener {
 				])
 				->setDateTime($dateTime);
 		} catch (\InvalidArgumentException $e) {
-			$this->logger->logException($e, ['app' => 'spreed']);
+			$this->logger->logException($e, ['app' => 'talk_bbb']);
 			return;
 		}
 
@@ -229,7 +229,7 @@ class Listener {
 				$notification->setUser($userId);
 				$this->notificationManager->notify($notification);
 			} catch (\InvalidArgumentException $e) {
-				$this->logger->logException($e, ['app' => 'spreed']);
+				$this->logger->logException($e, ['app' => 'talk_bbb']);
 			}
 		}
 	}
@@ -247,13 +247,13 @@ class Listener {
 
 		$notification = $this->notificationManager->createNotification();
 		try {
-			$notification->setApp('spreed')
+			$notification->setApp('talk_bbb')
 				->setUser($currentUser->getUID())
 				->setObject('call', $room->getToken())
 				->setSubject('call');
 			$this->notificationManager->markProcessed($notification);
 		} catch (\InvalidArgumentException $e) {
-			$this->logger->logException($e, ['app' => 'spreed']);
+			$this->logger->logException($e, ['app' => 'talk_bbb']);
 			return;
 		}
 	}

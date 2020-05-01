@@ -101,7 +101,7 @@ class CallController extends AEnvironmentAwareController {
 	$url = '';
 
 	$config = \OC::$server->getConfig();
-	$appConfig = $config->getSystemValue('spreed');
+	$appConfig = $config->getSystemValue('talk_bbb');
 	if (!array_key_exists('bbb_server', $appConfig) || !array_key_exists('bbb_secret', $appConfig)) {
 		return new DataResponse($url);
 	}

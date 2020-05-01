@@ -57,7 +57,7 @@ class Commands implements ISettings {
 
 		$this->initialStateService->provideInitialState('talk', 'commands', $result);
 
-		return new TemplateResponse('spreed', 'settings/admin/commands', [], '');
+		return new TemplateResponse('talk_bbb', 'settings/admin/commands', [], '');
 	}
 
 	/**

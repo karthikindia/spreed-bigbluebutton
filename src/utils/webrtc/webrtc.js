@@ -36,7 +36,7 @@ import store from '../../store/index.js'
 import { showError } from '@nextcloud/dialogs'
 
 let webrtc
-const spreedPeerConnectionTable = []
+const peerConnectionTable = []
 
 let previousUsersInRoom = []
 let usersInCallMapping = {}
@@ -499,8 +499,8 @@ export default function initWebRTC(signaling, _callParticipantCollection) {
 		}
 
 		// Reset ice restart counter for peer
-		if (spreedPeerConnectionTable[peer.id] > 0) {
-			spreedPeerConnectionTable[peer.id] = 0
+		if (peerConnectionTable[peer.id] > 0) {
+			peerConnectionTable[peer.id] = 0
 		}
 	}
 
@@ -518,10 +518,10 @@ export default function initWebRTC(signaling, _callParticipantCollection) {
 
 				// If the peer is still disconnected after 5 seconds we try
 				// ICE restart.
-				if (spreedPeerConnectionTable[peer.id] < 5) {
+				if (peerConnectionTable[peer.id] < 5) {
 					if (peer.pc.localDescription.type === 'offer'
 							&& peer.pc.signalingState === 'stable') {
-						spreedPeerConnectionTable[peer.id]++
+						peerConnectionTable[peer.id]++
 						console.log('ICE restart.', peer)
 						peer.icerestart()
 					}
@@ -533,7 +533,7 @@ export default function initWebRTC(signaling, _callParticipantCollection) {
 	function handleIceConnectionStateFailed(peer) {
 		if (!showedTURNWarning && !signaling.settings.turnservers.length) {
 			showError(
-				t('spreed', 'Could not establish a connection with at least one participant. A TURN server might be needed for your scenario. Please ask your administrator to set one up following {linkstart}this documentation{linkend}.')
+				t('talk_bbb', 'Could not establish a connection with at least one participant. A TURN server might be needed for your scenario. Please ask your administrator to set one up following {linkstart}this documentation{linkend}.')
 					.replace('{linkstart}', '<a  target="_blank" rel="noreferrer nofollow" class="external" href="https://nextcloud-talk.readthedocs.io/en/latest/TURN/">')
 					.replace('{linkend}', ' ↗</a>'),
 				{
@@ -545,10 +545,10 @@ export default function initWebRTC(signaling, _callParticipantCollection) {
 		}
 
 		if (!signaling.hasFeature('mcu')) {
-			if (spreedPeerConnectionTable[peer.id] < 5) {
+			if (peerConnectionTable[peer.id] < 5) {
 				if (peer.pc.localDescription.type === 'offer'
 						&& peer.pc.signalingState === 'stable') {
-					spreedPeerConnectionTable[peer.id]++
+					peerConnectionTable[peer.id]++
 					console.log('ICE restart.', peer)
 					peer.icerestart()
 				}
@@ -574,7 +574,7 @@ export default function initWebRTC(signaling, _callParticipantCollection) {
 
 	function setHandlerForIceConnectionStateChange(peer) {
 		// Initialize ice restart counter for peer
-		spreedPeerConnectionTable[peer.id] = 0
+		peerConnectionTable[peer.id] = 0
 
 		peer.pc.addEventListener('iceconnectionstatechange', function() {
 			peer.emit('extendedIceConnectionStateChange', peer.pc.iceConnectionState)
@@ -789,7 +789,7 @@ export default function initWebRTC(signaling, _callParticipantCollection) {
 		localStreamRequestedTimeout = setTimeout(function() {
 			// FIXME emit an event and handle it as needed instead of
 			// calling UI code from here.
-			localStreamRequestedTimeoutNotification = OC.Notification.show(t('spreed', 'This is taking longer than expected. Are the media permissions already granted (or rejected)? If yes please restart your browser, as audio and video are failing'), { type: 'error' })
+			localStreamRequestedTimeoutNotification = OC.Notification.show(t('talk_bbb', 'This is taking longer than expected. Are the media permissions already granted (or rejected)? If yes please restart your browser, as audio and video are failing'), { type: 'error' })
 		}, 10000)
 	})
 
@@ -819,17 +819,17 @@ export default function initWebRTC(signaling, _callParticipantCollection) {
 				&& webrtc.capabilities.supportRTCPeerConnection)
 			|| (error.name === 'NotAllowedError'
 				&& error.message && error.message.indexOf('Only secure origins') !== -1)) {
-			message = t('spreed', 'Access to microphone & camera is only possible with HTTPS')
-			message += ': ' + t('spreed', 'Please move your setup to HTTPS')
+			message = t('talk_bbb', 'Access to microphone & camera is only possible with HTTPS')
+			message += ': ' + t('talk_bbb', 'Please move your setup to HTTPS')
 		} else if (error.name === 'NotAllowedError') {
-			message = t('spreed', 'Access to microphone & camera was denied')
+			message = t('talk_bbb', 'Access to microphone & camera was denied')
 		} else if (!webrtc.capabilities.support) {
 			console.log('WebRTC not supported')
 
-			message = t('spreed', 'WebRTC is not supported in your browser')
-			message += ': ' + t('spreed', 'Please use a different browser like Firefox or Chrome')
+			message = t('talk_bbb', 'WebRTC is not supported in your browser')
+			message += ': ' + t('talk_bbb', 'Please use a different browser like Firefox or Chrome')
 		} else {
-			message = t('spreed', 'Error while accessing microphone & camera')
+			message = t('talk_bbb', 'Error while accessing microphone & camera')
 			console.log('Error while accessing microphone & camera: ', error.message || error.name)
 		}
 

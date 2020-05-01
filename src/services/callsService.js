@@ -31,7 +31,7 @@ import { joinCall as webRtcJoinCall, getSignaling } from '../utils/webrtc/index'
  */
 const joinCall = async function(token, flags) {
 	// taken from /utils/signaling joinCall
-	const response = await axios.post(generateOcsUrl('apps/spreed/api/v1/call', 2) + token, { flags })
+	const response = await axios.post(generateOcsUrl('apps/talk_bbb/api/v1/call', 2) + token, { flags })
 	const url = response.data.ocs.data
 	// console.log('joinCall response', url)
 	return url
@@ -52,7 +52,7 @@ const joinCallSideBar = async function(token, flags) {
  */
 const leaveCall = async function(token) {
 	// taken from /utils/signaling leaveCall
-	const response = axios.delete(generateOcsUrl('apps/spreed/api/v1/call', 2) + token)
+	const response = axios.delete(generateOcsUrl('apps/talk_bbb/api/v1/call', 2) + token)
 	return response
 }
 
@@ -71,7 +71,7 @@ const leaveCallSideBar = async function(token) {
  */
 const fetchPeers = async function(token) {
 	try {
-		const response = await axios.get(generateOcsUrl('apps/spreed/api/v1', 2) + `call/${token}`)
+		const response = await axios.get(generateOcsUrl('apps/talk_bbb/api/v1', 2) + `call/${token}`)
 		return response
 	} catch (error) {
 		console.debug('Error while fetching the peers: ', error)

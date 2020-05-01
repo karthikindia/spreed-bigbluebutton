@@ -50,7 +50,7 @@ export default {
 		return {
 			icon: 'icon-talk',
 			loading: false,
-			name: t('spreed', 'Chat'),
+			name: t('talk_bbb', 'Chat'),
 			tab: null,
 			token: null,
 		}

@@ -251,7 +251,7 @@ class RoomController extends AEnvironmentAwareController {
 			} else if ($room->getType() === Room::ONE_TO_ONE_CALL) {
 				$roomData['notificationLevel'] = Participant::NOTIFY_ALWAYS;
 			} else {
-				$adminSetting = (int) $this->config->getAppValue('spreed', 'default_group_notification', Participant::NOTIFY_DEFAULT);
+				$adminSetting = (int) $this->config->getAppValue('talk_bbb', 'default_group_notification', Participant::NOTIFY_DEFAULT);
 				if ($adminSetting === Participant::NOTIFY_DEFAULT) {
 					$roomData['notificationLevel'] = Participant::NOTIFY_MENTION;
 				} else {

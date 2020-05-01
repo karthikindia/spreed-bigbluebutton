@@ -39,7 +39,7 @@ class Call extends Base {
 		$event = $this->preParse($event);
 
 		if ($event->getSubject() === 'call') {
-			$l = $this->languageFactory->get('spreed', $language);
+			$l = $this->languageFactory->get('talk_bbb', $language);
 			$parameters = $event->getSubjectParameters();
 
 //			$roomParameter = $this->getFormerRoom($l, (int) $parameters['room']);

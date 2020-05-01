@@ -37,31 +37,31 @@
 				v-if="isFileConversation"
 				icon="icon-text"
 				:href="linkToFile">
-				{{ t('spreed', 'Go to file') }}
+				{{ t('talk_bbb', 'Go to file') }}
 			</ActionLink>
 			<ActionButton
 				v-if="canModerate"
 				:close-after-click="true"
 				icon="icon-rename"
 				@click="handleRenameConversation">
-				{{ t('spreed', 'Rename conversation') }}
+				{{ t('talk_bbb', 'Rename conversation') }}
 			</ActionButton>
 			<ActionText
 				v-if="canFullModerate"
 				icon="icon-shared"
-				:title="t('spreed', 'Guests')" />
+				:title="t('talk_bbb', 'Guests')" />
 			<ActionCheckbox
 				v-if="canFullModerate"
 				:checked="isSharedPublicly"
 				@change="toggleGuests">
-				{{ t('spreed', 'Share link') }}
+				{{ t('talk_bbb', 'Share link') }}
 			</ActionCheckbox>
 			<ActionButton
 				v-if="canFullModerate"
 				icon="icon-clippy"
 				:close-after-click="true"
 				@click="handleCopyLink">
-				{{ t('spreed', 'Copy link') }}
+				{{ t('talk_bbb', 'Copy link') }}
 			</ActionButton>
 			<!-- password -->
 			<ActionCheckbox
@@ -70,7 +70,7 @@
 				:checked="isPasswordProtected"
 				@check="handlePasswordEnable"
 				@uncheck="handlePasswordDisable">
-				{{ t('spreed', 'Password protection') }}
+				{{ t('talk_bbb', 'Password protection') }}
 			</ActionCheckbox>
 			<ActionInput
 				v-show="isEditingPassword"
@@ -80,17 +80,17 @@
 				:value.sync="password"
 				autocomplete="new-password"
 				@submit="handleSetNewPassword">
-				{{ t('spreed', 'Enter a password') }}
+				{{ t('talk_bbb', 'Enter a password') }}
 			</ActionInput>
 			<ActionText
 				v-if="canFullModerate"
 				icon="icon-lobby"
-				:title="t('spreed', 'Webinar')" />
+				:title="t('talk_bbb', 'Webinar')" />
 			<ActionCheckbox
 				v-if="canFullModerate"
 				:checked="hasLobbyEnabled"
 				@change="toggleLobby">
-				{{ t('spreed', 'Enable lobby') }}
+				{{ t('talk_bbb', 'Enable lobby') }}
 			</ActionCheckbox>
 			<ActionInput
 				v-if="canFullModerate && hasLobbyEnabled"
@@ -100,21 +100,21 @@
 				:value="lobbyTimer"
 				:disabled="lobbyTimerLoading"
 				@change="setLobbyTimer">
-				{{ t('spreed', 'Start time (optional)') }}
+				{{ t('talk_bbb', 'Start time (optional)') }}
 			</ActionInput>
 		</template>
 		<AppSidebarTab
 			v-if="showChatInSidebar"
 			id="chat"
 			:order="1"
-			:name="t('spreed', 'Chat')"
+			:name="t('talk_bbb', 'Chat')"
 			icon="icon-comment">
 			<ChatView :token="token" />
 		</AppSidebarTab>
 		<AppSidebarTab v-if="getUserId"
 			id="participants"
 			:order="2"
-			:name="t('spreed', 'Participants')"
+			:name="t('talk_bbb', 'Participants')"
 			icon="icon-contacts-dark">
 			<ParticipantsTab :display-search-box="displaySearchBox" />
 		</AppSidebarTab>
@@ -122,7 +122,7 @@
 			v-if="getUserId"
 			id="projects"
 			:order="3"
-			:name="t('spreed', 'Projects')"
+			:name="t('talk_bbb', 'Projects')"
 			icon="icon-projects">
 			<CollectionList v-if="conversation.token"
 				:id="conversation.token"
@@ -133,18 +133,18 @@
 			v-if="!getUserId"
 			id="settings"
 			:order="4"
-			:name="t('spreed', 'Settings')"
+			:name="t('talk_bbb', 'Settings')"
 			icon="icon-settings">
 			<form
 				v-if="!getUserId"
 				class="username-form"
 				@submit.prevent="handleChooseUserName">
 				<h3>
-					{{ t('spreed', 'Display name: ') }} <strong>{{ actorDisplayName ? actorDisplayName : t('spreed', 'Guest') }}</strong>
+					{{ t('talk_bbb', 'Display name: ') }} <strong>{{ actorDisplayName ? actorDisplayName : t('talk_bbb', 'Guest') }}</strong>
 					<button
 						class="icon-rename"
 						@click.prevent="handleEditUsername">
-						{{ t('spreed', 'Edit') }}
+						{{ t('talk_bbb', 'Edit') }}
 					</button>
 				</h3>
 				<div
@@ -153,7 +153,7 @@
 					<input
 						ref="usernameInput"
 						v-model="guestUserName"
-						:placeholder="t('spreed', 'Guest')"
+						:placeholder="t('talk_bbb', 'Guest')"
 						class="username-form__input"
 						type="text"
 						@keydown.enter="handleChooseUserName"
@@ -492,9 +492,9 @@ export default {
 		async handleCopyLink() {
 			try {
 				await this.$copyText(this.linkToConversation)
-				OCP.Toast.success(t('spreed', 'Conversation link copied to clipboard.'))
+				OCP.Toast.success(t('talk_bbb', 'Conversation link copied to clipboard.'))
 			} catch (error) {
-				OCP.Toast.error(t('spreed', 'The link could not be copied.'))
+				OCP.Toast.error(t('talk_bbb', 'The link could not be copied.'))
 			}
 		},
 	},
