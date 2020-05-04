@@ -483,6 +483,7 @@ export default {
 		 */
 		async handleScroll() {
 			const scroller = document.querySelector('.scroller')
+			if (!scroller) return
 			const scrollHeight = scroller.scrollHeight
 			const scrollTop = scroller.scrollTop
 			const scrollOffset = scrollHeight - scrollTop
