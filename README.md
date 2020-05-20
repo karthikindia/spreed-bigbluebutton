@@ -1,29 +1,19 @@
-# Nextcloud Talk using Big Blue Button 
+# Nextcloud using Big Blue Button 
 
-![](https://raw.githubusercontent.com/ramezrafla/spreed-bigbluebutton/stable18-bbb/docs/talkwithbbb.jpeg)
+![](https://pix.cobrasoftwares.org/images/2020/05/20/talkwithbbb.jpg)
 
 This is a fork of Nextcloud Talk to use [Big Blue Button](https://bigbluebutton.org/) as the video / audio conferencing server & client instead of Nextcloud's PHP-based signalling engine (or the Nextcloud paid cloud signaling servers)
-
-## Rationale for the fork
-
-Using PHP as a backend for video / audio conferencing is a bad idea for many reasons. It remains a good technical feat, but suffers from:
-- Latency -- PHP does not maintain persistent connections with users and is an interpreted language
-- Cannot maintain many connections at the same time (max is about 4-5 based on our own experience)
-- Uses its own signaling protocol, so you have to either reinvent the wheel for a compiled native server or pay for the service
-- There is no one going to maintain it besides the original developers. Something as complex as a video / audio conferencing requires a team -- future-proofing for enterprise deployments is paramount!
-
-Paying for the third-party service by NC was not an option for us (maybe it is for you) -- it is too expensive for a solutions provider like us
 
 ## Why Big Blue Button
 
 This is a tried-tested-and-true solution used by many educational institutions worldwide. It has been under active development for a very long time and is well-maintained. Uses Red5 and Kurento under the hood, and has a very nice and solid client (using our beloved [MeteorJS](https://www.meteor.com))
 
-- A recommended BBB server can support over 100 simultaneous users
+- A recommended BBB server can support over 100 simultaneous users (webmeet.cobrasoftwares.org for internal use only) - public site  - www.createwebinar.org
 - BBB client can handle a lot more participants in the UI
 - BBB client has drawing board, breakout rooms, uploading PDF,DOC,PPT,XLS
 - BBB client has real-time notes
 - BBB client UI is professional-grade (no offense intended for current Talk client UI)
-- BBB uses WebRTC -- don't want to get sued like Zoom because they used their own protocol
+- BBB uses WebRTC -- don't want to get used like Zoom because they used their own protocol
 
 ## A note about mobile
 
@@ -34,6 +24,7 @@ Big Blue Button uses webrtc protocol which is supported by all recent browsers (
 ## How to setup BBB
 
 Super easy, they have an [automated install script](http://docs.bigbluebutton.org/2.2/install.html). You do need to have an SSL certificate setup (the install script does it for you, but you need to setup your domains properly). **Don't forget that you need to use Ubuntu 16**
+For assistance please contact sales@cobrasoftwares.org
 
 # What we did
 
@@ -54,8 +45,7 @@ Super easy, they have an [automated install script](http://docs.bigbluebutton.or
 ## First you have to manually clone it in your /apps folder
 
 Of course, remove the original spreed
-
-`git clone https://github.com/ramezrafla/spreed-bigbluebutton.git spreed --branch stable18-bbb --depth 1`
+Clone this git repo.
 
 Notes: 
 - Run that clone command in your /apps folder
@@ -104,34 +94,7 @@ Reload your browser, clear your cache, etc. and you can now start calls with BBB
    <version>2.0</version>
 </response>
 ```
-> **Anything else is a problem. Fix your BBB server first**
-3. You are getting a blank iframe --> are you sure you properly setup `bbb_secret` and `bbb_server` parameters?
-4. if you're getting a black iframe, check your browser console for cookie errors. Your BBB domain must be equal to the nextcloud domain: cloud.mydomain.de/bbb.mydomain.de work; cloud.mydomain.de/bbb.yourdomain.de might not work (same site cookie issue)
-
-# TODO
-
-Needless to say, help wanted
-
-1. Add the 2 BBB parameters (server and key) in the admin settings UI of this App instead of config.php
-2. Change name of this app -- recommended: name = 'Talk with BigBlueButton' and id = 'talk_bbb'
-3. Publish to apps store under new name
-
-If you need a BBB server for testing, please PM me.
-
-# Please don't
-
-1. Ask for help to setup your BBB server -- out of scope. If you are having issues read the docs or look for a third-party provider
-2. Ask for help before you go through the troubleshooting steps above
-3. Criticize this work needlessly -- it was done to serve a purpose (for example, we did not add function docs above the new functions, later ...)
-4. Ask us to add your must-have features for you -- we are sharing this in the hopes that it is useful and welcome good PRs; so there is no reason you can't do it yourself or pay someone else
-
-> ---- Original Talk README below this line ----
-
 # Nextcloud Talk
-
-**Video- & audio-conferencing app for Nextcloud**
-
-![](https://raw.githubusercontent.com/nextcloud/spreed/master/docs/call-in-action.png)
 
 ## Why is this so awesome?
 
@@ -174,40 +137,7 @@ If you need to use Talk in a enterprise environment, including the ability to ha
 4. Then activate it through the apps management. :tada:
 5. To build the docs locally, install mkdocs locally: `apt install mkdocs mkdocs-bootstrap`
 
-We are also available on [our public Talk team conversation](https://cloud.nextcloud.com/call/c7fz9qpr), if you want to join the discussion.
 
 ### API documentation
 
 The API documentation is available at https://nextcloud-talk.readthedocs.io/en/latest/
-
-### Milestones and Branches
-
-#### Branches
-
-In the Talk app we have one branch per Nextcloud server version. stable* branches of the app should always work with the same branch of the Nextcloud server.
-This is only off close to releases of the server, to allow easier finishing of features, so we don't have to backport them.
-
-#### Milestones
-
-* 5.0.0 - **Numeric** milestones are settled and waiting for their release or some final polishing
-* 💙 Next Minor (15) - The **next minor** milestone is for issues/PR that go into the next Dot-Release for the given Nextcloud version (in the example 15 - e.g. 5.0.1)
-* 💚 Next Major - The **next major** milestone is for issues/PR that go into the next feature release for the new Major Nextcloud version (as there are Minors for 15, this would be 16)
-* 💛 Following Major - The **following major** milestone is for issues/PR that should be worked towards/on but didn't make it into the next major due to timing constraints
-* 💔 Backlog - The **backlog** milestone is assigned to all remaining issues
-
-You can always pick a task of any of the milestones and we will help you to get it into the assigned milestone or also an earlier one if time permits. It's just a matter of having an overview and better visibility what we think should be worked on, but it's not exclusive.
-
-
-### Useful tricks for testing
-
-* Disable camera until reboot: `sudo modprobe -r uvcvideo`
-* Re-enable camera: `sudo modprobe uvcvideo`
-* Send fake-stream (audio and video) in firefox:
-  1. Open `about:config`
-  2. Search for `fake`
-  3. Toggle `media.navigator.streams.fake` to **true**
-
-
-## Contribution Guidelines
-
-For more information please see the [guidelines for contributing](https://github.com/nextcloud/spreed/blob/master/.github/contributing.md) to this repository.
